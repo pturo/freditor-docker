@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col s3">
+        <app-side-menu></app-side-menu>
+    </div>
+    <div class="col s9">
+        <div class="roll-a-dice" style="align-items: center; text-align: center;">
+            <h1>Kostka do gry. Zagraj o swoj los!</h1>
+            <br>
+            <h4>Wylosowany numer na dzis:</h4>
+            <br>
+            <span style="font-size: 36px; color: white;"
+                [ngClass]="{'red': result?.number === 1, 'orange': result?.number === 2, 'yellow': result?.number === 3, 
+            'lime': result?.number === 4, 'green': result?.number === 5, 'blue': result?.number === 6}">{{result?.number}}</span>
+            <span style="font-size: 36px; color: white;" *ngIf="!result">0</span>
+            <br>
+            <h4>Znaczenie:</h4>
+            <br>
+            <span style="font-size: 24px;">{{result?.meaning}}</span>
+            <span style="font-size: 24px;" *ngIf="!result">Zakrec kostka, by wiedziec, co Cie czeka.
+                :)</span>
+            <br>
+            <br>
+            <button class="red btn" type="submit" name="generateRollDiceBtn" (click)="rollADice()">Zakrec
+                kostka!</button>
+            <br>
+        </div>
+        <hr color="#F44336">
+        <div class="jokes-generator" style="align-items: center; text-align: center;">
+            <h1>Generator zartow, badz dziwnych tekstow. Milej zabawy!</h1>
+            <br>
+            <span style="font-size: 24px;">{{generatedText}}</span>
+            <br>
+            <h4>Tekst na dzis:</h4>
+            <br>
+            <button class="red btn" type="submit" name="generateJokeBtn" (click)="generateRandomText()">Generuj
+                tekst</button>
+        </div>
+    </div>
+</div>

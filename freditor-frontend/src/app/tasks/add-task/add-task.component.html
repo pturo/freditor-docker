@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col s3">
+        <app-side-menu></app-side-menu>
+    </div>
+    <div class="col s9">
+        <h1>Dodaj zadanie</h1>
+        <div class="row" style="border: 1px solid #C62828;">
+            <form [formGroup]="addTaskForm" (ngSubmit)="addTask()" action="" method="post" class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="TaskTitle" type="text" class="validate" formControlName="TaskTitle" ngDefaultControl
+                            required minlength="8">
+                        <label for="TaskTitle">Nazwa zadania</label>
+                    </div>
+                </div>
+                <div *ngIf="addTaskForm.get('TaskTitle').invalid && (addTaskForm.get('TaskTitle').dirty || addTaskForm.get('TaskTitle').touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="addTaskForm.get('TaskTitle').errors?.['required']">Nazwa zadania jest wymagana!</div>
+                    <div *ngIf="addTaskForm.get('TaskTitle').errors?.['minlength']">Minimalna dlugosc musi wyniesc 8
+                        znakow!
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="TaskElements" type="text" class="validate" (keyup.enter)="addToList($event)"
+                            formControlName="TaskElements" ngDefaultControl required #TaskElements>
+                        <label for="TaskElements">Szczegoly zadania (kazdy szczegol zakoncz klawiszem ENTER)</label>
+                    </div>
+                </div>
+                <div *ngIf="addTaskForm.get('TaskElements').invalid && (addTaskForm.get('TaskElements').dirty || addTaskForm.get('TaskElements').touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="addTaskForm.get('TaskElements').errors?.['required']">Nazwa elementu zadania jest
+                        wymagana i nie moze byc pusta!</div>
+                </div>
+                <div class="row">
+                    <div class="list col s12">
+                        <ul class="collection" *ngFor="let item of listOfItems">
+                            <li class="collection-item" style="background-color: #C62828; color: white;">{{item}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="date-picker col s12">
+                        <label for="TaskDeadline">Termin wykonania zadania</label>
+                        <input id="TaskDeadline" type="text" class="date" formControlName="TaskDeadline" required>
+                    </div>
+                </div>
+                <div *ngIf="addTaskForm.get('TaskDeadline').invalid && addTaskForm.get('TaskDeadline').dirty"
+                    class="alert alert-danger">
+                    <div *ngIf="addTaskForm.get('TaskDeadline').errors?.['required']">Data wykonania zadania jest
+                        wymagana!</div>
+                </div>
+                <div style="text-align: center;">
+                    <button class="red btn" type="submit" name="saveBtn"
+                        [disabled]="addTaskForm.invalid">Zapisz</button> |
+                    <button class="red btn" type="submit" name="cancelBtn" [routerLink]=""
+                        (click)="backToTasks()">Anuluj</button>
+                </div>
+                <br>
+            </form>
+        </div>
+    </div>

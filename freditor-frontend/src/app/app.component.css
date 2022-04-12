@@ -1,0 +1,15 @@
+.container-fluid {
+  position: relative;
+  margin: 0;
+  height: 100%;
+}
+
+.navbar {
+  overflow: hidden;
+}
+
+.router-content {
+  height: calc(100% - 120px);
+  /* height of nav and footer is excluded from 100% */
+  overflow: auto;
+}

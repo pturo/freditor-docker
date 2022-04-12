@@ -1,0 +1,35 @@
+<div style="text-align: center;">
+    <label style="font-size: 24px; color: #C62828;">Zaloguj sie</label>
+</div>
+<br>
+<div class="row" style="border: 1px solid #C62828;">
+    <form [formGroup]="loginForm" (ngSubmit)="ngOnFormSubmit()" #f="ngForm" action="" method="get" class="col s12">
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="username" type="text" class="validate" formControlName="UserName" ngDefaultControl required>
+                <label for="username">Nazwa uzytkownika</label>
+            </div>
+        </div>
+        <div *ngIf="loginForm.get('UserName').invalid && (loginForm.get('UserName').dirty || loginForm.get('UserName').touched)"
+            class="alert alert-danger">
+            <div *ngIf="loginForm.get('UserName').errors?.['required']">Nazwa uzytkownika jest wymagana!</div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="password" type="password" class="validate" formControlName="Password" ngDefaultControl
+                    required>
+                <label for="password">Haslo</label>
+            </div>
+        </div>
+        <div *ngIf="loginForm.get('Password').invalid && (loginForm.get('Password').dirty || loginForm.get('Password').touched)"
+            class="alert alert-danger">
+            <div *ngIf="loginForm.get('Password').errors?.['required']">Haslo jest wymagane!</div>
+        </div>
+        <div style="text-align: center;">
+            <button class="red btn" type="submit" name="loginBtn" [disabled]="loginForm.invalid">Zaloguj</button> |
+            <button class="red btn" type="submit" name="registerBtn" [routerLink]="'/register'"
+                (click)="register()">Zarejestruj</button>
+        </div>
+        <br>
+    </form>
+</div>

@@ -1,0 +1,11 @@
+.alert {
+    color: red;
+}
+
+.card {
+    background-color: darkblue;
+}
+
+.row {
+  overflow: hidden;
+}

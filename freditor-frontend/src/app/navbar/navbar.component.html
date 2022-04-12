@@ -1,0 +1,11 @@
+<nav>
+    <div class="nav-wrapper red darken-3">
+        <span class="brand-logo center">Freditor</span>
+
+        <div *ngIf="loggedIn" class="logout-btn" style="text-align: right;">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a (click)="logout()">Wyloguj</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

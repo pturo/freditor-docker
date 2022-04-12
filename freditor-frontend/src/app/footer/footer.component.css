@@ -1,0 +1,8 @@
+footer {
+    display: inline-block;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    clear: both;
+    overflow: hidden;
+}
