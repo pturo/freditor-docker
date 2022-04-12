@@ -10,12 +10,16 @@ services:
       NODE_ENV: production
     ports:
       - 4200:4200
+    volumes:
+      - "/node_modules"
 
   freditorbackend:
     image: fredbackend
     build:
       context: ./freditor-backend
       dockerfile: Dockerfile
+    ports:
+      - 5000:5000
     depends_on:
       - db
 
