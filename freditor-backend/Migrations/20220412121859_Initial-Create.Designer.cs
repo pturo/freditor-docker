@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FreditorBackend.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220411115415_Initial-Create")]
+    [Migration("20220412121859_Initial-Create")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

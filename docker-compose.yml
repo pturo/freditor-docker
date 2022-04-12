@@ -19,7 +19,8 @@ services:
       context: ./freditor-backend
       dockerfile: Dockerfile
     ports:
-      - 5000:5000
+      - 5000:80
+      - 5000:443
     depends_on:
       - db
 

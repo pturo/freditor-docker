@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM node:latest
 WORKDIR /freditor-frontend
 COPY package.json .
 RUN npm install
