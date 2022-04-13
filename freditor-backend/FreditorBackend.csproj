@@ -5,7 +5,7 @@
     <Copyright>Paweł Turoń</Copyright>
     <StartupObject>FreditorBackend.Program</StartupObject>
     <UserSecretsId>63ba100f-ec07-4166-81cf-2eec415b1076</UserSecretsId>
-    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>
   </PropertyGroup>
 

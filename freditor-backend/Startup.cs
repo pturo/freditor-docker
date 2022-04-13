@@ -27,9 +27,9 @@ namespace FreditorBackend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options => 
+            services.AddCors(options =>
             {
-                options.AddPolicy("EnableCORS", builder => 
+                options.AddPolicy("EnableCORS", builder =>
                 {
                     builder.AllowAnyOrigin()
                     .AllowAnyHeader()
@@ -70,7 +70,7 @@ namespace FreditorBackend
                     };
                 });
 
-            services.AddSwaggerGen(options => 
+            services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
                 {
@@ -79,7 +79,7 @@ namespace FreditorBackend
                     Description = "FreditorBackend API allows to run basic HTTP queries like GET, POST, PUT & DELETE."
                 });
             });
-            services.AddDbContext<DatabaseContext>(options => 
+            services.AddDbContext<DatabaseContext>(options =>
             {
                 //options.UseSqlServer(Configuration.GetConnectionString("DevConnection"), x => x.MigrationsAssembly("FreditorBackend"));
                 options.UseSqlServer(Configuration.GetConnectionString("DevConnection2"), x => x.MigrationsAssembly("FreditorBackend"));
@@ -93,7 +93,16 @@ namespace FreditorBackend
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(options => 
+                app.UseSwaggerUI(options =>
+                {
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "FreditorBackend");
+                    options.RoutePrefix = string.Empty;
+                });
+            }
+            else if (env.IsProduction())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI(options =>
                 {
                     options.SwaggerEndpoint("/swagger/v1/swagger.json", "FreditorBackend");
                     options.RoutePrefix = string.Empty;
@@ -116,7 +125,7 @@ namespace FreditorBackend
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => 
+            app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
