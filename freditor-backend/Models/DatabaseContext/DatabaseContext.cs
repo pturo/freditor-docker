@@ -9,9 +9,9 @@ namespace FreditorBackend.Models.UserModel
     /// <summary>
     /// Class <c>DbContext</c> represents a context for database connection.
     /// </summary>
-    public class DatabaseContext: DbContext
+    public class DatabaseContext : DbContext
     {
-        public DatabaseContext(DbContextOptions<DatabaseContext> options): base(options)
+        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
 
         }
@@ -32,7 +32,7 @@ namespace FreditorBackend.Models.UserModel
             {
                 var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
                 //optionsBuilder.UseSqlServer("Server=LAPTOP-QPO93J9C\\SQLEXPRESS;Database=FreditorDB;Trusted_Connection=True;MultipleActiveResultSets=True;");
-                optionsBuilder.UseSqlServer("Server=PL-TUTONP-1\\SQLEXPRESS;Database=FreditorDB;User=sa;Password=usertest@12;Trusted_Connection=True;MultipleActiveResultSets=True;");
+                optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=FreditorDB;Persist Security Info=True;User ID=sa;Password=usertest@12");
 
                 return new DatabaseContext(optionsBuilder.Options);
             }
@@ -41,7 +41,7 @@ namespace FreditorBackend.Models.UserModel
         protected override void OnModelCreating(ModelBuilder builder)
         {
             // User build model
-            builder.Entity<UserDto>(entity => 
+            builder.Entity<UserDto>(entity =>
             {
                 entity.HasKey(e => e.UserId);
                 entity.Property(e => e.UserId).HasColumnName("UserId");
@@ -52,7 +52,7 @@ namespace FreditorBackend.Models.UserModel
             });
 
             // Task build model
-            builder.Entity<TaskDto>(entity => 
+            builder.Entity<TaskDto>(entity =>
             {
                 entity.HasKey(e => e.TaskId);
                 entity.Property(e => e.TaskId).HasColumnName("TaskId");
