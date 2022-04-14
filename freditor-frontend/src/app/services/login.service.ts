@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class LoginService {
-  private apiUrl = 'https://localhost:44335/api/auth/';
+  private apiUrl = 'https://localhost:5000/api/auth/';
   loggedIn = new Subject<boolean>();
 
   constructor(private http: HttpClient, private router: Router) {
