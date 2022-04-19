@@ -82,7 +82,7 @@ namespace FreditorBackend
             services.AddDbContext<DatabaseContext>(options =>
             {
                 //options.UseSqlServer(Configuration.GetConnectionString("DevConnection"), x => x.MigrationsAssembly("FreditorBackend"));
-                options.UseSqlServer(Configuration.GetConnectionString("DevConnection2"), x => x.MigrationsAssembly("FreditorBackend"));
+                options.UseSqlServer("Data Source=localhost;Initial Catalog=FreditorDB;Persist Security Info=True;User ID=sa;Password=usertest@12", x => x.MigrationsAssembly("FreditorBackend"));
             });
         }
 

@@ -64,7 +64,7 @@ namespace FreditorBackend.Controllers
                 new Claim(ClaimTypes.Name, userFromRepo.Email)
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_iconfig.GetSection("AppSettings:Secret").Value));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("IHeardItThrough0"));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
             var tokenDescriptor = new SecurityTokenDescriptor
             {

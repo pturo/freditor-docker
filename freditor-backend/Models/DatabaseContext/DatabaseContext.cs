@@ -1,7 +1,8 @@
 ﻿using FreditorBackend.Models.TaskModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 using System.Text.Json;
 
 namespace FreditorBackend.Models.UserModel
@@ -31,7 +32,6 @@ namespace FreditorBackend.Models.UserModel
             public DatabaseContext CreateDbContext(string[] args)
             {
                 var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
-                //optionsBuilder.UseSqlServer("Server=LAPTOP-QPO93J9C\\SQLEXPRESS;Database=FreditorDB;Trusted_Connection=True;MultipleActiveResultSets=True;");
                 optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=FreditorDB;Persist Security Info=True;User ID=sa;Password=usertest@12");
 
                 return new DatabaseContext(optionsBuilder.Options);
