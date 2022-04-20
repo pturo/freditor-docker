@@ -27,9 +27,11 @@
                         <label for="TaskElements">Szczegoly zadania (kazdy szczegol zakoncz klawiszem ENTER)</label>
                     </div>
                 </div>
-                <div *ngIf="addTaskForm.get('TaskElements').invalid && (addTaskForm.get('TaskElements').dirty || addTaskForm.get('TaskElements').touched)"
+                <div *ngIf="addTaskForm.get('TaskElements').invalid && addTaskForm.get('TaskElements').dirty"
                     class="alert alert-danger">
-                    <div *ngIf="addTaskForm.get('TaskElements').errors?.['required']">Nazwa elementu zadania jest
+                    <div
+                        *ngIf="addTaskForm.get('TaskElements').errors?.['required'] || addTaskForm.get('TaskElements').value === ''">
+                        Nazwa elementu zadania jest
                         wymagana i nie moze byc pusta!</div>
                 </div>
                 <div class="row">
@@ -41,8 +43,8 @@
                 </div>
                 <div class="row">
                     <div class="date-picker col s12">
-                        <label for="TaskDeadline">Termin wykonania zadania</label>
-                        <input id="TaskDeadline" type="text" class="date" formControlName="TaskDeadline" required>
+                        <input id="TaskDeadline" type="text" class="date" placeholder="Podaj termin wykonania zadania"
+                            formControlName="TaskDeadline" required>
                     </div>
                 </div>
                 <div *ngIf="addTaskForm.get('TaskDeadline').invalid && addTaskForm.get('TaskDeadline').dirty"

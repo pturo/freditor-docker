@@ -19,6 +19,7 @@ import { TasksComponent } from './tasks/tasks.component';
 import { PlaceholderComponent } from './placeholder/placeholder.component';
 import { AddTaskComponent } from './tasks/add-task/add-task.component';
 import { EntertainmentComponent } from './entertainment/entertainment.component';
+import { NgxDatepickerModule } from '@handylib/ngx-datepicker';
 
 @NgModule({
   declarations: [

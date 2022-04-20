@@ -32,7 +32,7 @@ namespace FreditorBackend.Models.UserModel
             public DatabaseContext CreateDbContext(string[] args)
             {
                 var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
-                optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=FreditorDB;Persist Security Info=True;User ID=sa;Password=usertest@12");
+                optionsBuilder.UseSqlServer("Data Source=localhost,1433;Initial Catalog=FreditorDB;Persist Security Info=True;User ID=sa;Password=usertest@12");
 
                 return new DatabaseContext(optionsBuilder.Options);
             }

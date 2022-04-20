@@ -61,7 +61,13 @@ export class AddTaskComponent implements OnInit, AfterViewInit {
 
   addToList(event: any) {
     let val = event.target.value;
-    this.listOfItems?.push(val);
+    if (val == '') {
+      console.log('Nie wolno umieszczac pustej wartosci!')
+    }
+
+    if (val != '') {
+      this.listOfItems?.push(val);
+    }
     this.taskElement.nativeElement.value = '';
   }
 }
