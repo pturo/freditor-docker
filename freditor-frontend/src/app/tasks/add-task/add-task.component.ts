@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Task } from 'src/app/model/task';
 import * as M from 'materialize-css';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-add-task',
@@ -13,19 +12,34 @@ import { DatePipe } from '@angular/common';
 export class AddTaskComponent implements OnInit, AfterViewInit {
   addTaskForm?: any;
   @ViewChild('TaskElements') taskElement: any;
+  taskVal?: string;
   listOfItems: any = [];
   taskList: Task[] = [];
-  // pipe?: DatePipe = new DatePipe('en-US');
-  // myDate: number = Date.now();
-  // myFormattedDate: any = this.pipe?.transform(this.myDate, 'mediumDate');
 
   constructor(private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.buildForm();
+  }
+
+  buildForm() {
     this.addTaskForm = this.formBuilder.group({
       TaskTitle: new FormControl(['', [Validators.required, Validators.minLength(8)]]).setValue(''),
-      TaskElements: new FormControl([[], [Validators.required]]).setValue(''),
-      TaskDeadline: new FormControl('', [Validators.required])
+      TaskElements: new FormControl(null, Validators.required).setValue(''),
+      TaskDeadline: new FormControl('', [Validators.required]).setValue('')
+    });
+  }
+
+  validateInput() {
+    let taskVal = this.addTaskForm.controls['TaskElements'];
+
+    taskVal.valueChanges.subscribe(() => {
+      if (taskVal.value == '') {
+        taskVal.clearValidators();
+      } else {
+        taskVal.setValidators();
+      }
+      taskVal.updateValueAndValidity({ emitEvent: false });
     });
   }
 
@@ -37,7 +51,7 @@ export class AddTaskComponent implements OnInit, AfterViewInit {
   }
 
   addTask() {
-    const addTask = this.addTaskForm?.value;
+    const addTask = this.addTaskForm.value;
     let newTask: Task = {
       TaskTitle: addTask.TaskTitle,
       TaskElements: this.listOfItems,
@@ -55,19 +69,19 @@ export class AddTaskComponent implements OnInit, AfterViewInit {
     console.log('Nowe zadanie', newTask);
   }
 
-  backToTasks() {
-    this.router.navigate(['tasks']);
-  }
-
   addToList(event: any) {
     let val = event.target.value;
-    if (val == '') {
-      console.log('Nie wolno umieszczac pustej wartosci!')
+    if (val == '' && this.listOfItems.length == 0) {
+      console.log('Nie wolno umieszczac pustej wartosci!');
     }
 
     if (val != '') {
       this.listOfItems?.push(val);
     }
     this.taskElement.nativeElement.value = '';
+  }
+
+  backToTasks() {
+    this.router.navigate(['tasks']);
   }
 }

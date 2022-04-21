@@ -23,16 +23,12 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="TaskElements" type="text" class="validate" (keyup.enter)="addToList($event)"
-                            formControlName="TaskElements" ngDefaultControl required #TaskElements>
+                            formControlName="TaskElements" ngDefaultControl #TaskElements required>
                         <label for="TaskElements">Szczegoly zadania (kazdy szczegol zakoncz klawiszem ENTER)</label>
                     </div>
                 </div>
-                <div *ngIf="addTaskForm.get('TaskElements').invalid && addTaskForm.get('TaskElements').dirty"
-                    class="alert alert-danger">
-                    <div
-                        *ngIf="addTaskForm.get('TaskElements').errors?.['required'] || addTaskForm.get('TaskElements').value === ''">
-                        Nazwa elementu zadania jest
-                        wymagana i nie moze byc pusta!</div>
+                <div *ngIf="validateInput()" class="alert alert-danger">
+                    Jol
                 </div>
                 <div class="row">
                     <div class="list col s12">
@@ -43,11 +39,12 @@
                 </div>
                 <div class="row">
                     <div class="date-picker col s12">
-                        <input id="TaskDeadline" type="text" class="date" placeholder="Podaj termin wykonania zadania"
-                            formControlName="TaskDeadline" required>
+                        <input id="TaskDeadline" type="text" class="date validate" formControlName="TaskDeadline"
+                            required>
+                        <label style="font-size: 16px" for="TaskDeadline">Podaj termin wykonania zadania</label>
                     </div>
                 </div>
-                <div *ngIf="addTaskForm.get('TaskDeadline').invalid && addTaskForm.get('TaskDeadline').dirty"
+                <div *ngIf="addTaskForm.get('TaskDeadline').invalid && (addTaskForm.get('TaskDeadline').dirty && addTaskForm.get('TaskDeadline').touched)"
                     class="alert alert-danger">
                     <div *ngIf="addTaskForm.get('TaskDeadline').errors?.['required']">Data wykonania zadania jest
                         wymagana!</div>
