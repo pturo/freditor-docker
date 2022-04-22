@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col s3">
+        <app-side-menu></app-side-menu>
+    </div>
+    <div class="col s9">
+        <h1>Notatki</h1>
+        <br>
+        <button class="red btn" type="submit" (click)="goToAddNote()" [routerLink]="'notes/add-note'">Dodaj
+            notatke</button>
+        <br>
+        <hr color="red">
+        <br>
+        <div class="card" *ngFor="let note of noteList">
+            <div class="card-content white-text">
+                <span class="card-title">{{ note.NoteTitle }}</span>
+                <div class="card-content">{{ note.NoteContent }}</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
-﻿using FreditorBackend.Models.TaskModel;
+﻿using FreditorBackend.Models.NoteModel;
+using FreditorBackend.Models.TaskModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
@@ -18,14 +19,19 @@ namespace FreditorBackend.Models.UserModel
         }
 
         /// <summary>
-        /// Property <c>User</c> gets and sets users for DbSet.
+        /// Property <c>FredUser</c> gets and sets users for DbSet.
         /// </summary>
         public DbSet<UserDto> FredUser { get; set; }
 
         /// <summary>
-        /// Property <c>Task</c> gets and sets tasks for DbSet.
+        /// Property <c>FredTask</c> gets and sets tasks for DbSet.
         /// </summary>
         public DbSet<TaskDto> FredTask { get; set; }
+
+        /// <summary>
+        /// Property <c>FredNote</c> gets and sets notes for DbSet.
+        /// </summary>
+        public DbSet<NoteDto> FredNote { get; set; }
 
         public class DatabaseDBContextFactory : IDesignTimeDbContextFactory<DatabaseContext>
         {
@@ -59,6 +65,15 @@ namespace FreditorBackend.Models.UserModel
                 entity.Property(e => e.TaskTitle);
                 entity.Property(e => e.TaskElements).HasConversion(v => JsonSerializer.Serialize(v, default), v => JsonSerializer.Deserialize<string[]>(v, default));
                 entity.Property(e => e.DeadLine);
+            });
+
+            // Note build model
+            builder.Entity<NoteDto>(entity => 
+            {
+                entity.HasKey(e => e.NoteId);
+                entity.Property(e => e.NoteId).HasColumnName("NoteId");
+                entity.Property(e => e.NoteTitle);
+                entity.Property(e => e.NoteContent);
             });
         }
     }

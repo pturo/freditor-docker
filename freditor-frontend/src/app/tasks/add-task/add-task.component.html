@@ -9,16 +9,14 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="TaskTitle" type="text" class="validate" formControlName="TaskTitle" ngDefaultControl
-                            required minlength="8">
+                            required>
                         <label for="TaskTitle">Nazwa zadania</label>
                     </div>
                 </div>
                 <div *ngIf="addTaskForm.get('TaskTitle').invalid && (addTaskForm.get('TaskTitle').dirty || addTaskForm.get('TaskTitle').touched)"
                     class="alert alert-danger">
-                    <div *ngIf="addTaskForm.get('TaskTitle').errors?.['required']">Nazwa zadania jest wymagana!</div>
-                    <div *ngIf="addTaskForm.get('TaskTitle').errors?.['minlength']">Minimalna dlugosc musi wyniesc 8
-                        znakow!
-                    </div>
+                    <div *ngIf="addTaskForm.get('TaskTitle').errors?.['required']">Nazwa zadania jest wymagana i nie
+                        moze byc pusta!</div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
@@ -27,8 +25,11 @@
                         <label for="TaskElements">Szczegoly zadania (kazdy szczegol zakoncz klawiszem ENTER)</label>
                     </div>
                 </div>
-                <div *ngIf="validateInput()" class="alert alert-danger">
-                    Jol
+                <div *ngIf="addTaskForm.get('TaskElements').invalid && (addTaskForm.get('TaskElements').dirty || addTaskForm.get('TaskElements').touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="addTaskForm.get('TaskTitle').errors?.['required']">Nazwa elementu zadania jest wymagana
+                        i nie
+                        moze byc pusta!</div>
                 </div>
                 <div class="row">
                     <div class="list col s12">
@@ -51,7 +52,7 @@
                 </div>
                 <div style="text-align: center;">
                     <button class="red btn" type="submit" name="saveBtn"
-                        [disabled]="addTaskForm.invalid">Zapisz</button> |
+                        [disabled]="addTaskForm.invalid || listOfItems.lengtth === 0">Zapisz</button> |
                     <button class="red btn" type="submit" name="cancelBtn" [routerLink]=""
                         (click)="backToTasks()">Anuluj</button>
                 </div>
@@ -59,3 +60,4 @@
             </form>
         </div>
     </div>
+</div>

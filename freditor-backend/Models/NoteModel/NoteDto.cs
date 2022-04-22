@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FreditorBackend.Models.NoteModel
 {
     /// <summary>
     /// Class <c>Note</c> represents a single note created by user.
     /// </summary>
-    public class Note
+    public class NoteDto
     {
         /// <summary>
         /// Property <c>NoteId</c> represents an unique identity for a single note.
@@ -29,7 +25,7 @@ namespace FreditorBackend.Models.NoteModel
         /// Property <c>NoteContent</c> contains content for a note.
         /// </summary>
         [Required]
-        [Column(TypeName="nvarchar(5000)")]
+        [Column(TypeName="nvarchar(max)")]
         public string NoteContent { get; set; }
     }
 }

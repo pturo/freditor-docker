@@ -8,6 +8,20 @@ namespace FreditorBackend.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "FredNote",
+                columns: table => new
+                {
+                    NoteId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NoteTitle = table.Column<string>(type: "nvarchar(50)", nullable: false),
+                    NoteContent = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FredNote", x => x.NoteId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "FredTask",
                 columns: table => new
                 {
@@ -41,6 +55,9 @@ namespace FreditorBackend.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "FredNote");
+
             migrationBuilder.DropTable(
                 name: "FredTask");
 

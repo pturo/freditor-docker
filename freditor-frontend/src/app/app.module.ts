@@ -19,7 +19,11 @@ import { TasksComponent } from './tasks/tasks.component';
 import { PlaceholderComponent } from './placeholder/placeholder.component';
 import { AddTaskComponent } from './tasks/add-task/add-task.component';
 import { EntertainmentComponent } from './entertainment/entertainment.component';
-import { NgxDatepickerModule } from '@handylib/ngx-datepicker';
+import { NotesComponent } from './notes/notes.component';
+import { AddNoteComponent } from './notes/add-note/add-note.component';
+import { EditorComponent } from './editor/editor.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { ArchiveComponent } from './archive/archive.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +40,11 @@ import { NgxDatepickerModule } from '@handylib/ngx-datepicker';
     PlaceholderComponent,
     AddTaskComponent,
     EntertainmentComponent,
+    NotesComponent,
+    AddNoteComponent,
+    EditorComponent,
+    CalendarComponent,
+    ArchiveComponent,
   ],
   imports: [
     BrowserModule,

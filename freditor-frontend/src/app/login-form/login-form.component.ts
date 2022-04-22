@@ -42,7 +42,6 @@ export class LoginFormComponent implements OnInit {
         }
       }, (err) => {
         this.errorMessage = err;
-        console.log(err);
       });
   }
 }

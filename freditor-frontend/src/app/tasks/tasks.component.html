@@ -11,15 +11,16 @@
     <br>
     <div class="card" *ngFor="let task of tasks; let i = index">
       <div class="card-content white-text">
-        <span class="card-title">{{task.TaskTitle}}</span>
-        <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
-          <div *ngFor="let data of task.TaskElements">
+        <span class="card-title">{{task?.TaskTitle}}</span>
+        <form [formGroup]="form" novalidate>
+          <div *ngFor="let data of task?.TaskElements">
             <label formArrayName="checkArray">
               <input type="checkbox" id="data.TaskId" [value]="data[i].TaskElements"
                 (change)="onCheckboxChange($event)" />{{ data }}</label>
           </div>
         </form>
-        <div>Termin wykonania: {{task.TaskDeadline}}</div>
+        <div>Termin wykonania: {{task?.TaskDeadline}}</div>
       </div>
     </div>
   </div>
+</div>

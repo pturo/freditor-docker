@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Task } from 'src/app/model/task';
 import * as M from 'materialize-css';
+import { TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-add-task',
@@ -14,9 +15,8 @@ export class AddTaskComponent implements OnInit, AfterViewInit {
   @ViewChild('TaskElements') taskElement: any;
   taskVal?: string;
   listOfItems: any = [];
-  taskList: Task[] = [];
 
-  constructor(private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private taskService: TaskService) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -24,22 +24,9 @@ export class AddTaskComponent implements OnInit, AfterViewInit {
 
   buildForm() {
     this.addTaskForm = this.formBuilder.group({
-      TaskTitle: new FormControl(['', [Validators.required, Validators.minLength(8)]]).setValue(''),
-      TaskElements: new FormControl(null, Validators.required).setValue(''),
+      TaskTitle: new FormControl(['', [Validators.required]]).setValue(''),
+      TaskElements: new FormControl([], Validators.required).setValue(''),
       TaskDeadline: new FormControl('', [Validators.required]).setValue('')
-    });
-  }
-
-  validateInput() {
-    let taskVal = this.addTaskForm.controls['TaskElements'];
-
-    taskVal.valueChanges.subscribe(() => {
-      if (taskVal.value == '') {
-        taskVal.clearValidators();
-      } else {
-        taskVal.setValidators();
-      }
-      taskVal.updateValueAndValidity({ emitEvent: false });
     });
   }
 
@@ -48,6 +35,8 @@ export class AddTaskComponent implements OnInit, AfterViewInit {
       var elems = document.querySelectorAll('.date');
       var instances = M.Datepicker.init(elems);
     });
+
+    this.taskElement.nativeElement.value = '* ';
   }
 
   addTask() {
@@ -58,15 +47,19 @@ export class AddTaskComponent implements OnInit, AfterViewInit {
       TaskDeadline: this.addTaskForm.get('TaskDeadline').value
     };
 
-    if (newTask.TaskTitle != null && newTask.TaskElements != null && newTask.TaskDeadline != null) {
-      this.taskList.push(newTask);
-      //this.router.navigate(['tasks']);
+    if (this.addTaskForm.valid) {
+      this.taskService.addTask(newTask).subscribe((res: any) => {
+        console.log('Pomyslnie dodano zadanie do bazy!')
+      }, (err: any) => {
+        console.log('Blad: ', err);
+      });
+      this.router.navigate(['tasks']);
+
+      console.log('Nowe zadanie', newTask);
     }
     else {
       console.log('Nie udalo sie zapisac zadania pomyslnie!');
     }
-
-    console.log('Nowe zadanie', newTask);
   }
 
   addToList(event: any) {
@@ -78,7 +71,7 @@ export class AddTaskComponent implements OnInit, AfterViewInit {
     if (val != '') {
       this.listOfItems?.push(val);
     }
-    this.taskElement.nativeElement.value = '';
+    this.taskElement.nativeElement.value = '* ';
   }
 
   backToTasks() {
