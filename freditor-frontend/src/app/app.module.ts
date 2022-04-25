@@ -24,6 +24,18 @@ import { AddNoteComponent } from './notes/add-note/add-note.component';
 import { EditorComponent } from './editor/editor.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ArchiveComponent } from './archive/archive.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
+import interactionPlugin from '@fullcalendar/interaction';
+
+FullCalendarModule.registerPlugins([
+  dayGridPlugin,
+  timeGridPlugin,
+  listPlugin,
+  interactionPlugin
+]);
 
 @NgModule({
   declarations: [
@@ -44,7 +56,7 @@ import { ArchiveComponent } from './archive/archive.component';
     AddNoteComponent,
     EditorComponent,
     CalendarComponent,
-    ArchiveComponent,
+    ArchiveComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +65,7 @@ import { ArchiveComponent } from './archive/archive.component';
     ReactiveFormsModule,
     HttpClientModule,
     ValidateEqualModule,
+    FullCalendarModule
   ],
   providers: [
     {

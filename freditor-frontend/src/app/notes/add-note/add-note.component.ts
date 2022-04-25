@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Note } from 'src/app/model/note';
+import { NoteService } from 'src/app/services/note.service';
 
 @Component({
   selector: 'app-add-note',
@@ -10,9 +11,8 @@ import { Note } from 'src/app/model/note';
 })
 export class AddNoteComponent implements OnInit {
   addNoteForm?: any;
-  noteList: Note[] = [];
 
-  constructor(private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private noteService: NoteService) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -33,9 +33,15 @@ export class AddNoteComponent implements OnInit {
     }
 
     if (this.addNoteForm.valid) {
-      this.noteList.push(newNote);
-      console.log('Zapisano notatke pomyslnie!');
-      console.log('Note', this.noteList);
+      this.noteService.addNote(newNote).subscribe((res: any) => {
+        console.log('Pomyslnie dodano notatke do bazy!');
+      }, (err: any) => {
+        console.log('Blad', err)
+      });
+      this.router.navigate(['notes']);
+
+      console.log('Nowa notatka: ', newNote);
+
     } else {
       console.log('Wystapil blad w zapisywaniu notatki!');
     }

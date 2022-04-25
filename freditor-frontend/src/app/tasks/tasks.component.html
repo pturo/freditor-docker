@@ -9,17 +9,19 @@
     <br>
     <hr color="red">
     <br>
+    <div style="text-align: center; color: red; font-size: 28px;" *ngIf="tasks.length === 0">Brak zadan do wykonania
+    </div>
     <div class="card" *ngFor="let task of tasks; let i = index">
       <div class="card-content white-text">
-        <span class="card-title">{{task?.TaskTitle}}</span>
+        <span class="card-title">{{task?.taskTitle}}</span>
         <form [formGroup]="form" novalidate>
-          <div *ngFor="let data of task?.TaskElements">
+          <div *ngFor="let data of task?.taskElements">
             <label formArrayName="checkArray">
               <input type="checkbox" id="data.TaskId" [value]="data[i].TaskElements"
                 (change)="onCheckboxChange($event)" />{{ data }}</label>
           </div>
         </form>
-        <div>Termin wykonania: {{task?.TaskDeadline}}</div>
+        <div>Termin wykonania: {{task?.deadLine}}</div>
       </div>
     </div>
   </div>

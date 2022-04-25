@@ -12,6 +12,7 @@ using FreditorBackend.Repository.AuthRepository;
 using FreditorBackend.Models.UserModel;
 using FreditorBackend.Models.HelperModel;
 using FreditorBackend.Repository.TaskRepository;
+using FreditorBackend.Repository.NoteRepository;
 
 namespace FreditorBackend
 {
@@ -49,6 +50,9 @@ namespace FreditorBackend
 
             // Add scope for task repo
             services.AddScoped<ITaskRepository, TaskRepository>();
+
+            // Add scope for note repo
+            services.AddScoped<INoteRepository, NoteRepository>();
 
             services.AddAuthentication(options =>
             {

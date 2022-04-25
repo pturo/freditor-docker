@@ -5,15 +5,23 @@
     <div class="col s9">
         <h1>Notatki</h1>
         <br>
+        <button class="red btn" type="submit" (click)="getNotes()">Odswiez</button> |
         <button class="red btn" type="submit" (click)="goToAddNote()" [routerLink]="'notes/add-note'">Dodaj
             notatke</button>
         <br>
         <hr color="red">
         <br>
+        <div style="text-align: center; color: red; font-size: 28px;" *ngIf="noteList.length === 0">Brak dostepnych
+            notatek
+        </div>
         <div class="card" *ngFor="let note of noteList">
             <div class="card-content white-text">
-                <span class="card-title">{{ note.NoteTitle }}</span>
-                <div class="card-content">{{ note.NoteContent }}</div>
+                <span class="card-title">{{ note?.noteTitle }}</span>
+                <div class="card-content">{{ note?.noteContent }}</div>
+            </div>
+            <div style="text-align: center;">
+                <button class="red btn">Edytuj</button> |
+                <button class="red btn" (click)="deleteNote(note?.noteId)">Usun</button>
             </div>
         </div>
     </div>

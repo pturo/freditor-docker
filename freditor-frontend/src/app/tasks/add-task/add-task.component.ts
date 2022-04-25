@@ -13,7 +13,6 @@ import { TaskService } from 'src/app/services/task.service';
 export class AddTaskComponent implements OnInit, AfterViewInit {
   addTaskForm?: any;
   @ViewChild('TaskElements') taskElement: any;
-  taskVal?: string;
   listOfItems: any = [];
 
   constructor(private router: Router, private formBuilder: FormBuilder, private taskService: TaskService) { }

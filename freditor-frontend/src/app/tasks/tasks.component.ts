@@ -16,27 +16,6 @@ export class TasksComponent implements OnInit, OnDestroy {
   myFormattedDate: any = this.pipe?.transform(this.myDate, 'short');
   tasks: any = [];
   subService = new Subscription();
-  // tasks: Task[] = [
-  //   {
-  //     TaskId: 1,
-  //     TaskTitle: 'Stworz projekt',
-  //     TaskElements: ['Otworz IDE', 'Kliknij nowy projekt', 'Przejdz przez wizard', 'Projekt wygenerowany'],
-  //     TaskDeadline: this.myFormattedDate
-  //   },
-  //   {
-  //     TaskId: 2,
-  //     TaskTitle: 'Wyslij maila do szefa ws. imprezy firmowej',
-  //     TaskElements: ['Otworz skrzynke e-mail i kliknij nowa wiadomosc', 'Napisz o planowanej imprezie firmowej i dolacz zalaczniki', 'Kliknij przycisk wyslij'],
-  //     TaskDeadline: this.myFormattedDate
-  //   },
-  //   {
-  //     TaskId: 3,
-  //     TaskTitle: 'Powiadom przelozonego o zmianach organizacji kodu',
-  //     TaskElements: ['Otworz skrzynke e-mail i napisz tresc powiadomienia', 'Kliknij przycisk wyslij'],
-  //     TaskDeadline: this.myFormattedDate
-  //   }
-  // ];
-
   form!: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private taskService: TaskService) {
@@ -47,8 +26,9 @@ export class TasksComponent implements OnInit, OnDestroy {
 
   getTasks() {
     this.subService = this.taskService.getTasks().subscribe((res: any) => {
-      this.tasks = res;
-      console.log('tasks: ', this.tasks);
+      for (let i = 0; i < res.length; i++) {
+        this.tasks = Array.from(Object.values(res));
+      }
     }, (err: any) => {
       console.log('Wystapil blad podczas pobierania danych: ', err);
     });
