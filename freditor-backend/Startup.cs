@@ -13,6 +13,7 @@ using FreditorBackend.Models.UserModel;
 using FreditorBackend.Models.HelperModel;
 using FreditorBackend.Repository.TaskRepository;
 using FreditorBackend.Repository.NoteRepository;
+using Microsoft.OpenApi.Models;
 
 namespace FreditorBackend
 {
@@ -32,9 +33,9 @@ namespace FreditorBackend
             {
                 options.AddPolicy("EnableCORS", builder =>
                 {
-                    builder.AllowAnyOrigin()
-                    .AllowAnyHeader()
-                    .AllowAnyMethod();
+                    builder.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin();
                 });
             });
             services.AddControllers();
@@ -54,6 +55,9 @@ namespace FreditorBackend
             // Add scope for note repo
             services.AddScoped<INoteRepository, NoteRepository>();
 
+            // Add mvc
+            services.AddMvc(x => x.EnableEndpointRouting = false);
+
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -61,7 +65,9 @@ namespace FreditorBackend
             })
                 .AddJwtBearer(options =>
                 {
-                    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                    options.RequireHttpsMetadata = false;
+                    options.SaveToken = true;
+                    options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuer = true,
                         ValidateAudience = true,
@@ -70,19 +76,50 @@ namespace FreditorBackend
 
                         ValidIssuer = "https://localhost:44335",
                         ValidAudience = "https://localhost:44335",
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Secret"))
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("IHeardItThrough0")),
+                        ClockSkew = System.TimeSpan.Zero
                     };
                 });
 
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                options.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "FreditorBackend API",
                     Version = "v1",
                     Description = "FreditorBackend API allows to run basic HTTP queries like GET, POST, PUT & DELETE."
                 });
+
+                var securitySchema = new OpenApiSecurityScheme
+                {             
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "JSON Web Token based security.",
+                };
+
+                var securityReq = new OpenApiSecurityRequirement()
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] {}
+                    }
+                };
+
+                options.AddSecurityDefinition("Bearer", securitySchema);
+                options.AddSecurityRequirement(securityReq);
+           
             });
+
             services.AddDbContext<DatabaseContext>(options =>
             {
                 //options.UseSqlServer(Configuration.GetConnectionString("DevConnection"), x => x.MigrationsAssembly("FreditorBackend"));
@@ -91,7 +128,7 @@ namespace FreditorBackend
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DatabaseContext context)
         {
             if (env.IsDevelopment())
             {
@@ -119,19 +156,26 @@ namespace FreditorBackend
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            // Database migration
+            context.Database.Migrate();
 
             app.UseCors("EnableCORS");
 
+            app.UseStatusCodePages();
+            app.UseHttpsRedirection();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
+
+            app.UseHttpsRedirection();
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+            app.UseMvc(routes => 
             {
-                endpoints.MapControllers();
+                routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

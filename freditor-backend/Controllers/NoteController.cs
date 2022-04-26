@@ -4,12 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using FreditorBackend.Models.NoteModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FreditorBackend.Controllers
 {
     /// <summary>
     /// Class <c>NoteController</c> manages note store functionality.
     /// </summary>
+    [Authorize]
     [Route("api/notes")]
     [ApiController]
     public class NoteController : ControllerBase
@@ -26,8 +28,8 @@ namespace FreditorBackend.Controllers
         [HttpGet]
         public async Task<IActionResult> GetNotes()
         {
-            var data = await _context.FredNote.ToListAsync();
-            return Ok(data);
+            var getNotes = await _context.FredNote.ToListAsync();
+            return StatusCode(201, new { getNotes });
         }
 
         [HttpPost("add-note")]
@@ -39,7 +41,7 @@ namespace FreditorBackend.Controllers
             }
 
             var createNote = await _repo.AddNote(note.NoteTitle, note.NoteContent);
-            return StatusCode(201, new { note.NoteTitle, note.NoteContent });
+            return StatusCode(201, new { createNote });
         }
 
         [HttpPut("edit-note/{noteId}")]
@@ -50,8 +52,8 @@ namespace FreditorBackend.Controllers
                 return BadRequest("Note does not exist!");
             }
 
-            var editedNote = await _repo.EditNote(noteId, note);
-            return StatusCode(201, new { editedNote });
+            var editNote = await _repo.EditNote(noteId, note);
+            return StatusCode(201, new { editNote });
         }
 
         [HttpDelete]
@@ -63,8 +65,8 @@ namespace FreditorBackend.Controllers
                 return BadRequest("Id of given note does not exist!");
             }
 
-            var editedNote = await _repo.DeleteNote(noteId);
-            return StatusCode(201, "Note deleted successfully!");
+            var deleteNote = await _repo.DeleteNote(noteId);
+            return StatusCode(201, new { deleteNote });
         }
     }
 }

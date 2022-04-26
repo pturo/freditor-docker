@@ -11,7 +11,9 @@
         <br>
         <hr color="red">
         <br>
-        <div style="text-align: center; color: red; font-size: 28px;" *ngIf="noteList.length === 0">Brak dostepnych
+        <div style="text-align: center; color: red; font-size: 28px;" *ngIf="noteList?.length === 0">
+            Brak
+            dostepnych
             notatek
         </div>
         <div class="card" *ngFor="let note of noteList">

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NoteService } from '../services/note.service';
@@ -10,15 +10,19 @@ import { NoteService } from '../services/note.service';
 })
 export class NotesComponent implements OnInit, OnDestroy {
   subService = new Subscription();
-  noteList: any = [];
+  noteList: any = this.getNotes();
 
-  getNotes() {
-    this.subService = this.noteService.getNotes().subscribe((res: any) => {
+  getNotes(): any {
+    return this.noteService.getNotes().subscribe((res: any) => {
+      let tmp: any = [];
       for (let i = 0; i < res.length; i++) {
-        this.noteList = Array.from(Object.values(res));
+        for (let j = 0; j < res[i].length; j++) {
+          tmp = Array.from(Object.values(res[i][j]));
+        }
       }
-    }, (err: any) => {
-      console.log('Wystapil blad poczas pobierania danych: ', err);
+
+      console.log('tmp: ', tmp);
+      return tmp;
     });
   }
 
@@ -33,7 +37,7 @@ export class NotesComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private noteService: NoteService) { }
 
   ngOnInit(): void {
-    this.getNotes();
+    console.log('noteList: ', this.noteList);
   }
 
   goToAddNote() {

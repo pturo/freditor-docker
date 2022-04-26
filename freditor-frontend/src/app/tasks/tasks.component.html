@@ -9,7 +9,7 @@
     <br>
     <hr color="red">
     <br>
-    <div style="text-align: center; color: red; font-size: 28px;" *ngIf="tasks.length === 0">Brak zadan do wykonania
+    <div style="text-align: center; color: red; font-size: 28px;" *ngIf="tasks?.length === 0">Brak zadan do wykonania
     </div>
     <div class="card" *ngFor="let task of tasks; let i = index">
       <div class="card-content white-text">

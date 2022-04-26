@@ -24,8 +24,8 @@ namespace FreditorBackend.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
-            var data = await _context.FredUser.ToListAsync();
-            return Ok(data);
+            var getUsers = await _context.FredUser.ToListAsync();
+            return StatusCode(201, new { getUsers });
         }
     }
 }

@@ -61,22 +61,25 @@ namespace FreditorBackend.Controllers
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, userFromRepo.UserId.ToString()),
-                new Claim(ClaimTypes.Name, userFromRepo.Email)
+                new Claim(ClaimTypes.Name, userFromRepo.Email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.Aud, "https://localhost:44335"),
+                new Claim(JwtRegisteredClaimNames.Iss, "https://localhost:44335")
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("IHeardItThrough0"));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddMinutes(15),
-                SigningCredentials = creds
-            };
+            var tokenDescriptor = new JwtSecurityToken(
+                issuer: "https://localhost:44335",
+                audience: "https://localhost:44335",
+                claims: claims,
+                expires: DateTime.Now.AddMinutes(120),
+                signingCredentials: creds
+                );
 
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var token = new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
 
-            return Ok(new { token = tokenHandler.WriteToken(token), username = userFromRepo.UserName, email = userFromRepo.Email });
+            return StatusCode(201, new { token = token });
         }
     }
 }

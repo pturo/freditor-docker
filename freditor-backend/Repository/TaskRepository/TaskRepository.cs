@@ -2,6 +2,7 @@
 using FreditorBackend.Models.UserModel;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FreditorBackend.Repository.TaskRepository
@@ -39,6 +40,33 @@ namespace FreditorBackend.Repository.TaskRepository
             await _context.SaveChangesAsync();
 
             return task;
+        }
+
+        public async Task<TaskDto> EditTask(int taskId, TaskDto task)
+        {
+            if(taskId != task.TaskId)
+            {
+                return null;
+            }
+
+            _context.Entry(task).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return task;
+        }
+
+        public async Task<IEnumerable<TaskDto>> DeleteTask(int taskId)
+        {
+            var task = await _context.FredTask.FindAsync(taskId);
+            if(taskId != task.TaskId)
+            {
+                return null;
+            }
+
+            _context.FredTask.Remove(task);
+            await _context.SaveChangesAsync();
+
+            return await _context.FredTask.ToListAsync();
         }
     }
 }
