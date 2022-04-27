@@ -2,9 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\freditor-backend",
+    "\\freditor-backend\\Controllers",
     "\\freditor-backend\\Repository",
     "\\freditor-backend\\Repository\\NoteRepository"
   ],
-  "SelectedNode": "\\freditor-backend\\Repository\\NoteRepository\\NoteRepository.cs",
+  "SelectedNode": "\\freditor-backend\\Controllers\\NoteController.cs",
   "PreviewInSolutionExplorer": false
 }

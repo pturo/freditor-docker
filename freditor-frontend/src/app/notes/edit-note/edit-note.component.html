@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col s3">
+        <app-side-menu></app-side-menu>
+    </div>
+    <div class="col s9">
+        <h1>Edytuj notatke</h1>
+        <div class="row" style="border: 1px solid #C62828;">
+            <form [formGroup]="editNoteForm" (ngSubmit)="editNote()" action="" method="post" class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="NoteTitle" type="text" class="validate" formControlName="NoteTitle" ngDefaultControl
+                            required>
+                        <label for="NoteTitle">Nazwa notatki</label>
+                    </div>
+                </div>
+                <div *ngIf="editNoteForm.get('NoteTitle').invalid && (editNoteForm.get('NoteTitle').dirty || editNoteForm.get('NoteTitle').touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="editNoteForm.get('NoteTitle').errors?.['required']">Nazwa notatki jest wymagana i nie
+                        moze byc pusta!</div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea style="height: 200px;" id="NoteContent" type="text" class="validate"
+                            formControlName="NoteContent" ngDefaultControl required></textarea>
+                        <label for="NoteContent">Zawartosc notatki</label>
+                    </div>
+                </div>
+                <div *ngIf="editNoteForm.get('NoteContent').invalid && (editNoteForm.get('NoteContent').dirty || editNoteForm.get('NoteContent').touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="editNoteForm.get('NoteContent').errors?.['required']">Zawartosc notatki jest wymagana i
+                        nie
+                        moze byc pusta!</div>
+                </div>
+                <div style="text-align: center;">
+                    <button class="red btn" type="submit" name="saveBtn"
+                        [disabled]="editNoteForm.invalid">Zapisz</button> |
+                    <button class="red btn" type="submit" name="cancelBtn" [routerLink]=""
+                        (click)="backToNotes()">Anuluj</button>
+                </div>
+                <br>
+            </form>
+        </div>
+    </div>
+</div>

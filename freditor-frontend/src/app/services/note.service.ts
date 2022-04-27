@@ -1,40 +1,48 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NoteService {
-  private apiUrl = 'https://localhost:44335/api/notes/';
+  private apiUrl = 'https://localhost:44335/api';
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient) { }
 
-  getNotes() {
-    return this.http.get(this.apiUrl).pipe(catchError(this.handleError('notes', [])));
+  getNotes(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl + '/notes').pipe(catchError(this.errorHandler));
   }
 
-  addNote(data: any) {
-    return this.http.post(this.apiUrl + 'add-note', data).pipe(
-      tap(_ => this.router.navigate(['notes'])),
-      catchError(this.handleError('add-note', [])));
+  getNote(noteId: number): Observable<any> {
+    return this.http.get<any>(this.apiUrl + '/notes/' + noteId).pipe(catchError(this.errorHandler));
   }
 
-  editNote(noteId: number) { }
+  addNote(note: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + '/notes/add-note', JSON.stringify(note)).pipe(catchError(this.errorHandler));
+  }
+
+  editNote(noteId: number, note: any): Observable<any> {
+    return this.http.put<any>(this.apiUrl + '/notes/edit-note' + noteId, JSON.stringify(note)).pipe(catchError(this.errorHandler));
+  }
 
   deleteNote(noteId: number) {
-    return this.http.delete(this.apiUrl + noteId).pipe(catchError(this.handleError('notes', [])));
+    return this.http.delete<any>(this.apiUrl + '/notes?noteId=' + noteId, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.log(error); // log to console instead
+  private errorHandler(error: any) {
+    let errorMessage = '';
 
-      console.log(`${operation}` + ' failed: ' + `${error.message}`);
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = error.error.message;
+    } else {
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    return throwError(errorMessage);
   }
 }

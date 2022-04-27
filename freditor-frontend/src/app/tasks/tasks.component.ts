@@ -26,7 +26,7 @@ export class TasksComponent implements OnInit, OnDestroy {
 
   getTasks() {
     this.subService = this.taskService.getTasks().subscribe((res: any) => {
-      for (let i = 0; i < res.length; i++) {
+      for (let i = 0; i < res.getNotes.length; i++) {
         this.tasks = Array.from(Object.values(res));
       }
     }, (err: any) => {

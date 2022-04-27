@@ -32,6 +32,18 @@ namespace FreditorBackend.Controllers
             return StatusCode(201, new { getNotes });
         }
 
+        [HttpGet("{noteId}")]
+        public async Task<IActionResult> GetNote(int noteId)
+        {
+            var getNote = await _context.FredNote.FindAsync(noteId);
+            if(noteId != getNote.NoteId)
+            {
+                return BadRequest("There is no note with given Id!");
+            }
+
+            return StatusCode(201, new { getNote });
+        }
+
         [HttpPost("add-note")]
         public async Task<IActionResult> AddNote(NoteDto note)
         {

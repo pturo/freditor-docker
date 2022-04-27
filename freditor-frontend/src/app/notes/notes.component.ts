@@ -10,38 +10,34 @@ import { NoteService } from '../services/note.service';
 })
 export class NotesComponent implements OnInit, OnDestroy {
   subService = new Subscription();
-  noteList: any = this.getNotes();
-
-  getNotes(): any {
-    return this.noteService.getNotes().subscribe((res: any) => {
-      let tmp: any = [];
-      for (let i = 0; i < res.length; i++) {
-        for (let j = 0; j < res[i].length; j++) {
-          tmp = Array.from(Object.values(res[i][j]));
-        }
-      }
-
-      console.log('tmp: ', tmp);
-      return tmp;
-    });
-  }
-
-  deleteNote(noteId: number) {
-    this.subService = this.noteService.deleteNote(noteId).subscribe((res: any) => {
-      console.log('Usunieto notatke z bazy!');
-    }, (err: any) => {
-      console.log('Blad: ', err);
-    });
-  }
+  noteList: any[] = [];
 
   constructor(private router: Router, private noteService: NoteService) { }
 
   ngOnInit(): void {
-    console.log('noteList: ', this.noteList);
+    this.getNotes();
   }
 
+  // Note CRUD operations
+  getNotes() {
+    this.subService = this.noteService.getNotes().subscribe((res: any) => {
+      setTimeout(() => { this.noteList = res.getNotes; }, 0);
+    });
+  }
+
+  deleteNote(noteId: number) {
+    this.subService = this.noteService.deleteNote(noteId).subscribe((res) => {
+      this.noteList = this.noteList.filter(item => item.noteId !== noteId);
+    });
+  }
+
+  // Route to add-note, edit-note and unsubsribe
   goToAddNote() {
     this.router.navigate(['notes/add-note']);
+  }
+
+  goToEditNote(noteId: number) {
+    this.router.navigate(['notes/edit-note/' + noteId]);
   }
 
   ngOnDestroy(): void {

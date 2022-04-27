@@ -11,19 +11,23 @@
         <br>
         <hr color="red">
         <br>
-        <div style="text-align: center; color: red; font-size: 28px;" *ngIf="noteList?.length === 0">
+        <div style="text-align: center; color: red; font-size: 28px;" *ngIf="noteList.length === 0">
             Brak
             dostepnych
             notatek
         </div>
-        <div class="card" *ngFor="let note of noteList">
-            <div class="card-content white-text">
-                <span class="card-title">{{ note?.noteTitle }}</span>
-                <div class="card-content">{{ note?.noteContent }}</div>
-            </div>
-            <div style="text-align: center;">
-                <button class="red btn">Edytuj</button> |
-                <button class="red btn" (click)="deleteNote(note?.noteId)">Usun</button>
+        <div *ngIf="noteList.length > 0">
+            <div *ngFor="let note of noteList">
+                <div class="card">
+                    <div class="card-content white-text">
+                        <span class="card-title">{{ note.noteTitle }}</span>
+                        <div class="card-content">{{ note.noteContent }}</div>
+                    </div>
+                    <div style="text-align: center; color: white" *ngIf="note.noteId">
+                        <button class="red btn" (click)="goToEditNote(note.noteId)">Edytuj</button> |
+                        <button class="red btn" (click)="deleteNote(note.noteId)">Usun</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

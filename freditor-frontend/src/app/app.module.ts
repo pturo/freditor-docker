@@ -29,6 +29,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
+import { EditNoteComponent } from './notes/edit-note/edit-note.component';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -56,7 +57,8 @@ FullCalendarModule.registerPlugins([
     AddNoteComponent,
     EditorComponent,
     CalendarComponent,
-    ArchiveComponent
+    ArchiveComponent,
+    EditNoteComponent
   ],
   imports: [
     BrowserModule,

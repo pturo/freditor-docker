@@ -1,5 +1,5 @@
-export class Note {
+export interface Note {
     NoteId?: number;
-    NoteTitle?: string;
-    NoteContent?: string;
+    NoteTitle: string;
+    NoteContent: string;
 }
