@@ -30,6 +30,9 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
 import { EditNoteComponent } from './notes/edit-note/edit-note.component';
+import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material.module';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -58,7 +61,8 @@ FullCalendarModule.registerPlugins([
     EditorComponent,
     CalendarComponent,
     ArchiveComponent,
-    EditNoteComponent
+    EditNoteComponent,
+    EditTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +71,9 @@ FullCalendarModule.registerPlugins([
     ReactiveFormsModule,
     HttpClientModule,
     ValidateEqualModule,
-    FullCalendarModule
+    FullCalendarModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [
     {

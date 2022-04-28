@@ -32,6 +32,18 @@ namespace FreditorBackend.Controllers
             return StatusCode(201, new { getTasks });
         }
 
+        [HttpGet("{taskId}")]
+        public async Task<IActionResult> GetTask(int taskId)
+        {
+            var getTask = await _context.FredTask.FindAsync(taskId);
+            if (taskId != getTask.TaskId)
+            {
+                return BadRequest("There is no task with given Id!");
+            }
+
+            return StatusCode(201, new { getTask });
+        }
+
         [HttpPost("add-task")]
         public async Task<IActionResult> AddTask(TaskDto task)
         {

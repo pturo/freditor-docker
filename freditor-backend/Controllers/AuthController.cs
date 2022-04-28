@@ -73,7 +73,7 @@ namespace FreditorBackend.Controllers
                 issuer: "https://localhost:44335",
                 audience: "https://localhost:44335",
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(120),
+                expires: DateTime.Now.AddMinutes(240),
                 signingCredentials: creds
                 );
 

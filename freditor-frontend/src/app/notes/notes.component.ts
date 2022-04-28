@@ -18,7 +18,7 @@ export class NotesComponent implements OnInit, OnDestroy {
     this.getNotes();
   }
 
-  // Note CRUD operations
+  // Note CRUD operations.
   getNotes() {
     this.subService = this.noteService.getNotes().subscribe((res: any) => {
       setTimeout(() => { this.noteList = res.getNotes; }, 0);
@@ -31,7 +31,7 @@ export class NotesComponent implements OnInit, OnDestroy {
     });
   }
 
-  // Route to add-note, edit-note and unsubsribe
+  // Route to add-note, edit-note and unsubsribe.
   goToAddNote() {
     this.router.navigate(['notes/add-note']);
   }

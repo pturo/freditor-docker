@@ -33,15 +33,12 @@ export class AddNoteComponent implements OnInit {
     }
 
     if (this.addNoteForm.valid) {
-      this.noteService.addNote(newNote).subscribe((res: any) => {
+      this.noteService.addNote(newNote).subscribe((res) => {
         console.log('Pomyslnie dodano notatke do bazy!');
       }, (err: any) => {
         console.log('Blad', err)
       });
       this.router.navigate(['notes']);
-
-      console.log('Nowa notatka: ', newNote);
-
     } else {
       console.log('Wystapil blad w zapisywaniu notatki!');
     }

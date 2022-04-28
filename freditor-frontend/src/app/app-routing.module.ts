@@ -13,6 +13,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { PlaceholderComponent } from './placeholder/placeholder.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { AddTaskComponent } from './tasks/add-task/add-task.component';
+import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
 import { TasksComponent } from './tasks/tasks.component';
 
 const routes: Routes = [
@@ -21,9 +22,10 @@ const routes: Routes = [
   { path: 'dashboard', component: PlaceholderComponent, pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'tasks', component: TasksComponent, pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'tasks/add-task', component: AddTaskComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+  { path: 'tasks/edit-task/:taskId', component: EditTaskComponent, pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'notes', component: NotesComponent, pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'notes/add-note', component: AddNoteComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-  { path: 'notes/edit-note/:{noteId}', component: EditNoteComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+  { path: 'notes/edit-note/:noteId', component: EditNoteComponent, pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'editor', component: EditorComponent, pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'calendar', component: CalendarComponent, pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'archive', component: ArchiveComponent, pathMatch: 'full', canActivate: [AuthGuard] },

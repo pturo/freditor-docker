@@ -11,8 +11,8 @@ import { TaskService } from 'src/app/services/task.service';
   styleUrls: ['./add-task.component.css']
 })
 export class AddTaskComponent implements OnInit, AfterViewInit {
-  addTaskForm?: any;
   @ViewChild('TaskElements') taskElement: any;
+  addTaskForm?: any;
   listOfItems: any = [];
 
   constructor(private router: Router, private formBuilder: FormBuilder, private taskService: TaskService) { }
@@ -47,14 +47,11 @@ export class AddTaskComponent implements OnInit, AfterViewInit {
     };
 
     if (this.addTaskForm.valid) {
-      this.taskService.addTask(newTask).subscribe((res: any) => {
+      this.taskService.addTask(newTask).subscribe((res) => {
         console.log('Pomyslnie dodano zadanie do bazy!')
       }, (err: any) => {
-        console.log('Blad: ', err);
       });
       this.router.navigate(['tasks']);
-
-      console.log('Nowe zadanie', newTask);
     }
     else {
       console.log('Nie udalo sie zapisac zadania pomyslnie!');
