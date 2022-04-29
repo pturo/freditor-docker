@@ -1,6 +1,6 @@
-import { DatePipe } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { DateAdapter } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TaskService } from 'src/app/services/task.service';
@@ -18,7 +18,9 @@ export class EditTaskComponent implements OnInit, OnDestroy {
   listOfItems: any = [];
   task: any = {};
 
-  constructor(private router: Router, private route: ActivatedRoute, private taskService: TaskService, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private route: ActivatedRoute, private taskService: TaskService, private formBuilder: FormBuilder, private dateAdapter: DateAdapter<Date>) {
+    this.dateAdapter.setLocale('en-GB');
+  }
 
   ngOnInit(): void {
     this.buildForm();
@@ -32,6 +34,8 @@ export class EditTaskComponent implements OnInit, OnDestroy {
       TaskElements: new FormControl([], Validators.required).setValue(''),
       TaskDeadline: new FormControl('', [Validators.required]).setValue('')
     });
+
+    this.editTaskForm.controls['TaskElements'].setValue('* ');
   }
 
   initValuesIntoForm() {
@@ -45,11 +49,6 @@ export class EditTaskComponent implements OnInit, OnDestroy {
       console.log('res ', res.getNote);
       this.editTaskForm.patchValue(this.task);
     });
-  }
-
-  dateChangeHandler(date: Date) {
-    const stringDate: string = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-    this.editTaskForm.get('TaskDeadline').setValue(stringDate);
   }
 
   get f() {

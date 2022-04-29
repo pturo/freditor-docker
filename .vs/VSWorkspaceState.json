@@ -6,6 +6,6 @@
     "\\freditor-backend\\Repository",
     "\\freditor-backend\\Repository\\NoteRepository"
   ],
-  "SelectedNode": "\\freditor-backend\\Controllers\\NoteController.cs",
+  "SelectedNode": "\\freditor-backend\\Controllers\\TaskController.cs",
   "PreviewInSolutionExplorer": false
 }

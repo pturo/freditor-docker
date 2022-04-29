@@ -44,11 +44,18 @@
                 <div class="row">
                     <label for="picker">Podaj termin wykonania zadania</label>
                     <div class="date-picker col s12">
-                        <input id="picker" type="text" [value]="task.deadLine" formControlName="TaskDeadline"
-                            [matDatepicker]="startPicker" (dateChange)="dateChangeHandler($event.value)" readonly
-                            required>
-                        <button class="btn red" (click)="startPicker.open()">Wybierz date</button>
-                        <mat-datepicker #startPicker></mat-datepicker>
+                        <mat-form-field color="accent" appearance="fill">
+                            <mat-label>Wybierz date</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="TaskDeadline">
+                            <mat-hint>DD/MM/YYYY</mat-hint>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        <mat-error
+                            *ngIf="f['TaskDeadline'].hasError('required') || (f['TaskDeadline'].dirty || f['TaskDeadline'].touched)">
+                            Termin
+                            wykonania zadania nie moze byc
+                            pusty!</mat-error>
                     </div>
                 </div>
                 <div *ngIf="f['TaskDeadline'].invalid && f['TaskDeadline'].dirty && f['TaskDeadline'].touched"
@@ -58,7 +65,7 @@
                 </div>
                 <div style="text-align: center;">
                     <button class="red btn" type="submit" name="saveBtn"
-                        [disabled]="editTaskForm.invalid || listOfItems.length === 0">Zapisz</button> |
+                        [disabled]="editTaskForm.invalid || f['TaskDeadline'].untouched">Zapisz</button> |
                     <button class="red btn" type="submit" name="cancelBtn" [routerLink]=""
                         (click)="backToTasks()">Anuluj</button>
                 </div>

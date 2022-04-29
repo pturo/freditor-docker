@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { DateAdapter } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { Task } from 'src/app/model/task';
-import * as M from 'materialize-css';
 import { TaskService } from 'src/app/services/task.service';
 
 @Component({
@@ -10,12 +10,14 @@ import { TaskService } from 'src/app/services/task.service';
   templateUrl: './add-task.component.html',
   styleUrls: ['./add-task.component.css']
 })
-export class AddTaskComponent implements OnInit, AfterViewInit {
-  @ViewChild('TaskElements') taskElement: any;
+export class AddTaskComponent implements OnInit {
+  @ViewChild('TaskElements', { static: true }) taskElement!: ElementRef;
   addTaskForm?: any;
   listOfItems: any = [];
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private taskService: TaskService) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private taskService: TaskService, private dateAdapter: DateAdapter<Date>) {
+    this.dateAdapter.setLocale('en-GB');
+  }
 
   ngOnInit(): void {
     this.buildForm();
@@ -27,17 +29,32 @@ export class AddTaskComponent implements OnInit, AfterViewInit {
       TaskElements: new FormControl([], Validators.required).setValue(''),
       TaskDeadline: new FormControl('', [Validators.required]).setValue('')
     });
+
+    this.addTaskForm.controls['TaskElements'].setValue('* ');
   }
 
-  ngAfterViewInit(): void {
-    document.addEventListener('DOMContentLoaded', function () {
-      var elems = document.querySelectorAll('.date');
-      var instances = M.Datepicker.init(elems);
-    });
+  dateChangeHandler(date: Date) {
+    const stringDate: string = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+    this.addTaskForm.get('TaskDeadline').setValue(stringDate);
+  }
 
+  addToList(event: any) {
+    let val = event.target.value;
+    if (val == '' && this.listOfItems.length == 0) {
+      console.log('Nie wolno umieszczac pustej wartosci!');
+    }
+
+    if (val != '') {
+      this.listOfItems?.push(val);
+    }
     this.taskElement.nativeElement.value = '* ';
   }
 
+  get f() {
+    return this.addTaskForm.controls;
+  }
+
+  // Add task
   addTask() {
     const addTask = this.addTaskForm.value;
     let newTask: Task = {
@@ -58,18 +75,7 @@ export class AddTaskComponent implements OnInit, AfterViewInit {
     }
   }
 
-  addToList(event: any) {
-    let val = event.target.value;
-    if (val == '' && this.listOfItems.length == 0) {
-      console.log('Nie wolno umieszczac pustej wartosci!');
-    }
-
-    if (val != '') {
-      this.listOfItems?.push(val);
-    }
-    this.taskElement.nativeElement.value = '* ';
-  }
-
+  // Back to tasks
   backToTasks() {
     this.router.navigate(['tasks']);
   }
