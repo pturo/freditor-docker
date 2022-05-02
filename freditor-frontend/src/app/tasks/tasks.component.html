@@ -18,10 +18,10 @@
         <div class="card-content white-text">
           <span class="card-title">{{task.taskTitle}}</span>
           <form [formGroup]="form" novalidate>
-            <div *ngFor="let data of task.taskElements">
-              <label formArrayName="checkArray">
-                <input type="checkbox" id="data.TaskId" [value]="data[i].taskElements"
-                  (change)="onCheckboxChange($event)" />{{ data }}</label>
+            <div *ngFor="let data of task.taskElements" formArrayName="checkArray">
+              <mat-checkbox [value]="data[i].taskElements" (change)="onCheckboxChange($event)">
+                {{data}}
+              </mat-checkbox>
             </div>
           </form>
           <div>Termin wykonania: {{task.deadLine}}</div>

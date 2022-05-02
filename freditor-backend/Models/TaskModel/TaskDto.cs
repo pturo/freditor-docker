@@ -29,6 +29,8 @@ namespace FreditorBackend.Models.TaskModel
         /// <summary>
         /// Property <c>DeadLine</c> is a date for completing task.
         /// </summary>
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
         [Required]
         public DateTime DeadLine { get; set; }
     }

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NoteService } from '../services/note.service';
@@ -8,13 +8,17 @@ import { NoteService } from '../services/note.service';
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.css']
 })
-export class NotesComponent implements OnInit, OnDestroy {
+export class NotesComponent implements OnInit, OnDestroy, AfterViewInit {
   subService = new Subscription();
   noteList: any[] = [];
 
   constructor(private router: Router, private noteService: NoteService) { }
 
   ngOnInit(): void {
+    this.getNotes();
+  }
+
+  ngAfterViewInit(): void {
     this.getNotes();
   }
 

@@ -11,7 +11,8 @@ import { TaskService } from 'src/app/services/task.service';
   styleUrls: ['./add-task.component.css']
 })
 export class AddTaskComponent implements OnInit {
-  @ViewChild('TaskElements', { static: true }) taskElement!: ElementRef;
+  @ViewChild('TaskElements') taskElement!: ElementRef;
+  @ViewChild('date') date!: ElementRef;
   addTaskForm?: any;
   listOfItems: any = [];
 
@@ -60,8 +61,10 @@ export class AddTaskComponent implements OnInit {
     let newTask: Task = {
       TaskTitle: addTask.TaskTitle,
       TaskElements: this.listOfItems,
-      TaskDeadline: this.addTaskForm.get('TaskDeadline').value
+      TaskDeadline: this.date.nativeElement.value
     };
+
+    console.log('newTask: ', newTask);
 
     if (this.addTaskForm.valid) {
       this.taskService.addTask(newTask).subscribe((res) => {

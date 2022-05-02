@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TaskService } from '../services/task.service';
@@ -10,7 +10,7 @@ import { TaskService } from '../services/task.service';
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.css']
 })
-export class TasksComponent implements OnInit, OnDestroy {
+export class TasksComponent implements OnInit, OnDestroy, AfterViewInit {
   pipe?: DatePipe = new DatePipe('en-US');
   myDate: number = Date.now();
   myFormattedDate: any = this.pipe?.transform(this.myDate, 'short');
@@ -20,7 +20,7 @@ export class TasksComponent implements OnInit, OnDestroy {
 
   constructor(private formBuilder: FormBuilder, private router: Router, private taskService: TaskService) {
     this.form = this.formBuilder.group({
-      checkArray: this.formBuilder.array([])
+      checkArray: this.formBuilder.array([], Validators.required)
     });
   }
 
@@ -28,9 +28,13 @@ export class TasksComponent implements OnInit, OnDestroy {
     this.getTasks();
   }
 
+  ngAfterViewInit(): void {
+    this.getTasks();
+  }
+
   onCheckboxChange(e: any) {
     const checkArray: FormArray = this.form.get('checkArray') as FormArray;
-    if (e.target.checked) {
+    if (e.target?.checked) {
       checkArray.push(new FormControl(e.target.value));
     } else {
       let i: number = 0;
@@ -44,11 +48,11 @@ export class TasksComponent implements OnInit, OnDestroy {
     }
   }
 
-  // submit() {
-  //   const selectedTaskElemId = this.form.value.checkboxes.map((checked: boolean, i: number) => checked ? this.tasks[i].TaskId : null)
-  //     .filter((v: any) => v !== null);
-  //   console.log(selectedTaskElemId);
-  // }
+  submit() {
+    const selectedTaskElemId = this.form.value.checkboxes.map((checked: boolean, i: number) => checked ? this.tasks[i].TaskId : null)
+      .filter((v: any) => v !== null);
+    console.log(selectedTaskElemId);
+  }
 
   // Task CRUD operations
   getTasks() {
