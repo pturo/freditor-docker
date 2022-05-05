@@ -14,17 +14,23 @@
     <div style="text-align: center; color: red; font-size: 28px;" *ngIf="tasks.length === 0">Brak zadan do wykonania
     </div>
     <div *ngIf="tasks.length > 0">
-      <div class="card" *ngFor="let task of tasks; let i = index">
+      <div class="card" *ngFor="let task of tasks">
         <div class="card-content white-text">
+          <div>Tytul zadania:</div>
           <span class="card-title">{{task.taskTitle}}</span>
-          <form [formGroup]="form" novalidate>
-            <div *ngFor="let data of task.taskElements" formArrayName="checkArray">
-              <mat-checkbox [value]="data[i].taskElements" (change)="onCheckboxChange($event)">
-                {{data}}
-              </mat-checkbox>
-            </div>
-          </form>
+          <br>
+          <div>Szczegoly zadania:</div>
+          <div class="checkbox-list">
+            <mat-checkbox [id]="task.taskId" style="display: flex; flex-wrap: wrap;"
+              *ngFor="let data of task.taskElements" class="checkbox-check"
+              (change)="updateProgressBar($event, task.taskId)" [disableRipple]="true">
+              {{data}}
+            </mat-checkbox>
+          </div>
+          <br>
           <div>Termin wykonania: {{task.deadLine}}</div>
+          <div>Postep wykonania zadania:</div>
+          <mat-progress-bar [id]="task.taskId" mode="determinate" [value]="progressVal"></mat-progress-bar>
         </div>
         <div style="text-align: center; color: white">
           <button class="red btn" (click)="goToEditTask(task.taskId)">Edytuj</button> |

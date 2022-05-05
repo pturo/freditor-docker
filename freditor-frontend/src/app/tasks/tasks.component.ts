@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TaskService } from '../services/task.service';
@@ -10,48 +10,37 @@ import { TaskService } from '../services/task.service';
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.css']
 })
-export class TasksComponent implements OnInit, OnDestroy, AfterViewInit {
+export class TasksComponent implements OnInit, OnDestroy {
   pipe?: DatePipe = new DatePipe('en-US');
   myDate: number = Date.now();
   myFormattedDate: any = this.pipe?.transform(this.myDate, 'short');
   tasks: any = [];
+  progressVal = 0;
   subService = new Subscription();
-  form!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private taskService: TaskService) {
-    this.form = this.formBuilder.group({
-      checkArray: this.formBuilder.array([], Validators.required)
-    });
+  constructor(private router: Router, private taskService: TaskService) {
   }
 
   ngOnInit(): void {
     this.getTasks();
   }
 
-  ngAfterViewInit(): void {
-    this.getTasks();
-  }
-
-  onCheckboxChange(e: any) {
-    const checkArray: FormArray = this.form.get('checkArray') as FormArray;
-    if (e.target?.checked) {
-      checkArray.push(new FormControl(e.target.value));
-    } else {
-      let i: number = 0;
-      checkArray.controls.forEach((item: AbstractControl) => {
-        if (item.value == e.target.value) {
-          checkArray.removeAt(i);
-          return;
-        }
-        i++;
-      });
+  updateProgressBar(e: MatCheckboxChange, taskId: number) {
+    let checkArray = document.getElementsByTagName("mat-checkbox");
+    for (let i = 0; i < checkArray.length; i++) {
+      let id = parseInt(checkArray[i].id);
+      console.log('id: ', id);
+      if (id === taskId) {
+        let newArr = checkArray[id];
+        console.log('checkArray: ', newArr);
+      }
     }
-  }
 
-  submit() {
-    const selectedTaskElemId = this.form.value.checkboxes.map((checked: boolean, i: number) => checked ? this.tasks[i].TaskId : null)
-      .filter((v: any) => v !== null);
-    console.log(selectedTaskElemId);
+    // if (e.checked === true) {
+    //   this.progressVal += (100 / checkedLength);
+    // } else {
+    //   this.progressVal -= (100 / checkedLength);
+    // }
   }
 
   // Task CRUD operations

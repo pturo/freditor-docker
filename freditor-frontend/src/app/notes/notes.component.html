@@ -20,7 +20,10 @@
             <div *ngFor="let note of noteList">
                 <div class="card">
                     <div class="card-content white-text">
+                        <div>Tytul notatki:</div>
                         <span class="card-title">{{ note.noteTitle }}</span>
+                        <br>
+                        <div>Zawartosc notatki:</div>
                         <div class="card-content">{{ note.noteContent }}</div>
                     </div>
                     <div style="text-align: center; color: white" *ngIf="note.noteId">
