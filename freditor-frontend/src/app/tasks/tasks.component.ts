@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatCheckboxChange } from '@angular/material/checkbox';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TaskService } from '../services/task.service';
@@ -25,22 +25,14 @@ export class TasksComponent implements OnInit, OnDestroy {
     this.getTasks();
   }
 
-  updateProgressBar(e: MatCheckboxChange, taskId: number) {
-    let checkArray = document.getElementsByTagName("mat-checkbox");
-    for (let i = 0; i < checkArray.length; i++) {
-      let id = parseInt(checkArray[i].id);
-      console.log('id: ', id);
-      if (id === taskId) {
-        let newArr = checkArray[id];
-        console.log('checkArray: ', newArr);
-      }
-    }
+  updateProgressBar(e: any, length: number) {
+    console.log('lnght: ', length);
 
-    // if (e.checked === true) {
-    //   this.progressVal += (100 / checkedLength);
-    // } else {
-    //   this.progressVal -= (100 / checkedLength);
-    // }
+    if (e.checked) {
+      this.progressVal += (100 / length);
+    } else {
+      this.progressVal -= (100 / length);
+    }
   }
 
   // Task CRUD operations

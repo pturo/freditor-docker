@@ -20,17 +20,17 @@
           <span class="card-title">{{task.taskTitle}}</span>
           <br>
           <div>Szczegoly zadania:</div>
-          <div class="checkbox-list">
-            <mat-checkbox [id]="task.taskId" style="display: flex; flex-wrap: wrap;"
-              *ngFor="let data of task.taskElements" class="checkbox-check"
-              (change)="updateProgressBar($event, task.taskId)" [disableRipple]="true">
-              {{data}}
+          <div>
+            <mat-checkbox matRipple="disabled" style="display: flex;" *ngFor="let data of task.taskElements"
+              (change)="updateProgressBar($event, task.taskElements.length)">{{data}}
             </mat-checkbox>
+            <br>
+            <div>Postep wykonania zadania:</div>
+            <mat-progress-bar mode="determinate" [value]="progressVal">
+            </mat-progress-bar>
           </div>
           <br>
-          <div>Termin wykonania: {{task.deadLine}}</div>
-          <div>Postep wykonania zadania:</div>
-          <mat-progress-bar [id]="task.taskId" mode="determinate" [value]="progressVal"></mat-progress-bar>
+          <div>Termin wykonania zadania: {{task.deadLine}}</div>
         </div>
         <div style="text-align: center; color: white">
           <button class="red btn" (click)="goToEditTask(task.taskId)">Edytuj</button> |

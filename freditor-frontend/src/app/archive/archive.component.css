@@ -1,0 +1,37 @@
+.col .s4 {
+    border: 1px solid red;
+    height: auto;
+}
+
+.tasks-archive {
+    width: auto;
+    height: 30px;
+    background-color: #993131;
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    padding: 4px;
+    margin: auto;
+}
+
+.notes-archive {
+    width: auto;
+    height: 30px;
+    background-color: #993131;
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    padding: 4px;
+    margin: auto;
+}
+
+.files-archive {
+    width: auto;
+    height: 30px;
+    background-color: #993131;
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    padding: 4px;
+    margin: auto;
+}

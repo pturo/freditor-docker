@@ -33,6 +33,7 @@ import { EditNoteComponent } from './notes/edit-note/edit-note.component';
 import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
+import { CanvasWhiteboardModule } from 'ng2-canvas-whiteboard';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -73,7 +74,8 @@ FullCalendarModule.registerPlugins([
     ValidateEqualModule,
     FullCalendarModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    CanvasWhiteboardModule
   ],
   providers: [
     {
