@@ -3,4 +3,5 @@ export interface Task {
     TaskTitle: string;
     TaskElements: string[] | any[] | any;
     TaskDeadline: Date;
+    TaskProgress?: number;
 }

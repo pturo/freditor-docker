@@ -6,7 +6,7 @@ namespace FreditorBackend.Models.ArchiveModel
     /// <summary>
     /// Class <c>Archive</c> represents list of archived files like tasks, notes and files.
     /// </summary>
-    public class Archive
+    public class ArchiveDto
     {
         /// <summary>
         /// Property <c>ArchiveId</c> represents an unique identity for a single archive.

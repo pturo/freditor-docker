@@ -6,3 +6,7 @@ footer {
     clear: both;
     overflow: hidden;
 }
+
+.footer-copyright {
+    justify-content: space-between;
+}

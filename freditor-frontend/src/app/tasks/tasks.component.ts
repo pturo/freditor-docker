@@ -1,6 +1,5 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TaskService } from '../services/task.service';
@@ -15,7 +14,7 @@ export class TasksComponent implements OnInit, OnDestroy {
   myDate: number = Date.now();
   myFormattedDate: any = this.pipe?.transform(this.myDate, 'short');
   tasks: any = [];
-  progressVal = 0;
+  progVal = 0;
   subService = new Subscription();
 
   constructor(private router: Router, private taskService: TaskService) {
@@ -25,14 +24,21 @@ export class TasksComponent implements OnInit, OnDestroy {
     this.getTasks();
   }
 
-  updateProgressBar(e: any, length: number) {
-    console.log('lnght: ', length);
-
-    if (e.checked) {
-      this.progressVal += (100 / length);
-    } else {
-      this.progressVal -= (100 / length);
+  updateProgressBar(e: any, task: any, taskId: number) {
+    let isChecked = false;
+    if (e.checked && (task.taskId === taskId)) {
+      isChecked = true;
+      this.progVal += 25;
+      console.log(isChecked);
+      console.log(this.progVal);
     }
+    if (!e.checked && (task.taskId === taskId)) {
+      isChecked = false;
+      this.progVal -= 25;
+      console.log(isChecked);
+      console.log(this.progVal);
+    }
+    isChecked = false;
   }
 
   // Task CRUD operations
