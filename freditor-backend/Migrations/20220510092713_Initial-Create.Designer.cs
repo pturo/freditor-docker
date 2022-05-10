@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FreditorBackend.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220502092701_Initial-Create")]
+    [Migration("20220510092713_Initial-Create")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,25 @@ namespace FreditorBackend.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.15")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("FreditorBackend.Models.ArchiveModel.ArchiveDto", b =>
+                {
+                    b.Property<int>("ArchiveId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ArchiveId")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ArchiveNoteId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ArchiveTaskId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ArchiveId");
+
+                    b.ToTable("FredArchive");
+                });
 
             modelBuilder.Entity("FreditorBackend.Models.NoteModel.NoteDto", b =>
                 {
@@ -51,7 +70,7 @@ namespace FreditorBackend.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("DeadLine")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Date");
 
                     b.Property<string>("TaskElements")
                         .IsRequired()

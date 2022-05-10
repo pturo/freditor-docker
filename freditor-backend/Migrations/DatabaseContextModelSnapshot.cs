@@ -19,6 +19,25 @@ namespace FreditorBackend.Migrations
                 .HasAnnotation("ProductVersion", "5.0.15")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("FreditorBackend.Models.ArchiveModel.ArchiveDto", b =>
+                {
+                    b.Property<int>("ArchiveId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ArchiveId")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ArchiveNoteId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ArchiveTaskId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ArchiveId");
+
+                    b.ToTable("FredArchive");
+                });
+
             modelBuilder.Entity("FreditorBackend.Models.NoteModel.NoteDto", b =>
                 {
                     b.Property<int>("NoteId")
@@ -49,7 +68,7 @@ namespace FreditorBackend.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("DeadLine")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Date");
 
                     b.Property<string>("TaskElements")
                         .IsRequired()

@@ -22,11 +22,11 @@
           <div>Szczegoly zadania:</div>
           <div>
             <mat-checkbox matRipple="disabled" style="display: flex;" *ngFor="let data of task.taskElements"
-              (change)="updateProgressBar($event, task, task.taskId)">{{data}}
+              (change)="updateProgressBar($event)">{{data}}
             </mat-checkbox>
             <br>
             <div>Postep wykonania zadania:</div>
-            <mat-progress-bar mode="determinate" [id]="task.taskId" [value]="progVal">
+            <mat-progress-bar mode="determinate" [value]="task.TaskProgress">
             </mat-progress-bar>
           </div>
           <br>

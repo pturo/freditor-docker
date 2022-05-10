@@ -25,11 +25,5 @@ namespace FreditorBackend.Models.ArchiveModel
         /// </summary>
         [ForeignKey("ArchiveNoteId")]
         public int ArchiveNoteId { get; set; }
-
-        /// <summary>
-        /// Property <c>ArchiveFile</c> contains archived file.
-        /// </summary>
-        [ForeignKey("ArchiveFileId")]
-        public int ArchiveFileId { get; set; }
     }
 }

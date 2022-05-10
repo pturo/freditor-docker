@@ -8,6 +8,20 @@ namespace FreditorBackend.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "FredArchive",
+                columns: table => new
+                {
+                    ArchiveId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ArchiveTaskId = table.Column<int>(type: "int", nullable: false),
+                    ArchiveNoteId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FredArchive", x => x.ArchiveId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "FredNote",
                 columns: table => new
                 {
@@ -29,7 +43,7 @@ namespace FreditorBackend.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TaskTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TaskElements = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DeadLine = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DeadLine = table.Column<DateTime>(type: "Date", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -55,6 +69,9 @@ namespace FreditorBackend.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "FredArchive");
+
             migrationBuilder.DropTable(
                 name: "FredNote");
 

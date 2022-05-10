@@ -14,6 +14,7 @@ using FreditorBackend.Models.HelperModel;
 using FreditorBackend.Repository.TaskRepository;
 using FreditorBackend.Repository.NoteRepository;
 using Microsoft.OpenApi.Models;
+using FreditorBackend.Repository.ArchiveRepository;
 
 namespace FreditorBackend
 {
@@ -54,6 +55,9 @@ namespace FreditorBackend
 
             // Add scope for note repo
             services.AddScoped<INoteRepository, NoteRepository>();
+
+            // Add scope for archive repo
+            services.AddScoped<IArchiveRepository, ArchiveRepository>();
 
             // Add mvc
             services.AddMvc(x => x.EnableEndpointRouting = false);

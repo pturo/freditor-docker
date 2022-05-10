@@ -14,7 +14,6 @@ export class TasksComponent implements OnInit, OnDestroy {
   myDate: number = Date.now();
   myFormattedDate: any = this.pipe?.transform(this.myDate, 'short');
   tasks: any = [];
-  progVal = 0;
   subService = new Subscription();
 
   constructor(private router: Router, private taskService: TaskService) {
@@ -24,21 +23,20 @@ export class TasksComponent implements OnInit, OnDestroy {
     this.getTasks();
   }
 
-  updateProgressBar(e: any, task: any, taskId: number) {
-    let isChecked = false;
-    if (e.checked && (task.taskId === taskId)) {
-      isChecked = true;
-      this.progVal += 25;
-      console.log(isChecked);
-      console.log(this.progVal);
-    }
-    if (!e.checked && (task.taskId === taskId)) {
-      isChecked = false;
-      this.progVal -= 25;
-      console.log(isChecked);
-      console.log(this.progVal);
-    }
-    isChecked = false;
+  updateProgressBar(e: any) {
+    // let progVal = 0;
+    // let isChecked = false;
+    // if (e.checked) {
+    //   isChecked = true;
+    //   progVal += (100 / 4);
+    //   console.log(progVal);
+    // }
+    // if (!e.checked) {
+    //   isChecked = false;
+    //   progVal -= (100 / 4);
+    //   console.log(progVal);
+    // }
+    // isChecked = false;
   }
 
   // Task CRUD operations

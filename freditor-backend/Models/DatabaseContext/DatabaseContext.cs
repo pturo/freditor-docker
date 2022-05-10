@@ -1,4 +1,5 @@
-﻿using FreditorBackend.Models.NoteModel;
+﻿using FreditorBackend.Models.ArchiveModel;
+using FreditorBackend.Models.NoteModel;
 using FreditorBackend.Models.TaskModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
@@ -30,6 +31,11 @@ namespace FreditorBackend.Models.UserModel
         /// Property <c>FredNote</c> gets and sets notes for DbSet.
         /// </summary>
         public DbSet<NoteDto> FredNote { get; set; }
+
+        /// <summary>
+        /// Property <c>FredArchive</c> gets and sets archives for DbSet.
+        /// </summary>
+        public DbSet<ArchiveDto> FredArchive { get; set; }
 
         public class DatabaseDBContextFactory : IDesignTimeDbContextFactory<DatabaseContext>
         {
@@ -72,6 +78,15 @@ namespace FreditorBackend.Models.UserModel
                 entity.Property(e => e.NoteId).HasColumnName("NoteId");
                 entity.Property(e => e.NoteTitle);
                 entity.Property(e => e.NoteContent);
+            });
+
+            // Archive build model
+            builder.Entity<ArchiveDto>(entity => 
+            {
+                entity.HasKey(e => e.ArchiveId);
+                entity.Property(e => e.ArchiveId).HasColumnName("ArchiveId");
+                entity.Property(e => e.ArchiveTaskId);
+                entity.Property(e => e.ArchiveNoteId);
             });
         }
     }

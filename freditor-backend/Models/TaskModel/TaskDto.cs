@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FreditorBackend.Models.TaskModel
 {
@@ -29,9 +30,10 @@ namespace FreditorBackend.Models.TaskModel
         /// <summary>
         /// Property <c>DeadLine</c> is a date for completing task.
         /// </summary>
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        [DataType(DataType.Date)]
         [Required]
+        [Column(TypeName = "Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DeadLine { get; set; }
     }
 }
