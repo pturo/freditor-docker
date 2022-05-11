@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FreditorBackend.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220510092713_Initial-Create")]
-    partial class InitialCreate
+    [Migration("20220511065937_Inital-Crate")]
+    partial class InitalCrate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,10 +29,10 @@ namespace FreditorBackend.Migrations
                         .HasColumnName("ArchiveId")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ArchiveNoteId")
+                    b.Property<int?>("ArchiveNoteId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ArchiveTaskId")
+                    b.Property<int?>("ArchiveTaskId")
                         .HasColumnType("int");
 
                     b.HasKey("ArchiveId");

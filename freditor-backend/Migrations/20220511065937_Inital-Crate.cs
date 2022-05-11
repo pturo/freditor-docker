@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FreditorBackend.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitalCrate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,8 +13,8 @@ namespace FreditorBackend.Migrations
                 {
                     ArchiveId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ArchiveTaskId = table.Column<int>(type: "int", nullable: false),
-                    ArchiveNoteId = table.Column<int>(type: "int", nullable: false)
+                    ArchiveTaskId = table.Column<int>(type: "int", nullable: true),
+                    ArchiveNoteId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {

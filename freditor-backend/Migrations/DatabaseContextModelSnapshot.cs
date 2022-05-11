@@ -27,10 +27,10 @@ namespace FreditorBackend.Migrations
                         .HasColumnName("ArchiveId")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ArchiveNoteId")
+                    b.Property<int?>("ArchiveNoteId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ArchiveTaskId")
+                    b.Property<int?>("ArchiveTaskId")
                         .HasColumnType("int");
 
                     b.HasKey("ArchiveId");

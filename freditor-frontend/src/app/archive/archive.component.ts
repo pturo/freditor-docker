@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./archive.component.css']
 })
 export class ArchiveComponent implements OnInit {
+  archives: any[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
+    this.getArchives();
   }
+
+  getArchives() { }
 
 }

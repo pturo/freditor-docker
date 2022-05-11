@@ -2,7 +2,9 @@
 using FreditorBackend.Repository.ArchiveRepository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FreditorBackend.Controllers
@@ -11,7 +13,7 @@ namespace FreditorBackend.Controllers
     /// Class <c>ArchiveController</c> manages archive store functionality.
     /// </summary>
     [Authorize]
-    [Route("api/archive")]
+    [Route("api/archives")]
     [ApiController]
     public class ArchiveController : ControllerBase
     {
@@ -24,11 +26,26 @@ namespace FreditorBackend.Controllers
             _repo = repo;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetArchives() 
+        [HttpGet("getTaskArchives")]
+        public async Task<IActionResult> GetTaskArchives() 
         {
-            var getArchives = await _context.FredArchive.ToListAsync();
-            return StatusCode(201, new { getArchives });
+            var task = await _context.FredTask.ToListAsync();
+            var taskId = 0;
+            var taskTitle = "";
+            task.ForEach(x => { taskId = x.TaskId; taskTitle = x.TaskTitle; });
+            var getTaskArchivesWithParams = new List<SqlParameter>();
+            getTaskArchivesWithParams.Add(new SqlParameter("@TaskTitle", taskTitle));
+            getTaskArchivesWithParams.Add(new SqlParameter("@TaskId", taskId));
+            var getTaskArchives = _context.FredArchive.FromSqlRaw("SELECT (@TaskTitle) FROM dbo.FredArchive, dbo.FredTask WHERE ArchiveTaskId=@TaskId", getTaskArchivesWithParams.ToArray());
+            return StatusCode(201, new { getTaskArchives });
+        }
+
+        [HttpGet("getNoteArchives")]
+        public async Task<IActionResult> GetNoteArchives()
+        {
+            var sql = string.Format("select (NoteTitle) from dbo.FredArchive, dbo.FredNote where ArchiveNoteId = NoteId");
+            var getNoteArchives = await _context.FredArchive.FromSqlRaw(sql).ToListAsync();
+            return StatusCode(201, new { getNoteArchives });
         }
 
         [HttpDelete]

@@ -18,12 +18,12 @@ namespace FreditorBackend.Models.ArchiveModel
         /// Property <c>ArchiveTask</c> contains archived task.
         /// </summary>
         [ForeignKey("ArchiveTaskId")]
-        public int ArchiveTaskId { get; set; }
+        public int? ArchiveTaskId { get; set; }
 
         /// <summary>
         /// Property <c>ArchiveNote</c> contains archived note.
         /// </summary>
         [ForeignKey("ArchiveNoteId")]
-        public int ArchiveNoteId { get; set; }
+        public int? ArchiveNoteId { get; set; }
     }
 }
