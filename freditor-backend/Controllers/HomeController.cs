@@ -10,7 +10,7 @@ namespace FreditorBackend.Controllers
     /// Class <c>Home</c> fetches user credentials for login into home page.
     /// </summary>
     [Authorize]
-    [Route("api/home")]
+    [Route("api/users")]
     [ApiController]
     public class HomeController : ControllerBase
     {
@@ -24,8 +24,8 @@ namespace FreditorBackend.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
-            var data = await _context.FredUser.ToListAsync();
-            return Ok(data);
+            var getUsers = await _context.FredUser.ToListAsync();
+            return StatusCode(201, new { getUsers });
         }
     }
 }

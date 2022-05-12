@@ -1,6 +1,11 @@
 FROM node:latest
+RUN mkdir -p /freditor-frontend
+ADD . /freditor-frontend
 WORKDIR /freditor-frontend
-COPY package.json .
+RUN cd /freditor-frontend
+
+RUN npm install -g @angular/cli
 RUN npm install
-COPY . .
-CMD npm run start
+RUN npm update
+
+CMD ["ng", "serve", "--host=0.0.0.0"]

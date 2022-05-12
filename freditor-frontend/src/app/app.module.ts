@@ -19,6 +19,28 @@ import { TasksComponent } from './tasks/tasks.component';
 import { PlaceholderComponent } from './placeholder/placeholder.component';
 import { AddTaskComponent } from './tasks/add-task/add-task.component';
 import { EntertainmentComponent } from './entertainment/entertainment.component';
+import { NotesComponent } from './notes/notes.component';
+import { AddNoteComponent } from './notes/add-note/add-note.component';
+import { EditorComponent } from './editor/editor.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { ArchiveComponent } from './archive/archive.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
+import interactionPlugin from '@fullcalendar/interaction';
+import { EditNoteComponent } from './notes/edit-note/edit-note.component';
+import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material.module';
+import { CanvasWhiteboardModule } from 'ng2-canvas-whiteboard';
+
+FullCalendarModule.registerPlugins([
+  dayGridPlugin,
+  timeGridPlugin,
+  listPlugin,
+  interactionPlugin
+]);
 
 @NgModule({
   declarations: [
@@ -35,6 +57,13 @@ import { EntertainmentComponent } from './entertainment/entertainment.component'
     PlaceholderComponent,
     AddTaskComponent,
     EntertainmentComponent,
+    NotesComponent,
+    AddNoteComponent,
+    EditorComponent,
+    CalendarComponent,
+    ArchiveComponent,
+    EditNoteComponent,
+    EditTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +72,10 @@ import { EntertainmentComponent } from './entertainment/entertainment.component'
     ReactiveFormsModule,
     HttpClientModule,
     ValidateEqualModule,
+    FullCalendarModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    CanvasWhiteboardModule
   ],
   providers: [
     {

@@ -19,9 +19,9 @@ namespace FreditorBackend.Repository.TaskRepository
             _context = context;
         }
 
-        public async Task<bool> IsTaskExist(string tasktitle)
+        public async Task<bool> IsTaskExist(string taskTitle)
         {
-            if(await _context.FredTask.AnyAsync(x => x.TaskTitle == tasktitle))
+            if(await _context.FredTask.AnyAsync(x => x.TaskTitle == taskTitle))
             {
                 return true;
             }
@@ -29,17 +29,44 @@ namespace FreditorBackend.Repository.TaskRepository
             return false;
         }
         
-        public async Task<TaskDto> AddTask(string tasktitle, string[] taskelements, DateTime date)
+        public async Task<TaskDto> AddTask(string taskTitle, string[] taskElements, DateTime taskDate)
         {
             TaskDto task = new TaskDto();
-            task.TaskTitle = tasktitle;
-            task.TaskElements = taskelements;
-            task.DeadLine = date;
+            task.TaskTitle = taskTitle;
+            task.TaskElements = taskElements;
+            task.DeadLine = taskDate;
 
             await _context.FredTask.AddAsync(task);
             await _context.SaveChangesAsync();
 
             return task;
+        }
+
+        public async Task<TaskDto> EditTask(int taskId, TaskDto task)
+        {
+            if(taskId != task.TaskId)
+            {
+                return null;
+            }
+
+            _context.Entry(task).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return task;
+        }
+
+        public async Task<IEnumerable<TaskDto>> DeleteTask(int taskId)
+        {
+            var task = await _context.FredTask.FindAsync(taskId);
+            if(taskId != task.TaskId)
+            {
+                return null;
+            }
+
+            _context.FredTask.Remove(task);
+            await _context.SaveChangesAsync();
+
+            return await _context.FredTask.ToListAsync();
         }
     }
 }

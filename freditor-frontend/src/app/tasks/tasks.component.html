@@ -5,21 +5,38 @@
   <div class="col s9">
     <h1>Zadania</h1>
     <br>
+    <button class="red btn" type="submit" (click)="getTasks()">Odswiez</button>
+    |
     <button class="red btn" type="submit" (click)="goToAddTask()" [routerLink]="'tasks/add-task'">Dodaj zadanie</button>
     <br>
     <hr color="red">
     <br>
-    <div class="card" *ngFor="let task of tasks; let i = index">
-      <div class="card-content white-text">
-        <span class="card-title">{{task.TaskTitle}}</span>
-        <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
-          <div *ngFor="let data of task.TaskElements">
-            <label formArrayName="checkArray">
-              <input type="checkbox" id="data.TaskId" [value]="data[i].TaskElements"
-                (change)="onCheckboxChange($event)" />{{ data }}</label>
+    <div style="text-align: center; color: red; font-size: 28px;" *ngIf="tasks.length === 0">Brak zadan do wykonania
+    </div>
+    <div *ngIf="tasks.length > 0">
+      <div class="card" *ngFor="let task of tasks; let i = index">
+        <div class="card-content white-text">
+          <div>Tytul zadania:</div>
+          <span class="card-title">{{task.taskTitle}}</span>
+          <br>
+          <div>Szczegoly zadania:</div>
+          <div>
+            <mat-checkbox matRipple="disabled" style="display: flex;" *ngFor="let data of task.taskElements"
+              (change)="updateProgressBar($event)">{{data}}
+            </mat-checkbox>
+            <br>
+            <div>Postep wykonania zadania:</div>
+            <mat-progress-bar mode="determinate" [value]="task.TaskProgress">
+            </mat-progress-bar>
           </div>
-        </form>
-        <div>Termin wykonania: {{task.TaskDeadline}}</div>
+          <br>
+          <div>Termin wykonania zadania: {{task.deadLine}}</div>
+        </div>
+        <div style="text-align: center; color: white">
+          <button class="red btn" (click)="goToEditTask(task.taskId)">Edytuj</button> |
+          <button class="red btn" (click)="deleteTask(task.taskId)">Usun</button>
+        </div>
       </div>
     </div>
   </div>
+</div>

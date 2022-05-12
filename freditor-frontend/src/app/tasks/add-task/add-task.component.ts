@@ -1,67 +1,85 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { DateAdapter } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { Task } from 'src/app/model/task';
-import * as M from 'materialize-css';
-import { DatePipe } from '@angular/common';
+import { TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
   styleUrls: ['./add-task.component.css']
 })
-export class AddTaskComponent implements OnInit, AfterViewInit {
+export class AddTaskComponent implements OnInit {
+  @ViewChild('TaskElements') taskElement!: ElementRef;
+  @ViewChild('date') date!: ElementRef;
   addTaskForm?: any;
-  @ViewChild('TaskElements') taskElement: any;
   listOfItems: any = [];
-  taskList: Task[] = [];
-  // pipe?: DatePipe = new DatePipe('en-US');
-  // myDate: number = Date.now();
-  // myFormattedDate: any = this.pipe?.transform(this.myDate, 'mediumDate');
 
-  constructor(private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private taskService: TaskService, private dateAdapter: DateAdapter<Date>) {
+    this.dateAdapter.setLocale('en-GB');
+  }
 
   ngOnInit(): void {
+    this.buildForm();
+  }
+
+  buildForm() {
     this.addTaskForm = this.formBuilder.group({
-      TaskTitle: new FormControl(['', [Validators.required, Validators.minLength(8)]]).setValue(''),
-      TaskElements: new FormControl([[], [Validators.required]]).setValue(''),
-      TaskDeadline: new FormControl('', [Validators.required])
+      TaskTitle: new FormControl(['', [Validators.required]]).setValue(''),
+      TaskElements: new FormControl([], Validators.required).setValue(''),
+      TaskDeadline: new FormControl('', [Validators.required]).setValue('')
     });
+
+    this.addTaskForm.controls['TaskElements'].setValue('* ');
   }
 
-  ngAfterViewInit(): void {
-    document.addEventListener('DOMContentLoaded', function () {
-      var elems = document.querySelectorAll('.date');
-      var instances = M.Datepicker.init(elems);
-    });
-  }
-
-  addTask() {
-    const addTask = this.addTaskForm?.value;
-    let newTask: Task = {
-      TaskTitle: addTask.TaskTitle,
-      TaskElements: this.listOfItems,
-      TaskDeadline: this.addTaskForm.get('TaskDeadline').value
-    };
-
-    if (newTask.TaskTitle != null && newTask.TaskElements != null && newTask.TaskDeadline != null) {
-      this.taskList.push(newTask);
-      //this.router.navigate(['tasks']);
-    }
-    else {
-      console.log('Nie udalo sie zapisac zadania pomyslnie!');
-    }
-
-    console.log('Nowe zadanie', newTask);
-  }
-
-  backToTasks() {
-    this.router.navigate(['tasks']);
+  dateChangeHandler(date: Date) {
+    const stringDate: string = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+    this.addTaskForm.get('TaskDeadline').setValue(stringDate);
   }
 
   addToList(event: any) {
     let val = event.target.value;
-    this.listOfItems?.push(val);
-    this.taskElement.nativeElement.value = '';
+    if (val == '' && this.listOfItems.length == 0) {
+      console.log('Nie wolno umieszczac pustej wartosci!');
+    }
+
+    if (val != '') {
+      this.listOfItems?.push(val);
+    }
+    this.taskElement.nativeElement.value = '* ';
+  }
+
+  get f() {
+    return this.addTaskForm.controls;
+  }
+
+  // Add task
+  addTask() {
+    const addTask = this.addTaskForm.value;
+    let newTask: Task = {
+      TaskTitle: addTask.TaskTitle,
+      TaskElements: this.listOfItems,
+      TaskDeadline: this.date.nativeElement.value
+    };
+
+    console.log('newTask: ', newTask);
+
+    if (this.addTaskForm.valid) {
+      this.taskService.addTask(newTask).subscribe((res) => {
+        console.log('Pomyslnie dodano zadanie do bazy!')
+      }, (err: any) => {
+      });
+      this.router.navigate(['tasks']);
+    }
+    else {
+      console.log('Nie udalo sie zapisac zadania pomyslnie!');
+    }
+  }
+
+  // Back to tasks
+  backToTasks() {
+    this.router.navigate(['tasks']);
   }
 }

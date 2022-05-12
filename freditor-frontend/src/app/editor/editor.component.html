@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col s3">
+        <app-side-menu></app-side-menu>
+    </div>
+    <div class="col s9">
+        <h1>Edytor</h1>
+        <br>
+        <div class="canvas-field">
+            <button class="btn red" (click)="saveToStorage()">Zapisz</button> |
+            <button class="btn red" (click)="loadFromStorage()">Zaladuj</button> |
+            <button class="btn red" (click)="changeOptions()">Aktualizuj opcje plotna</button>
+
+            <div style="width: 65%; height: 800px; border: 1px solid black">
+                <canvas-whiteboard #canvasWhiteboard [options]="canvasOptions" [drawButtonClass]="'drawButtonClass'"
+                    [drawButtonText]="'Draw'" [clearButtonClass]="'clearButtonClass'" [clearButtonText]="'Clear'"
+                    [undoButtonText]="'Undo'" [undoButtonEnabled]="true" [redoButtonText]="'Redo'"
+                    [redoButtonEnabled]="true" [fillColor]="'Filled'" [strokeColor]="'Stroked'"
+                    [colorPickerEnabled]="true" [strokeColorPickerEnabled]="true" [saveDataButtonEnabled]="true"
+                    [saveDataButtonText]="'Save'" [lineWidth]="5" [strokeColor]="'rgb(0,0,0)'"
+                    [shouldDownloadDrawing]="true">
+                </canvas-whiteboard>
+            </div>
+        </div>
+    </div>
+</div>
