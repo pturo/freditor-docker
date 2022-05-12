@@ -4,11 +4,12 @@
     "\\freditor-backend",
     "\\freditor-backend\\Controllers",
     "\\freditor-backend\\Models",
+    "\\freditor-backend\\Models\\ArchiveModel",
     "\\freditor-backend\\Models\\DatabaseContext",
     "\\freditor-backend\\Models\\TaskModel",
     "\\freditor-backend\\Repository",
     "\\freditor-backend\\Repository\\NoteRepository"
   ],
-  "SelectedNode": "\\freditor-backend\\Startup.cs",
+  "SelectedNode": "\\freditor-backend\\Models\\ArchiveModel\\ArchiveDto.cs",
   "PreviewInSolutionExplorer": false
 }

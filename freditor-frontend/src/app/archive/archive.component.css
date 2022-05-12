@@ -1,6 +1,6 @@
 .col .s4 {
     border: 1px solid red;
-    height: auto;
+    height: 700px;
     width: 50%;
 }
 
@@ -24,4 +24,12 @@
     font-size: 24px;
     padding: 4px;
     margin: auto;
+}
+
+.card {
+    background-color: #993131;
+}
+
+h4 {
+    text-align: center;
 }

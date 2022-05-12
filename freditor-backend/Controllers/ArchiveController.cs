@@ -2,9 +2,8 @@
 using FreditorBackend.Repository.ArchiveRepository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace FreditorBackend.Controllers
@@ -29,22 +28,15 @@ namespace FreditorBackend.Controllers
         [HttpGet("getTaskArchives")]
         public async Task<IActionResult> GetTaskArchives() 
         {
-            var task = await _context.FredTask.ToListAsync();
-            var taskId = 0;
-            var taskTitle = "";
-            task.ForEach(x => { taskId = x.TaskId; taskTitle = x.TaskTitle; });
-            var getTaskArchivesWithParams = new List<SqlParameter>();
-            getTaskArchivesWithParams.Add(new SqlParameter("@TaskTitle", taskTitle));
-            getTaskArchivesWithParams.Add(new SqlParameter("@TaskId", taskId));
-            var getTaskArchives = _context.FredArchive.FromSqlRaw("SELECT (@TaskTitle) FROM dbo.FredArchive, dbo.FredTask WHERE ArchiveTaskId=@TaskId", getTaskArchivesWithParams.ToArray());
+            var getTaskArchives = await (from archive in _context.FredArchive join task in _context.FredTask on archive.ArchiveTaskId equals task.TaskId select task.TaskTitle).AsNoTracking().ToListAsync();
+            
             return StatusCode(201, new { getTaskArchives });
         }
 
         [HttpGet("getNoteArchives")]
         public async Task<IActionResult> GetNoteArchives()
         {
-            var sql = string.Format("select (NoteTitle) from dbo.FredArchive, dbo.FredNote where ArchiveNoteId = NoteId");
-            var getNoteArchives = await _context.FredArchive.FromSqlRaw(sql).ToListAsync();
+            var getNoteArchives = await (from archive in _context.FredArchive join note in _context.FredNote on archive.ArchiveNoteId equals note.NoteId select note.NoteTitle).AsNoTracking().ToListAsync();
             return StatusCode(201, new { getNoteArchives });
         }
 

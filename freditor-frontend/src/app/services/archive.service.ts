@@ -15,12 +15,16 @@ export class ArchiveService {
 
   constructor(private http: HttpClient) { }
 
-  getNotes(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl + '/notes').pipe(catchError(this.errorHandler));
+  getTaskArchives(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl + '/archives/getTaskArchives').pipe(catchError(this.errorHandler));
   }
 
-  deleteNote(noteId: number) {
-    return this.http.delete<any>(this.apiUrl + '/notes?noteId=' + noteId, this.httpOptions).pipe(catchError(this.errorHandler));
+  getNoteArchives(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl + '/archives/getNoteArchives').pipe(catchError(this.errorHandler));
+  }
+
+  deleteNote(archiveId: number) {
+    return this.http.delete<any>(this.apiUrl + '/archives?archiveId=' + archiveId, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
   private errorHandler(error: any) {
