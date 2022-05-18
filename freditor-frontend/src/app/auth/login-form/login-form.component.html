@@ -1,0 +1,20 @@
+<section class="login">
+    <div class="login-border">
+        <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" #f="ngForm" (submit)="onSubmit(f)">
+            <mat-form-field>
+                <mat-label>Nazwa uzytkownika</mat-label>
+                <input type="text" matInput ngModel name="username" required #usernameInput="ngModel">
+                <mat-error *ngIf="usernameInput.hasError('required')">Nazwa uzytkownika nie moze byc pusta.</mat-error>
+            </mat-form-field>
+            <mat-form-field
+                hintLabel="Haslo powinno miec dlugosc przynajmniej 8 znakow (i byc wielokrotnoscia czworki).">
+                <mat-label>Haslo</mat-label>
+                <input type="password" matInput ngModel name="password" required minlength="8" #passwordInput="ngModel">
+                <mat-hint align="end">{{ passwordInput.value?.length }} / 8</mat-hint>
+                <mat-error>Haslo musi miec dlugosc przynajmniej 8 znakow (i byc wielokrotnoscia czworki).</mat-error>
+            </mat-form-field>
+            <button type="submit" mat-raised-button color="accent" [disabled]="f.invalid">Zaloguj sie</button> |
+            <button type="submit" mat-raised-button color="accent" (click)="register()">Zarejestruj sie</button>
+        </form>
+    </div>
+</section>

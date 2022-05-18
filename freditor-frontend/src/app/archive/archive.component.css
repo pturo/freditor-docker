@@ -1,4 +1,8 @@
-.col .s4 {
+.calendar-border {
+    border: 1px solid black;
+}
+
+.col {
     border: 1px solid red;
     height: 700px;
     width: 50%;
@@ -28,6 +32,10 @@
 
 .card {
     background-color: #993131;
+}
+
+h1 {
+    color: black;
 }
 
 h4 {

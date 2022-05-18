@@ -1,15 +1,36 @@
-.container-fluid {
-  position: relative;
-  margin: 0;
+mat-sidenav-container,
+mat-sidenav-content,
+mat-sidenav {
   height: 100%;
 }
 
-.navbar {
-  overflow: hidden;
+mat-sidenav {
+  width: 250px;
+  background-color: black;
+  color: white;
 }
 
-.router-content {
-  height: calc(100% - 120px);
-  /* height of nav and footer is excluded from 100% */
-  overflow: auto;
+mat-toolbar {
+  background-color: black;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover,
+a:active {
+  color: lightgray;
+}
+
+hr {
+  color: white;
+}
+
+.navigation-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }

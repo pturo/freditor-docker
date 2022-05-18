@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserLogin } from '../model/user-login';
-import { LoginService } from '../services/login.service';
+import { UserLogin } from '../../model/user-login';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-login-form',
@@ -10,24 +10,18 @@ import { LoginService } from '../services/login.service';
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent implements OnInit {
-  loginForm: any;
-  errorMessage = '';
 
-  constructor(private router: Router, private loginService: LoginService, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private loginService: LoginService) { }
 
   ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
-      'UserName': new FormControl(['', Validators.required]).setValue(''),
-      'Password': new FormControl(['', Validators.required]).setValue('')
-    });
   }
 
   register() {
     this.router.navigate(['/register']);
   }
 
-  ngOnFormSubmit() {
-    const loginUser = this.loginForm.value;
+  onSubmit(form: NgForm) {
+    const loginUser = form.value;
     this.login(loginUser);
   }
 
@@ -41,7 +35,7 @@ export class LoginFormComponent implements OnInit {
           this.router.navigate(['/dashboard']);
         }
       }, (err) => {
-        this.errorMessage = err;
+        console.log(err);
       });
   }
 }

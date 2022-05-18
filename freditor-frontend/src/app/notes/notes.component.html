@@ -1,12 +1,9 @@
-<div class="row">
-    <div class="col s3">
-        <app-side-menu></app-side-menu>
-    </div>
-    <div class="col s9">
+<section class="notes">
+    <div class="notes-border">
         <h1>Notatki</h1>
         <br>
-        <button class="red btn" type="submit" (click)="getNotes()">Odswiez</button> |
-        <button class="red btn" type="submit" (click)="goToAddNote()" [routerLink]="'notes/add-note'">Dodaj
+        <button mat-raised-button color="accent" type="submit" (click)="getNotes()">Odswiez</button> |
+        <button mat-raised-button color="accent" (click)="goToAddNote()" [routerLink]="'notes/add-note'">Dodaj
             notatke</button>
         <br>
         <hr color="red">
@@ -27,11 +24,11 @@
                         <div class="card-content">{{ note.noteContent }}</div>
                     </div>
                     <div style="text-align: center; color: white" *ngIf="note.noteId">
-                        <button class="red btn" (click)="goToEditNote(note.noteId)">Edytuj</button> |
-                        <button class="red btn" (click)="deleteNote(note.noteId)">Usun</button>
+                        <button mat-raised-button color="accent" (click)="goToEditNote(note.noteId)">Edytuj</button> |
+                        <button mat-raised-button color="accent" (click)="deleteNote(note.noteId)">Usun</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>

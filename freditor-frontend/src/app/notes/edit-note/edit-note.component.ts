@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NoteService } from 'src/app/services/note.service';
@@ -15,20 +15,11 @@ export class EditNoteComponent implements OnInit, OnDestroy {
   noteId!: number;
   note: any = {};
 
-  constructor(private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder, private noteService: NoteService) {
+  constructor(private router: Router, private route: ActivatedRoute, private noteService: NoteService) {
   }
 
   ngOnInit(): void {
-    this.buildForm();
     this.initValuesIntoForm();
-  }
-
-  buildForm() {
-    this.editNoteForm = this.formBuilder.group({
-      NoteId: new FormControl(''),
-      NoteTitle: new FormControl(['', [Validators.required]]).setValue(''),
-      NoteContent: new FormControl(['', [Validators.required]]).setValue(''),
-    });
   }
 
   initValuesIntoForm() {
@@ -43,13 +34,9 @@ export class EditNoteComponent implements OnInit, OnDestroy {
     });
   }
 
-  get f() {
-    return this.editNoteForm.controls;
-  }
-
   // Note edit operation.
-  editNote() {
-    const editForm = this.editNoteForm.value;
+  editNote(form: NgForm) {
+    const editForm = form.value;
     this.noteSub = this.noteService.editNote(this.noteId, editForm).subscribe((res) => {
       this.router.navigate(['notes']);
     });

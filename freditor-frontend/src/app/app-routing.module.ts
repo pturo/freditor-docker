@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ArchiveComponent } from './archive/archive.component';
+import { SignupFormComponent } from './auth/signup-form/signup-form.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditorComponent } from './editor/editor.component';
 import { EntertainmentComponent } from './entertainment/entertainment.component';
 import { AuthGuard } from './guards/auth.guard';
@@ -10,16 +12,14 @@ import { AddNoteComponent } from './notes/add-note/add-note.component';
 import { EditNoteComponent } from './notes/edit-note/edit-note.component';
 import { NotesComponent } from './notes/notes.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PlaceholderComponent } from './placeholder/placeholder.component';
-import { RegisterFormComponent } from './register-form/register-form.component';
 import { AddTaskComponent } from './tasks/add-task/add-task.component';
 import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
 import { TasksComponent } from './tasks/tasks.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
-  { path: 'register', component: RegisterFormComponent, pathMatch: 'full' },
-  { path: 'dashboard', component: PlaceholderComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+  { path: 'register', component: SignupFormComponent, pathMatch: 'full' },
+  { path: 'dashboard', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'tasks', component: TasksComponent, pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'tasks/add-task', component: AddTaskComponent, pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'tasks/edit-task/:taskId', component: EditTaskComponent, pathMatch: 'full', canActivate: [AuthGuard] },
