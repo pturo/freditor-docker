@@ -43,7 +43,7 @@ namespace FreditorBackend.Repository.AuthRepository
             return user; // auth successful
         }
 
-        public async Task<UserDto> Register(UserDto user, string password)
+        public async Task<UserDto> Signup(UserDto user, string password)
         {
             byte[] passwordHash, salt;
             CreatePasswordHash(password, out passwordHash, out salt);

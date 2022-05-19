@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { fromEventPattern, Subscription } from 'rxjs';
 import { UserRegister } from 'src/app/model/user-register';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -9,10 +10,8 @@ import { LoginService } from 'src/app/services/login.service';
   templateUrl: './signup-form.component.html',
   styleUrls: ['./signup-form.component.css']
 })
-export class SignupFormComponent implements OnInit {
-  data = false;
-  userForm: any;
-  message?: string;
+export class SignupFormComponent implements OnInit, OnDestroy {
+  userSub = new Subscription();
 
   constructor(private route: Router, private loginService: LoginService) { }
 
@@ -25,14 +24,23 @@ export class SignupFormComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     const user = form.value;
-    this.createUser(user);
+    let password = form.control.get('password')?.value;
+    let repeatpass = form.control.get('repeatpassword')?.value;
+    if (password.length === repeatpass.length) {
+      this.createUser(user);
+      form.reset();
+    } else {
+      console.log('Passwords are not the same.');
+    }
   }
 
   createUser(userReg: UserRegister) {
-    this.loginService.register(userReg).subscribe(() => {
-      this.data = true;
-      this.message = 'User registered successfully.';
-      this.userForm.reset();
+    this.userSub = this.loginService.signup(userReg).subscribe(() => {
+      console.log('User created successfully.');
     });
+  }
+
+  ngOnDestroy(): void {
+    this.userSub.unsubscribe();
   }
 }

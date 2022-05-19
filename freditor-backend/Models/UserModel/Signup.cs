@@ -5,7 +5,7 @@ namespace FreditorBackend.Models.UserModel
     /// <summary>
     /// Class <c>Register</c> determines a user's register new credentials during registration.
     /// </summary>
-    public class Register
+    public class Signup
     {
         /// <summary>
         /// Property <c>UserName</c> is a user's name.

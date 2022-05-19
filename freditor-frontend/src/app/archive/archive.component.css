@@ -1,9 +1,13 @@
-.calendar-border {
-    border: 1px solid black;
+h1 {
+    text-align: center;
+}
+
+.archive-border {
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .col {
-    border: 1px solid red;
+    border: 1px solid #FC8EAC;
     height: 700px;
     width: 50%;
 }
@@ -11,7 +15,7 @@
 .tasks-archive {
     width: auto;
     height: 30px;
-    background-color: #993131;
+    background-color: #8a2641;
     color: white;
     text-align: center;
     font-size: 24px;
@@ -22,7 +26,7 @@
 .notes-archive {
     width: auto;
     height: 30px;
-    background-color: #993131;
+    background-color: #8a2641;
     color: white;
     text-align: center;
     font-size: 24px;
@@ -31,7 +35,7 @@
 }
 
 .card {
-    background-color: #993131;
+    background-color: #8a2641;
 }
 
 h1 {

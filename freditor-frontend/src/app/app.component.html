@@ -23,7 +23,7 @@
       <div fxFlex fxLayout fxLayoutGap="10px" fxLayoutAlign="flex-end">
         <div [style.visibility]="loggedIn ? 'visible' : 'hidden'" class="logout-btn" style="text-align: center;">
           <ul fxLayout class="navigation-items">
-            <li><a (click)="logout()">Wyloguj</a></li>
+            <li><button mat-raised-button color="accent" (click)="logout()" [disabled]="!loggedIn">Wyloguj</button></li>
           </ul>
         </div>
       </div>

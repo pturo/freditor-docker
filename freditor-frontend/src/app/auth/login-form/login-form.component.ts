@@ -16,8 +16,8 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  register() {
-    this.router.navigate(['/register']);
+  signup() {
+    this.router.navigate(['/signup']);
   }
 
   onSubmit(form: NgForm) {

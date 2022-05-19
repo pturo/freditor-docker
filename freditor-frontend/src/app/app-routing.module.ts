@@ -18,7 +18,7 @@ import { TasksComponent } from './tasks/tasks.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
-  { path: 'register', component: SignupFormComponent, pathMatch: 'full' },
+  { path: 'signup', component: SignupFormComponent, pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'tasks', component: TasksComponent, pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'tasks/add-task', component: AddTaskComponent, pathMatch: 'full', canActivate: [AuthGuard] },

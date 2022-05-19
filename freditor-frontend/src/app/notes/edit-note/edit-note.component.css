@@ -2,13 +2,30 @@ mat-form-field {
     width: 500px;
 }
 
+mat-label {
+    color: white;
+}
+
 ::ng-deep .mat-form-field-underline {
     display: none;
 }
 
-.add-note-border {
-    border: 1px solid black;
+.mat-raised-button[disabled] {
+    background-color: gray;
+}
+
+.edit-note-border {
+    border: 1px solid #FC8EAC;
+    background-color: rgba(0, 0, 0, 0.8);
     width: 540px;
     padding: 10px;
     text-align: center;
+}
+
+.notetitle .mat-input-element {
+    color: white;
+}
+
+.notecontent .mat-input-element {
+    color: white;
 }

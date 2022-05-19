@@ -14,7 +14,7 @@ namespace FreditorBackend.Models.HelperModel
             CreateMap<string, byte[]>().ConvertUsing(s => System.Convert.FromBase64String(s));
             CreateMap<byte[], string>().ConvertUsing(bytes => System.Convert.ToBase64String(bytes));
             CreateMap<Login, UserDto>();
-            CreateMap<Register, UserDto>();
+            CreateMap<Signup, UserDto>();
         }
     }
 }

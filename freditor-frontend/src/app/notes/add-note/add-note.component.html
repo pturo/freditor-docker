@@ -1,15 +1,16 @@
 <section class="add-note">
     <div class="add-note-border">
         <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" #f="ngForm" (submit)="addNote(f)">
-            <mat-form-field>
+            <mat-label style="color: #FC8EAC;">STWORZ NOTATKE</mat-label>
+            <mat-form-field class="notetitle">
                 <mat-label>Tytul notatki</mat-label>
                 <input type="text" matInput ngModel name="notetitle" required #notetitleInput="ngModel">
                 <mat-error *ngIf="notetitleInput.hasError('required')">Tytul notatki nie moze byc pusty.</mat-error>
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field class="notecontent">
                 <mat-label>Tresc notatki</mat-label>
                 <textarea type="text" matInput ngModel name="notecontent" required [rows]="5"
-                    #notecontentInput="ngModel"></textarea>
+                    #notecontentInput="ngModel" style="border: 1px solid white;"></textarea>
                 <mat-error>Tresc notatki nie moze byc pusta.</mat-error>
             </mat-form-field>
             <button type="submit" mat-raised-button color="accent" [disabled]="f.invalid">Utworz notatke</button> |

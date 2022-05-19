@@ -31,6 +31,10 @@ export class AddTaskComponent implements OnInit {
     }
   }
 
+  deleteItem(item: any) {
+    this.listOfItems.splice(item, 1);
+  }
+
   // Add task
   addTask(form: NgForm) {
     const addTask = form.value;

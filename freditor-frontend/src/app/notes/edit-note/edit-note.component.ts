@@ -11,8 +11,7 @@ import { NoteService } from 'src/app/services/note.service';
 })
 export class EditNoteComponent implements OnInit, OnDestroy {
   noteSub = new Subscription();
-  editNoteForm!: any;
-  noteId!: number;
+  noteId = 0;
   note: any = {};
 
   constructor(private router: Router, private route: ActivatedRoute, private noteService: NoteService) {
@@ -28,16 +27,16 @@ export class EditNoteComponent implements OnInit, OnDestroy {
     this.noteSub = this.noteService.getNote(this.noteId).subscribe((res: any) => {
       setTimeout(() => {
         this.note = res.getNote;
+        this.noteId = res.getNote.noteId;
       }, 0);
-      console.log('res ', res.getNote);
-      this.editNoteForm.patchValue(this.note);
+      console.log('res ', res.getNote.noteId);
     });
   }
 
   // Note edit operation.
   editNote(form: NgForm) {
     const editForm = form.value;
-    this.noteSub = this.noteService.editNote(this.noteId, editForm).subscribe((res) => {
+    this.noteSub = this.noteService.editNote(this.note.noteId, editForm).subscribe((res) => {
       this.router.navigate(['notes']);
     });
   }

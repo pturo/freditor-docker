@@ -23,11 +23,11 @@ export class LoginService {
       );
   }
 
-  register(data: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl + 'register', data)
+  signup(data: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + 'signup', data)
       .pipe(
         tap(_ => this.router.navigate([''])),
-        catchError(this.handleError('register', []))
+        catchError(this.handleError('signup', []))
       );
   }
 

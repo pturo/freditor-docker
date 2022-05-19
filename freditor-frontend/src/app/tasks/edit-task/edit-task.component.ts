@@ -47,6 +47,10 @@ export class EditTaskComponent implements OnInit, OnDestroy {
     }
   }
 
+  deleteItem(item: any) {
+    this.listOfItems.splice(item, 1);
+  }
+
   // Task edit operation
   editTask(form: NgForm) {
     const editTask = form.value;

@@ -15,11 +15,7 @@ export class CalendarComponent {
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
     },
     initialView: 'dayGridMonth',
-    dateClick: this.handleDateClick.bind(this),
-    events: [
-      { title: 'event 1', date: '2022-04-28' },
-      { title: 'event 2', date: '2022-04-29' }
-    ]
+    dateClick: this.handleDateClick.bind(this)
   };
 
   handleDateClick(arg: any) {

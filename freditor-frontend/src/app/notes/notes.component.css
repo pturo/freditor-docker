@@ -1,10 +1,13 @@
 .notes-border {
-    border: 1px solid black;
-    width: 900px;
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 10px;
     text-align: center;
 }
 
+.card {
+    background-color: #8a2641;
+}
+
 h1 {
-    color: black;
+    color: #FC8EAC;
 }

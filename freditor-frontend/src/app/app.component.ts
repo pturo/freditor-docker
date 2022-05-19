@@ -15,6 +15,12 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
+    // if (this.loggedIn) {
+    //   this.router.navigate(['/dashboard']);
+    // } else {
+    //   this.router.navigate(['']);
+    //   this.logout();
+    // }
   }
 
   logout() {

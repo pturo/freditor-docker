@@ -1,15 +1,16 @@
 <section class="edit-task">
     <div class="edit-task-border">
         <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" #f="ngForm" (submit)="editTask(f)">
-            <mat-form-field>
+            <mat-label style="color: #FC8EAC;">EDYTUJ ZADANIE</mat-label>
+            <mat-form-field class="tasktitle">
                 <mat-label>Tytul zadania</mat-label>
                 <input type="text" matInput ngModel name="notetitle" required #tasktitleInput="ngModel"
                     [value]="task.taskTitle">
                 <mat-error *ngIf="tasktitleInput.hasError('required')">Tytul zadania nie moze byc pusty.</mat-error>
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field class="taskelements">
                 <mat-label>Elementy zadania</mat-label>
-                <input id="TaskElements" type="text" ngModel (keyup.enter)="addToList($event)" required
+                <input type="text" matInput ngModel name="taskelements" (keyup.enter)="addToList($event)" required
                     #taskelementsInput="ngModel">
                 <mat-error *ngIf="taskelementsInput.hasError('required')">Zadanie musi zawierac przynajmiej 1 jego
                     skladowa.</mat-error>
@@ -17,13 +18,14 @@
             <div class="row">
                 <div class="list col s12">
                     <ul class="collection" *ngFor="let item of listOfItems">
-                        <li class="collection-item" style="background-color: #C62828; color: white;">{{item}}</li>
+                        <li class="collection-item" style="background-color: #8a2641;; color: white;">{{item}}</li>
                     </ul>
                 </div>
             </div>
-            <mat-form-field>
+            <mat-form-field class="deadline">
                 <mat-label>Termin wykonania zadania</mat-label>
-                <input matInput [matDatepicker]="picker" ngModel required #deadline="ngModel" [value]="task.deadLine">
+                <input matInput [matDatepicker]="picker" ngModel name="deadline" required #deadline="ngModel"
+                    [value]="task.deadLine">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
                 <mat-error *ngIf="deadline.hasError('required')">Termin wykonania zadania jest wymagany.</mat-error>
@@ -33,3 +35,7 @@
         </form>
     </div>
 </section>
+
+<!-- <button mat-icon-button (click)="deleteItem(item)">
+    <mat-icon>delete</mat-icon>
+</button> -->

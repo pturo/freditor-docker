@@ -2,13 +2,30 @@ mat-form-field {
     width: 500px;
 }
 
+mat-label {
+    color: white;
+}
+
 ::ng-deep .mat-form-field-underline {
     display: none;
 }
 
+.mat-raised-button[disabled] {
+    background-color: gray;
+}
+
 .login-border {
-    border: 1px solid black;
+    border: 1px solid #FC8EAC;
     width: 540px;
     padding: 10px;
     text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.username .mat-input-element {
+    color: white;
+}
+
+.password .mat-input-element {
+    color: white;
 }
