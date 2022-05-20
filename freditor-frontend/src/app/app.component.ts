@@ -9,6 +9,7 @@ import { LoginService } from './services/login.service';
 })
 export class AppComponent {
   loggedIn: any;
+  opened = true;
 
   constructor(private router: Router, private loginService: LoginService) {
     this.loggedIn = loginService.isLoggedIn;

@@ -3,7 +3,7 @@
 namespace FreditorBackend.Models.UserModel
 {
     /// <summary>
-    /// Class <c>Register</c> determines a user's register new credentials during registration.
+    /// Class <c>Signup</c> determines a user's signup new credentials during registration.
     /// </summary>
     public class Signup
     {

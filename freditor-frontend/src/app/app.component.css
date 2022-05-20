@@ -6,11 +6,18 @@ mat-sidenav {
   background-image: url('../assets/img/galaxy-bg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  overflow: auto;
+}
+
+mat-sidenav-container {
+  padding-top: 60px;
 }
 
 mat-sidenav {
   width: 250px;
   color: white;
+  position: fixed;
+  padding-top: 60px;
 }
 
 ::ng-deep .mat-drawer-inner-container {
@@ -20,6 +27,9 @@ mat-sidenav {
 mat-toolbar {
   background-color: black;
   color: white;
+  position: fixed;
+  z-index: 10;
+  height: 60px;
 }
 
 a {
@@ -40,4 +50,5 @@ hr {
   list-style: none;
   padding: 0;
   margin: 0;
+  height: 100%;
 }
