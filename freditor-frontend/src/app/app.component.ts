@@ -14,7 +14,6 @@ export class AppComponent implements OnDestroy {
   authSub!: Subscription;
 
   constructor(private router: Router, private loginService: LoginService) {
-
   }
 
   ngOnInit(): void {
