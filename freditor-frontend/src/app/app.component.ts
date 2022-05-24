@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { LoginService } from './services/login.service';
 
 @Component({
@@ -7,26 +8,26 @@ import { LoginService } from './services/login.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  loggedIn: any;
+export class AppComponent implements OnDestroy {
+  isAuth = false;
   opened = true;
+  authSub!: Subscription;
 
   constructor(private router: Router, private loginService: LoginService) {
-    this.loggedIn = loginService.isLoggedIn;
+
   }
 
   ngOnInit(): void {
-    // if (this.loggedIn) {
-    //   this.router.navigate(['/dashboard']);
-    // } else {
-    //   this.router.navigate(['']);
-    //   this.logout();
-    // }
+    this.authSub = this.loginService.authChange.subscribe(authResult => {
+      this.isAuth = authResult;
+    });
   }
 
   logout() {
-    sessionStorage.removeItem('token');
-    sessionStorage.clear();
-    this.router.navigate(['']);
+    this.loginService.logout();
+  }
+
+  ngOnDestroy(): void {
+    this.authSub.unsubscribe();
   }
 }

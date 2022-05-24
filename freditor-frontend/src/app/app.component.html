@@ -5,9 +5,9 @@
   </div>
   <div><a routerLink="/">LOGO</a></div>
   <div fxFlex fxLayout fxLayoutGap="10px" fxLayoutAlign="flex-end">
-    <div [style.visibility]="loggedIn ? 'visible' : 'hidden'" class="logout-btn" style="text-align: center;">
+    <div style="text-align: center;">
       <ul fxLayout class="navigation-items">
-        <li><button mat-raised-button color="accent" (click)="logout()" [disabled]="!loggedIn">Wyloguj</button></li>
+        <li><button *ngIf="isAuth" mat-raised-button color="accent" (click)="logout()">Wyloguj</button></li>
       </ul>
     </div>
   </div>
@@ -16,14 +16,14 @@
   <mat-sidenav #sidenav role="navigation" mode="side" [(opened)]="opened">
     <div style="text-align: center;">FREDITOR</div>
     <hr>
-    <div [style.visibility]="loggedIn ? 'visible' : 'hidden'" class="logout-btn" style="text-align: center;">
-      <a mat-list-item [routerLink]="'/'">Strona glowna</a><br>
-      <a mat-list-item [routerLink]="'/tasks'">Zadania</a><br>
-      <a mat-list-item [routerLink]="'/notes'">Notatki</a><br>
-      <a mat-list-item [routerLink]="'/editor'">Edytor</a><br>
-      <a mat-list-item [routerLink]="'/calendar'">Kalendarz</a><br>
-      <a mat-list-item [routerLink]="'/archive'">Archiwum</a><br>
-      <a mat-list-item [routerLink]="'/entertainment'">Rozrywka</a>
+    <div style="text-align: center;">
+      <a *ngIf="!isAuth" mat-list-item [routerLink]="'/'">Strona glowna</a><br>
+      <a *ngIf="isAuth" mat-list-item [routerLink]="'/tasks'">Zadania</a><br>
+      <a *ngIf="isAuth" mat-list-item [routerLink]="'/notes'">Notatki</a><br>
+      <a *ngIf="isAuth" mat-list-item [routerLink]="'/editor'">Edytor</a><br>
+      <a *ngIf="isAuth" mat-list-item [routerLink]="'/calendar'">Kalendarz</a><br>
+      <a *ngIf="isAuth" mat-list-item [routerLink]="'/archive'">Archiwum</a><br>
+      <a *ngIf="isAuth" mat-list-item [routerLink]="'/entertainment'">Rozrywka</a>
     </div>
     <hr>
   </mat-sidenav>

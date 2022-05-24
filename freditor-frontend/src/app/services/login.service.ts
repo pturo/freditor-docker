@@ -9,13 +9,14 @@ import { Router } from '@angular/router';
 export class LoginService {
   // private apiUrl = 'https://localhost:5000/api/auth/';
   private apiUrl = 'https://localhost:44335/api/auth/';
-  loggedIn = new Subject<boolean>();
+  authChange = new Subject<boolean>();
 
   constructor(private http: HttpClient, private router: Router) {
-    this.loggedIn.next(!!sessionStorage.getItem('token'));
+
   }
 
   login(data: any): Observable<any> {
+    this.authChange.next(true);
     return this.http.post<any>(this.apiUrl + 'login', data)
       .pipe(
         tap(_ => this.router.navigate(['dashboard'])),
@@ -24,11 +25,23 @@ export class LoginService {
   }
 
   signup(data: any): Observable<any> {
+    this.authChange.next(true);
     return this.http.post<any>(this.apiUrl + 'signup', data)
       .pipe(
         tap(_ => this.router.navigate([''])),
         catchError(this.handleError('signup', []))
       );
+  }
+
+  isAuth() {
+    return sessionStorage.getItem('token') != null;
+  }
+
+  logout() {
+    this.authChange.next(false);
+    sessionStorage.removeItem('token');
+    sessionStorage.clear();
+    this.router.navigate(['']);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
@@ -40,9 +53,5 @@ export class LoginService {
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
-  }
-
-  isLoggedIn() {
-    return this.loggedIn.asObservable();
   }
 }
