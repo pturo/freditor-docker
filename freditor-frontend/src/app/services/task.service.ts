@@ -29,7 +29,7 @@ export class TaskService {
   }
 
   editTask(taskId: number, task: any): Observable<any> {
-    return this.http.put<any>(this.apiUrl + '/tasks/edit-task/' + taskId, JSON.stringify(task)).pipe(catchError(this.errorHandler));
+    return this.http.put<any>(this.apiUrl + '/tasks/edit-task/' + taskId, JSON.stringify(task), this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
   deleteTask(taskId: number) {
