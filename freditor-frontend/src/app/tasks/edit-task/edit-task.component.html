@@ -19,6 +19,7 @@
                 <div class="list col s12">
                     <ul class="collection" *ngFor="let item of listOfItems">
                         <li class="collection-item" style="background-color: #8a2641;; color: white;">{{item}}</li>
+                        <button mat-raised-button color="accent" (click)="deleteItem(item)">Usuń</button>
                     </ul>
                 </div>
             </div>

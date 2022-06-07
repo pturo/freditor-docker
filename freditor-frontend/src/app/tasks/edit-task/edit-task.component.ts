@@ -29,10 +29,10 @@ export class EditTaskComponent implements OnInit, OnDestroy {
 
     this.taskSub = this.taskService.getTask(this.taskId).subscribe((res: any) => {
       setTimeout(() => {
-        this.task = res.body.getTask;
-        this.listOfItems = res.body.getTask.taskElements;
+        this.task = res.getTask;
+        this.listOfItems = res.getTask.taskElements;
       }, 0);
-      console.log('res ', res.getNote);
+      console.log('res ', res.getTask);
     });
   }
 

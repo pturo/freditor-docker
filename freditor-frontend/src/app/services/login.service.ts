@@ -34,13 +34,13 @@ export class LoginService {
   }
 
   isAuth() {
-    return sessionStorage.getItem('token') != null;
+    return window.sessionStorage.getItem('token') != null;
   }
 
   logout() {
     this.authChange.next(false);
-    sessionStorage.removeItem('token');
-    sessionStorage.clear();
+    window.sessionStorage.removeItem('token');
+    window.sessionStorage.clear();
     this.router.navigate(['']);
   }
 
