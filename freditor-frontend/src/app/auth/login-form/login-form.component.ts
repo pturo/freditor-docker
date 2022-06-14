@@ -31,7 +31,6 @@ export class LoginFormComponent implements OnInit {
         console.log(res);
 
         if (res.token) {
-          sessionStorage.setItem('token', res.token);
           this.router.navigate(['/dashboard']);
         }
       }, (err) => {

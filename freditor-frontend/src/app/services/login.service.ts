@@ -9,10 +9,20 @@ import { Router } from '@angular/router';
 export class LoginService {
   // private apiUrl = 'https://localhost:5000/api/auth/';
   private apiUrl = 'https://localhost:44335/api/auth/';
+  userData: any;
   authChange = new Subject<boolean>();
 
   constructor(private http: HttpClient, private router: Router) {
-
+    this.authChange.subscribe((user: any) => {
+      if (user) {
+        this.userData = user;
+        localStorage.setItem('user', JSON.stringify(this.userData));
+        JSON.parse(localStorage.getItem('user')!);
+      } else {
+        localStorage.setItem('user', JSON.stringify(this.userData));
+        JSON.parse(localStorage.getItem('user')!);
+      }
+    });
   }
 
   login(data: any): Observable<any> {
@@ -33,14 +43,15 @@ export class LoginService {
       );
   }
 
-  isAuth() {
-    return window.sessionStorage.getItem('token') != null;
+  get isAuth(): boolean {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    return user != null ? true : false;
   }
 
   logout() {
     this.authChange.next(false);
-    window.sessionStorage.removeItem('token');
-    window.sessionStorage.clear();
+    localStorage.removeItem('user');
+    localStorage.clear();
     this.router.navigate(['']);
   }
 
