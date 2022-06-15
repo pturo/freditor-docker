@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserLogin } from '../../model/user-login';
-import { LoginService } from '../../services/login.service';
+import { AuthService } from '../auth-service/auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -11,7 +11,7 @@ import { LoginService } from '../../services/login.service';
 })
 export class LoginFormComponent implements OnInit {
 
-  constructor(private router: Router, private loginService: LoginService) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -26,15 +26,6 @@ export class LoginFormComponent implements OnInit {
   }
 
   login(userlogin: UserLogin) {
-    this.loginService.login(userlogin)
-      .subscribe(res => {
-        console.log(res);
-
-        if (res.token) {
-          this.router.navigate(['/dashboard']);
-        }
-      }, (err) => {
-        console.log(err);
-      });
+    this.authService.login(userlogin);
   }
 }

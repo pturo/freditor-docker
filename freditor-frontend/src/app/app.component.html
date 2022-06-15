@@ -7,7 +7,7 @@
   <div fxFlex fxLayout fxLayoutGap="10px" fxLayoutAlign="flex-end">
     <div style="text-align: center;">
       <ul fxLayout class="navigation-items">
-        <li><button *ngIf="isAuth" mat-raised-button color="accent" (click)="logout()">Wyloguj</button></li>
+        <li><button *ngIf="authService.isAuth" mat-raised-button color="accent" (click)="logout()">Wyloguj</button></li>
       </ul>
     </div>
   </div>
@@ -17,13 +17,13 @@
     <div style="text-align: center;">FREDITOR</div>
     <hr>
     <div style="text-align: center;">
-      <a *ngIf="!isAuth" mat-list-item [routerLink]="'/'">Strona glowna</a><br>
-      <a *ngIf="isAuth" mat-list-item [routerLink]="'/tasks'">Zadania</a><br>
-      <a *ngIf="isAuth" mat-list-item [routerLink]="'/notes'">Notatki</a><br>
-      <a *ngIf="isAuth" mat-list-item [routerLink]="'/editor'">Edytor</a><br>
-      <a *ngIf="isAuth" mat-list-item [routerLink]="'/calendar'">Kalendarz</a><br>
-      <a *ngIf="isAuth" mat-list-item [routerLink]="'/archive'">Archiwum</a><br>
-      <a *ngIf="isAuth" mat-list-item [routerLink]="'/entertainment'">Rozrywka</a>
+      <a *ngIf="!authService.isAuth" mat-list-item [routerLink]="'/'">Strona glowna</a><br>
+      <a *ngIf="authService.isAuth" mat-list-item [routerLink]="'/tasks'">Zadania</a><br>
+      <a *ngIf="authService.isAuth" mat-list-item [routerLink]="'/notes'">Notatki</a><br>
+      <a *ngIf="authService.isAuth" mat-list-item [routerLink]="'/editor'">Edytor</a><br>
+      <a *ngIf="authService.isAuth" mat-list-item [routerLink]="'/calendar'">Kalendarz</a><br>
+      <a *ngIf="authService.isAuth" mat-list-item [routerLink]="'/archive'">Archiwum</a><br>
+      <a *ngIf="authService.isAuth" mat-list-item [routerLink]="'/entertainment'">Rozrywka</a>
     </div>
     <hr>
   </mat-sidenav>

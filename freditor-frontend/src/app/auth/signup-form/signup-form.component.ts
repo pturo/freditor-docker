@@ -1,19 +1,19 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { fromEventPattern, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { UserRegister } from 'src/app/model/user-register';
-import { LoginService } from 'src/app/services/login.service';
+import { AuthService } from '../auth-service/auth.service';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup-form.component.html',
   styleUrls: ['./signup-form.component.css']
 })
-export class SignupFormComponent implements OnInit, OnDestroy {
+export class SignupFormComponent implements OnInit {
   userSub = new Subscription();
 
-  constructor(private route: Router, private loginService: LoginService) { }
+  constructor(private route: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -35,12 +35,6 @@ export class SignupFormComponent implements OnInit, OnDestroy {
   }
 
   createUser(userReg: UserRegister) {
-    this.userSub = this.loginService.signup(userReg).subscribe(() => {
-      console.log('User created successfully.');
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.userSub.unsubscribe();
+    this.authService.signup(userReg);
   }
 }

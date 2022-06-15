@@ -30,6 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { CanvasWhiteboardModule } from 'ng2-canvas-whiteboard';
 import { SignupFormComponent } from './auth/signup-form/signup-form.component';
+import { AuthService } from './auth/auth-service/auth.service';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -73,7 +74,8 @@ FullCalendarModule.registerPlugins([
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
