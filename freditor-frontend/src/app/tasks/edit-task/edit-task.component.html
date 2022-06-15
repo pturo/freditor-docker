@@ -4,13 +4,13 @@
             <mat-label style="color: #FC8EAC;">EDYTUJ ZADANIE</mat-label>
             <mat-form-field class="tasktitle">
                 <mat-label>Tytul zadania</mat-label>
-                <input type="text" matInput [ngModel]="task.tasktitle" name="notetitle" required
+                <input type="text" matInput [(ngModel)]="task.tasktitle" name="notetitle" required
                     #tasktitleInput="ngModel">
                 <mat-error *ngIf="tasktitleInput.hasError('required')">Tytul zadania nie moze byc pusty.</mat-error>
             </mat-form-field>
             <mat-form-field class="taskelements">
                 <mat-label>Elementy zadania</mat-label>
-                <input type="text" matInput [ngModel]="task.taskelements" name="taskelements"
+                <input type="text" matInput [(ngModel)]="task.taskelements" name="taskelements"
                     (keyup.enter)="addToList($event)" required #taskelementsInput="ngModel">
                 <mat-error *ngIf="taskelementsInput.hasError('required')">Zadanie musi zawierac przynajmiej 1 jego
                     skladowa.</mat-error>
@@ -25,7 +25,7 @@
             </div>
             <mat-form-field class="deadline">
                 <mat-label>Termin wykonania zadania</mat-label>
-                <input matInput [matDatepicker]="picker" [ngModel]="task.deadline" name="deadline" required
+                <input matInput [matDatepicker]="picker" [(ngModel)]="task.deadline" name="deadline" required
                     #deadline="ngModel">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
