@@ -6,7 +6,7 @@ There is no features at the moment.
 
 ## About project
 
-This project aims to practice Angular and improve my programming skills. This fullstack project contains two projects: front-end and back-end
+This project aims to practice Angular and improve my programming skills. This fullstack project contains two projects: frontend and backend and of course database folder where there are scripts and Docker build configurations.
 
 ## Technologies used in the project
 
