@@ -19,10 +19,10 @@ export class AuthService {
       if (user) {
         this.userData = user;
         localStorage.setItem('token', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user')!);
+        JSON.parse(localStorage.getItem('token')!);
       } else {
         localStorage.setItem('token', 'null');
-        JSON.parse(localStorage.getItem('user')!);
+        JSON.parse(localStorage.getItem('token')!);
       }
     });
   }

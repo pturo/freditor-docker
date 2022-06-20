@@ -7,7 +7,7 @@
             <button mat-raised button color="accent" (click)="loadFromStorage()">Zaladuj</button> |
             <button mat-raised button color="accent" (click)="changeOptions()">Aktualizuj opcje plotna</button>
 
-            <div style="width: 65%; height: 800px; border: 1px solid black">
+            <div class="canvas-whiteboard">
                 <canvas-whiteboard #canvasWhiteboard [options]="canvasOptions" [drawButtonClass]="'drawButtonClass'"
                     [drawButtonText]="'Rysuj'" [clearButtonClass]="'clearButtonClass'" [clearButtonText]="'Wyczysc'"
                     [undoButtonText]="'Cofnij'" [undoButtonEnabled]="true" [redoButtonText]="'Dalej'"
