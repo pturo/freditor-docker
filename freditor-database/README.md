@@ -1,4 +1,4 @@
-# Freditor Docker
+# Freditor Database (Docker)
 
 ## What's new?
 
@@ -6,15 +6,11 @@ There is no features at the moment.
 
 ## About project
 
-This project aims to practice Angular and improve my programming skills. This fullstack project contains two projects: frontend and backend and of course database folder where there are scripts and Docker build configurations.
+This project aims to practice Angular and improve my programming skills. This project contains scripts and Docker files for Freditor Database.
 
 ## Technologies used in the project
 
-- Angular CLI v13
-- Angular Material
-- ASP.NET Core (with Entity Framework)
-- MSSQL Server Management Studio
-- Docker
+- MSQL image installed on local Docker container.
 
 ## Goals
 

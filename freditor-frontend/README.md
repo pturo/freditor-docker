@@ -1,27 +1,24 @@
-# FreditorFrontend
+# Freditor Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.4.
+## What's new?
 
-## Development server
+There is no features at the moment.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## About project
 
-## Code scaffolding
+This project aims to practice Angular and improve my programming skills. This is frontend side of Freditor Docker.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Technologies used in the project
 
-## Build
+- Angular CLI v13
+- Angular Material
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Goals
 
-## Running unit tests
+Like I mentioned before, this project was created to have fun and practice Angular ovreall. Maybe my app will be inspiration to some people.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## License
 
-## Running end-to-end tests
+My project is under Apache 2.0 license. You can use some parts from my code but remember to credit me as an appreciation to my work! Thanks! Awoo!
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+© 2022 Paweł "Wilczeq/Vlk" Turoń
