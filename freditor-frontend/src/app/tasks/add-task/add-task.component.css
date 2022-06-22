@@ -1,8 +1,35 @@
-.alert {
-    color: red;
+mat-form-field {
+    width: 500px;
 }
 
-label {
-    margin-left: 10px;
-    font-size: 18px;
+mat-label {
+    color: white;
+}
+
+::ng-deep .mat-form-field-underline {
+    display: none;
+}
+
+.mat-raised-button[disabled] {
+    background-color: gray;
+}
+
+.add-task-border {
+    border: 1px solid #FC8EAC;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 540px;
+    padding: 10px;
+    text-align: center;
+}
+
+.tasktitle .mat-input-element {
+    color: white;
+}
+
+.taskelements .mat-input-element {
+    color: white;
+}
+
+.deadline .mat-input-element {
+    color: white;
 }

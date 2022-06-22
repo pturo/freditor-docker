@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Note } from 'src/app/model/note';
 import { NoteService } from 'src/app/services/note.service';
@@ -10,29 +10,20 @@ import { NoteService } from 'src/app/services/note.service';
   styleUrls: ['./add-note.component.css']
 })
 export class AddNoteComponent implements OnInit {
-  addNoteForm?: any;
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private noteService: NoteService) { }
+  constructor(private router: Router, private noteService: NoteService) { }
 
   ngOnInit(): void {
-    this.buildForm();
   }
 
-  buildForm() {
-    this.addNoteForm = this.formBuilder.group({
-      NoteTitle: new FormControl(['', [Validators.required]]).setValue(''),
-      NoteContent: new FormControl('', [Validators.required]).setValue(''),
-    });
-  }
-
-  addNote() {
-    const addNote = this.addNoteForm.value;
+  addNote(form: NgForm) {
+    const addNote = form.value;
     let newNote: Note = {
-      NoteTitle: addNote.NoteTitle,
-      NoteContent: addNote.NoteContent
+      NoteTitle: addNote.notetitle,
+      NoteContent: addNote.notecontent
     }
 
-    if (this.addNoteForm.valid) {
+    if (form.valid) {
       this.noteService.addNote(newNote).subscribe((res) => {
         console.log('Pomyslnie dodano notatke do bazy!');
       }, (err: any) => {
@@ -47,5 +38,4 @@ export class AddNoteComponent implements OnInit {
   backToNotes() {
     this.router.navigate(['notes']);
   }
-
 }

@@ -1,7 +1,13 @@
-.card {
-    background-color: #993131;
+.notes-border {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    text-align: center;
 }
 
-.row {
-    overflow: hidden;
+.card {
+    background-color: #8a2641;
+}
+
+h1 {
+    color: #FC8EAC;
 }

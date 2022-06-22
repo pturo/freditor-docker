@@ -45,6 +45,7 @@ export class TasksComponent implements OnInit, OnDestroy {
       setTimeout(() => {
         this.tasks = res.getTasks;
       }, 0);
+      console.log(res.getTasks);
     });
   }
 

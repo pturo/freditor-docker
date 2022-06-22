@@ -1,16 +1,14 @@
-<div class="row">
-    <div class="col s3">
-        <app-side-menu></app-side-menu>
-    </div>
-    <div class="col s9">
-        <h1>Archiwum</h1>
+<section class="archive">
+    <div class="archive-border">
+        <h1 style="color: #FC8EAC;">Archiwum</h1>
         <br>
-        <h3 style="text-align: center;">Tutaj znajduja sie zarchiwizowane zadania i notatki.</h3>
+        <h3 style="text-align: center; color: white;">Tutaj znajduja sie zarchiwizowane zadania i notatki.</h3>
         <br>
         <div class="row">
-            <div class="col s4">
+            <div class="col">
                 <div class="tasks-archive">Zadania</div>
-                <div *ngIf="getTaskArch.length === 0" style="text-align: center; color: red;">Nie zarchiwizowano zadnych
+                <div *ngIf="getTaskArch.length === 0" style="text-align: center; color: #FC8EAC">Nie zarchiwizowano
+                    zadnych
                     zadan</div>
                 <div *ngIf="getTaskArch.length > 0">
                     <h4>Lista zadan</h4>
@@ -21,9 +19,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col s4">
+            <div class="col">
                 <div class="notes-archive">Notatki</div>
-                <div *ngIf="getNoteArch.length === 0" style="text-align: center; color: red;">Nie zarchiwizowano zadnych
+                <div *ngIf="getNoteArch.length === 0" style="text-align: center; color: #FC8EAC;">Nie zarchiwizowano
+                    zadnych
                     notatek</div>
                 <div *ngIf="getNoteArch.length > 0">
                     <h4>Lista notatek</h4>
@@ -36,4 +35,4 @@
             </div>
         </div>
     </div>
-</div>
+</section>

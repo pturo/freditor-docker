@@ -1,45 +1,20 @@
-<div class="row">
-    <div class="col s3">
-        <app-side-menu></app-side-menu>
+<section class="add-note">
+    <div class="add-note-border">
+        <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" #f="ngForm" (submit)="addNote(f)">
+            <mat-label style="color: #FC8EAC;">STWORZ NOTATKE</mat-label>
+            <mat-form-field class="notetitle">
+                <mat-label>Tytul notatki</mat-label>
+                <input type="text" matInput ngModel name="notetitle" required #notetitleInput="ngModel">
+                <mat-error *ngIf="notetitleInput.hasError('required')">Tytul notatki nie moze byc pusty.</mat-error>
+            </mat-form-field>
+            <mat-form-field class="notecontent">
+                <mat-label>Tresc notatki</mat-label>
+                <textarea type="text" matInput ngModel name="notecontent" required [rows]="5"
+                    #notecontentInput="ngModel" style="border: 1px solid white;"></textarea>
+                <mat-error>Tresc notatki nie moze byc pusta.</mat-error>
+            </mat-form-field>
+            <button type="submit" mat-raised-button color="accent" [disabled]="f.invalid">Utworz notatke</button> |
+            <button type="submit" mat-raised-button color="accent" (click)="backToNotes()">Anuluj</button>
+        </form>
     </div>
-    <div class="col s9">
-        <h1>Dodaj notatke</h1>
-        <div class="row" style="border: 1px solid #C62828;">
-            <form [formGroup]="addNoteForm" (ngSubmit)="addNote()" action="" method="post" class="col s12">
-                <br>
-                <div class="row">
-                    <label for="NoteTitle">Nazwa notatki</label>
-                    <div class="input-field col s12">
-                        <input id="NoteTitle" type="text" class="validate" formControlName="NoteTitle" ngDefaultControl
-                            required>
-                    </div>
-                </div>
-                <div *ngIf="addNoteForm.get('NoteTitle').invalid && (addNoteForm.get('NoteTitle').dirty || addNoteForm.get('NoteTitle').touched)"
-                    class="alert alert-danger">
-                    <div *ngIf="addNoteForm.get('NoteTitle').errors?.['required']">Nazwa notatki jest wymagana i nie
-                        moze byc pusta!</div>
-                </div>
-                <div class="row">
-                    <label for="NoteContent">Zawartosc notatki</label>
-                    <div class="input-field col s12">
-                        <textarea style="height: 200px;" id="NoteContent" type="text" class="validate"
-                            formControlName="NoteContent" ngDefaultControl required></textarea>
-                    </div>
-                </div>
-                <div *ngIf="addNoteForm.get('NoteContent').invalid && (addNoteForm.get('NoteContent').dirty || addNoteForm.get('NoteContent').touched)"
-                    class="alert alert-danger">
-                    <div *ngIf="addNoteForm.get('NoteContent').errors?.['required']">Zawartosc notatki jest wymagana i
-                        nie
-                        moze byc pusta!</div>
-                </div>
-                <div style="text-align: center;">
-                    <button class="red btn" type="submit" name="saveBtn"
-                        [disabled]="addNoteForm.invalid">Zapisz</button> |
-                    <button class="red btn" type="submit" name="cancelBtn" [routerLink]=""
-                        (click)="backToNotes()">Anuluj</button>
-                </div>
-                <br>
-            </form>
-        </div>
-    </div>
-</div>
+</section>

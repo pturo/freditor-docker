@@ -1,9 +1,38 @@
-<div class="container-fluid">
-  <div class="navbar">
-    <app-navbar></app-navbar>
+<mat-toolbar>
+  <div><button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
   </div>
-  <div class="router-content">
-    <router-outlet></router-outlet>
+  <div><a routerLink="/">LOGO</a></div>
+  <div fxFlex fxLayout fxLayoutGap="10px" fxLayoutAlign="flex-end">
+    <div style="text-align: center;">
+      <ul fxLayout class="navigation-items">
+        <li><button *ngIf="authService.isAuth" mat-raised-button color="accent" (click)="logout()">Wyloguj</button></li>
+      </ul>
+    </div>
   </div>
-  <app-footer></app-footer>
-</div>
+</mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav role="navigation" mode="side" [(opened)]="opened">
+    <div style="text-align: center;">FREDITOR</div>
+    <hr>
+    <div style="text-align: center;">
+      <a *ngIf="!authService.isAuth" mat-list-item [routerLink]="'/'">Strona glowna</a><br>
+      <a *ngIf="authService.isAuth" mat-list-item [routerLink]="'/tasks'">Zadania</a><br>
+      <a *ngIf="authService.isAuth" mat-list-item [routerLink]="'/notes'">Notatki</a><br>
+      <a *ngIf="authService.isAuth" mat-list-item [routerLink]="'/editor'">Edytor</a><br>
+      <a *ngIf="authService.isAuth" mat-list-item [routerLink]="'/calendar'">Kalendarz</a><br>
+      <a *ngIf="authService.isAuth" mat-list-item [routerLink]="'/archive'">Archiwum</a><br>
+      <a *ngIf="authService.isAuth" mat-list-item [routerLink]="'/entertainment'">Rozrywka</a>
+    </div>
+    <hr>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+    <footer>
+      <app-footer></app-footer>
+    </footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

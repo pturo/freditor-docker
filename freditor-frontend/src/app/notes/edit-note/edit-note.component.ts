@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NoteService } from 'src/app/services/note.service';
@@ -11,24 +11,14 @@ import { NoteService } from 'src/app/services/note.service';
 })
 export class EditNoteComponent implements OnInit, OnDestroy {
   noteSub = new Subscription();
-  editNoteForm!: any;
-  noteId!: number;
+  noteId = 0;
   note: any = {};
 
-  constructor(private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder, private noteService: NoteService) {
+  constructor(private router: Router, private route: ActivatedRoute, private noteService: NoteService) {
   }
 
   ngOnInit(): void {
-    this.buildForm();
     this.initValuesIntoForm();
-  }
-
-  buildForm() {
-    this.editNoteForm = this.formBuilder.group({
-      NoteId: new FormControl(''),
-      NoteTitle: new FormControl(['', [Validators.required]]).setValue(''),
-      NoteContent: new FormControl(['', [Validators.required]]).setValue(''),
-    });
   }
 
   initValuesIntoForm() {
@@ -37,20 +27,16 @@ export class EditNoteComponent implements OnInit, OnDestroy {
     this.noteSub = this.noteService.getNote(this.noteId).subscribe((res: any) => {
       setTimeout(() => {
         this.note = res.getNote;
+        this.noteId = res.getNote.noteId;
       }, 0);
-      console.log('res ', res.getNote);
-      this.editNoteForm.patchValue(this.note);
+      console.log('res ', res.getNote.noteId);
     });
   }
 
-  get f() {
-    return this.editNoteForm.controls;
-  }
-
   // Note edit operation.
-  editNote() {
-    const editForm = this.editNoteForm.value;
-    this.noteSub = this.noteService.editNote(this.noteId, editForm).subscribe((res) => {
+  editNote(form: NgForm) {
+    const editForm = form.value;
+    this.noteSub = this.noteService.editNote(this.note.noteId, editForm).subscribe((res) => {
       this.router.navigate(['notes']);
     });
   }

@@ -141,6 +141,7 @@ namespace FreditorBackend
                 app.UseSwaggerUI(options =>
                 {
                     options.SwaggerEndpoint("/swagger/v1/swagger.json", "FreditorBackend");
+                    options.InjectStylesheet("/css/SwaggerDarkTheme.css");
                     options.RoutePrefix = string.Empty;
                 });
             }
@@ -150,6 +151,7 @@ namespace FreditorBackend
                 app.UseSwaggerUI(options =>
                 {
                     options.SwaggerEndpoint("/swagger/v1/swagger.json", "FreditorBackend");
+                    options.InjectStylesheet("/css/SwaggerDarkTheme.css");
                     options.RoutePrefix = string.Empty;
                 });
             }

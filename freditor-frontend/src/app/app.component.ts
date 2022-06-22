@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './auth/auth-service/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'freditor-frontend';
+  opened = true;
+
+  constructor(public authService: AuthService) {
+  }
+
+  ngOnInit(): void {
+  }
+
+  logout() {
+    this.authService.logout();
+  }
 }

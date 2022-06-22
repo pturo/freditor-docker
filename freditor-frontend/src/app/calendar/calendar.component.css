@@ -1,0 +1,17 @@
+.calendar-border {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.calendar {
+    height: 500px;
+    overflow: hidden;
+}
+
+.fc-sat {
+    color: #8a2641;
+}
+
+h1 {
+    color: #FC8EAC;
+    text-align: center;
+}

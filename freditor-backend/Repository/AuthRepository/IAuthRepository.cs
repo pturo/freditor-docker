@@ -8,7 +8,7 @@ namespace FreditorBackend.Repository.AuthRepository
     /// </summary>
     public interface IAuthRepository
     {
-        Task<UserDto> Register(UserDto user, string password);
+        Task<UserDto> Signup(UserDto user, string password);
         Task<UserDto> Login(string username, string password);
         Task<bool> IsUserExist(string username);
     }

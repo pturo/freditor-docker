@@ -30,22 +30,22 @@ namespace FreditorBackend.Controllers
             _irepo = irepo;
         }
 
-        [HttpPost("register")]
-        public async Task<IActionResult> Register(Register register)
+        [HttpPost("signup")]
+        public async Task<IActionResult> Signup(Signup signup)
         {
-            if(await _irepo.IsUserExist(register.UserName))
+            if(await _irepo.IsUserExist(signup.UserName))
             {
                 return BadRequest("UserName already exists!");
             }
 
-            register.Email = register.Email.ToLower();
-            if(await _irepo.IsUserExist(register.Email))
+            signup.Email = signup.Email.ToLower();
+            if(await _irepo.IsUserExist(signup.Email))
             {
                 return BadRequest("Email already exists");
             }
 
-            var userToCreate = _imapper.Map<UserDto>(register);
-            var createdUser = await _irepo.Register(userToCreate, register.Password);
+            var userToCreate = _imapper.Map<UserDto>(signup);
+            var createdUser = await _irepo.Signup(userToCreate, signup.Password);
             return StatusCode(201, new { username = createdUser.UserName });
         }
 

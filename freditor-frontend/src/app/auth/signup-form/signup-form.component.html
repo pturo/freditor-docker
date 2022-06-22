@@ -1,0 +1,36 @@
+<section class="signup">
+    <div class="signup-border">
+        <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" #f="ngForm" (submit)="onSubmit(f)">
+            <mat-label style="color: #FC8EAC;">UTWORZ KONTO</mat-label>
+            <mat-form-field class="username">
+                <mat-label>Nazwa uzytkownika</mat-label>
+                <input type="text" matInput ngModel name="username" required #usernameInput="ngModel">
+                <mat-error *ngIf="usernameInput.hasError('required')">Nazwa uzytkownika nie moze byc pusta.</mat-error>
+            </mat-form-field>
+            <mat-form-field class="email">
+                <mat-label>Adres e-mail</mat-label>
+                <input type="email" matInput ngModel name="email" email required #emailInput="ngModel">
+                <mat-error *ngIf="emailInput.hasError('required')">Adres e-mail nie moze byc pusty.</mat-error>
+                <mat-error *ngIf="!emailInput.hasError('required')">Nieprawidlowy ares e-mail.</mat-error>
+            </mat-form-field>
+            <mat-form-field class="password"
+                hintLabel="Haslo powinno miec dlugosc przynajmniej 8 znakow (i byc wielokrotnoscia czworki).">
+                <mat-label>Haslo</mat-label>
+                <input type="password" matInput ngModel name="password" required minlength="8" #passwordInput="ngModel">
+                <mat-error *ngIf="passwordInput.hasError('required')">Haslo nie moze byc puste.</mat-error>
+                <mat-hint [ngStyle]="{'color': 'white'}" align="end">{{ passwordInput.value?.length }} / 8</mat-hint>
+                <mat-error *ngIf="passwordInput.hasError('minLength')">Haslo musi miec dlugosc przynajmniej 8 znakow (i
+                    byc wielokrotnoscia czworki).</mat-error>
+            </mat-form-field>
+            <mat-form-field class="repeatpassword">
+                <mat-label>Powtorz haslo</mat-label>
+                <input type="password" matInput ngModel name="repeatpassword" required #repeatpasswordInput="ngModel">
+                <mat-error *ngIf="repeatpasswordInput.hasError('required')">Haslo nie moze byc puste.</mat-error>
+                <mat-error *ngIf="repeatpasswordInput.invalid && !repeatpasswordInput.hasError('required')">Hasla nie
+                    sa identyczne.</mat-error>
+            </mat-form-field>
+            <button type="submit" mat-raised-button color="accent" [disabled]="f.invalid">Utworz konto</button> |
+            <button type="submit" mat-raised-button color="accent" (click)="backToLogin()">Anuluj</button>
+        </form>
+    </div>
+</section>

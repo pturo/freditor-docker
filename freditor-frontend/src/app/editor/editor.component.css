@@ -1,0 +1,23 @@
+.editor-border {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.canvas-field {
+    background-color: #8a2641;
+    height: 700px;
+}
+
+.canvas-whiteboard {
+    border: 1px solid black;
+    width: 50%;
+    height: 90%;
+    min-width: 500px;
+    min-height: 500px;
+    overflow: hidden;
+    position: relative;
+}
+
+h1 {
+    color: #FC8EAC;
+    text-align: center;
+}

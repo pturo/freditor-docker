@@ -1,0 +1,20 @@
+<section class="login">
+    <div class="login-border">
+        <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" #f="ngForm" (submit)="onSubmit(f)">
+            <mat-label style="color: #FC8EAC;">ZALOGUJ SIE</mat-label>
+            <mat-form-field class="username">
+                <mat-label>Nazwa uzytkownika</mat-label>
+                <input type="text" matInput ngModel name="username" required #usernameInput="ngModel">
+                <mat-error *ngIf="usernameInput.hasError('required')">Nazwa uzytkownika nie moze byc pusta.</mat-error>
+            </mat-form-field>
+            <mat-form-field class="password">
+                <mat-label>Haslo</mat-label>
+                <input type="password" matInput ngModel name="password" required minlength="8" #passwordInput="ngModel">
+                <mat-error *ngIf="passwordInput.hasError('required')">Haslo nie moze byc puste, badz jest ono
+                    nieprawidlowe.</mat-error>
+            </mat-form-field>
+            <button type="submit" mat-raised-button color="accent" [disabled]="f.invalid">Zaloguj sie</button> |
+            <button type="submit" mat-raised-button color="accent" (click)="signup()">Zarejestruj sie</button>
+        </form>
+    </div>
+</section>

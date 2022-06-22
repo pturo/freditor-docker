@@ -28,7 +28,7 @@ export class NoteService {
   }
 
   editNote(noteId: number, note: any): Observable<any> {
-    return this.http.put<any>(this.apiUrl + '/notes/edit-note/' + noteId, JSON.stringify(note)).pipe(catchError(this.errorHandler));
+    return this.http.put<any>(this.apiUrl + '/notes/edit-note/' + noteId, JSON.stringify(note), this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
   deleteNote(noteId: number) {
