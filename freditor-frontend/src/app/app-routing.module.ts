@@ -12,17 +12,12 @@ import { AddNoteComponent } from './notes/add-note/add-note.component';
 import { EditNoteComponent } from './notes/edit-note/edit-note.component';
 import { NotesComponent } from './notes/notes.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { AddTaskComponent } from './tasks/add-task/add-task.component';
-import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
-import { TasksComponent } from './tasks/tasks.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'signup', component: SignupFormComponent, pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-  { path: 'tasks', component: TasksComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-  { path: 'tasks/add-task', component: AddTaskComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-  { path: 'tasks/edit-task/:taskId', component: EditTaskComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+  { path: 'tasks', loadChildren: () => import('./tasks/tasks-routing.module').then(m => m.TasksRoutingModule), canActivate: [AuthGuard] },
   { path: 'notes', component: NotesComponent, pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'notes/add-note', component: AddNoteComponent, pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'notes/edit-note/:noteId', component: EditNoteComponent, pathMatch: 'full', canActivate: [AuthGuard] },

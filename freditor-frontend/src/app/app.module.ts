@@ -11,8 +11,6 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
-import { TasksComponent } from './tasks/tasks.component';
-import { AddTaskComponent } from './tasks/add-task/add-task.component';
 import { EntertainmentComponent } from './entertainment/entertainment.component';
 import { NotesComponent } from './notes/notes.component';
 import { AddNoteComponent } from './notes/add-note/add-note.component';
@@ -25,12 +23,12 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
 import { EditNoteComponent } from './notes/edit-note/edit-note.component';
-import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { CanvasWhiteboardModule } from 'ng2-canvas-whiteboard';
 import { SignupFormComponent } from './auth/signup-form/signup-form.component';
 import { AuthService } from './auth/auth-service/auth.service';
+import { TasksModule } from './tasks/tasks.module';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -47,8 +45,6 @@ FullCalendarModule.registerPlugins([
     PageNotFoundComponent,
     HomeComponent,
     DashboardComponent,
-    TasksComponent,
-    AddTaskComponent,
     EntertainmentComponent,
     NotesComponent,
     AddNoteComponent,
@@ -56,8 +52,7 @@ FullCalendarModule.registerPlugins([
     CalendarComponent,
     ArchiveComponent,
     EditNoteComponent,
-    EditTaskComponent,
-    SignupFormComponent
+    SignupFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +62,8 @@ FullCalendarModule.registerPlugins([
     FullCalendarModule,
     BrowserAnimationsModule,
     MaterialModule,
-    CanvasWhiteboardModule
+    CanvasWhiteboardModule,
+    TasksModule
   ],
   providers: [
     {

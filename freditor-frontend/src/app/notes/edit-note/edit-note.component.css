@@ -20,6 +20,8 @@ mat-label {
     width: 540px;
     padding: 10px;
     text-align: center;
+    margin: auto;
+    margin-top: 15%;
 }
 
 .notetitle .mat-input-element {

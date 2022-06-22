@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserLogin } from '../../model/user-login';
 import { AuthService } from '../auth-service/auth.service';
 
 @Component({
@@ -22,10 +21,6 @@ export class LoginFormComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     const loginUser = form.value;
-    this.login(loginUser);
-  }
-
-  login(userlogin: UserLogin) {
-    this.authService.login(userlogin);
+    this.authService.login(loginUser);
   }
 }

@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "e2e": "ng e2e",
+    "analyze": "ng run freditor-frontend:analyze"
   },
   "private": true,
   "dependencies": {
@@ -28,9 +30,11 @@
     "@fullcalendar/list": "^5.11.0",
     "@fullcalendar/timegrid": "^5.11.0",
     "@handylib/ngx-datepicker": "^1.1.1",
+    "brotli": "^1.3.3",
     "ng-validate-equal": "^6.0.1",
-    "ng2-canvas-whiteboard": "^4.0.2",
+    "ng2-canvas-whiteboard": "^3.1.3",
     "rxjs": "~7.4.0",
+    "source-map-explorer": "^2.5.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
@@ -38,6 +42,7 @@
     "@angular-devkit/build-angular": "^13.3.3",
     "@angular/cli": "~13.1.4",
     "@angular/compiler-cli": "~13.1.0",
+    "@ngx-builders/analyze": "^3.0.1",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
     "jasmine-core": "~3.10.0",

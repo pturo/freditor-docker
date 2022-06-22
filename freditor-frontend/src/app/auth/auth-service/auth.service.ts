@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of, Subject } from 'rxjs';
 import { UserAuth } from 'src/app/model/user-auth.model';
+import { UserLogin } from 'src/app/model/user-login';
 
 @Injectable({
   providedIn: 'root'
@@ -35,14 +36,19 @@ export class AuthService {
     }, this.handleError);
   }
 
-  login(user: any) {
+  login(user: UserLogin) {
     this.authStateChange.next(true);
     return this.http.post(this.apiUrl + 'login', JSON.stringify(user)).subscribe((res: any) => {
-      this.userData = {
-        token: res.token
-      };
-      localStorage.setItem('token', JSON.stringify(this.userData));
-      this.router.navigate(['dashboard']);
+      if (user.UserName === res.UserName && user.Password === res.Password) {
+        this.userData = {
+          token: res.token
+        };
+      }
+      else {
+        console.log('Login error');
+      }
+      // localStorage.setItem('token', JSON.stringify(this.userData));
+      // this.router.navigate(['dashboard']);
     }, this.handleError);
   }
 
