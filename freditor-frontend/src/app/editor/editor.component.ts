@@ -3,6 +3,7 @@ import { CanvasWhiteboardComponent, CanvasWhiteboardOptions, CanvasWhiteboardSer
 
 @Component({
   selector: 'app-editor',
+  viewProviders: [CanvasWhiteboardComponent],
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.css']
 })

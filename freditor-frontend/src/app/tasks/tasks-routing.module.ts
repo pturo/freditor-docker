@@ -4,13 +4,18 @@ import { AuthGuard } from '../guards/auth.guard';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
 
-const routes: Routes = [
-  { path: 'tasks/add-task', component: AddTaskComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-  { path: 'tasks/edit-task/:taskId', component: EditTaskComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+export const TaskRoutes: Routes = [
+  {
+    path: '',
+    children: [
+      { path: 'add-task', component: AddTaskComponent, canActivate: [AuthGuard] },
+      { path: 'edit-task/:taskId', component: EditTaskComponent, canActivate: [AuthGuard] },
+    ]
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(TaskRoutes)],
   exports: [RouterModule],
   providers: [AuthGuard]
 })

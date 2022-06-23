@@ -2,6 +2,40 @@
   <div class="tasks-border">
     <h1>Zadania</h1>
     <br>
-    <app-tasks-list [tasks]="tasks"></app-tasks-list>
+    <button mat-raised-button color="accent" type="submit" (click)="getTasks()">Odswiez</button>
+    |
+    <button mat-raised-button color="accent" type="submit" (click)="goToAddTask()" [routerLink]="'tasks/add-task'">Dodaj
+      zadanie</button>
+    <br>
+    <hr color="#FC8EAC">
+    <br>
+    <div style="text-align: center; color: #FC8EAC; font-size: 28px;" *ngIf="tasks.length === 0">Brak zadan do wykonania
+    </div>
+    <div *ngIf="tasks.length > 0">
+      <div class="card" *ngFor="let task of tasks; let i = index; trackBy: trackBy.taskTrackById">
+        <div class="card-content white-text">
+          <div>Tytul zadania:</div>
+          <span class="card-title">{{task.taskTitle}}</span>
+          <br>
+          <div>Szczegoly zadania:</div>
+          <div>{{ task.taskElements }}</div>
+          <!-- <div>
+                    <mat-checkbox matRipple="disabled" style="display: flex;" *ngFor="let data of task.taskElements"
+                        (change)="updateProgressBar($event)">{{data}}
+                    </mat-checkbox>
+                    <br>
+                    <div>Postep wykonania zadania:</div>
+                    <mat-progress-bar mode="determinate" [value]="task.TaskProgress">
+                    </mat-progress-bar>
+                </div> -->
+          <br>
+          <div>Termin wykonania zadania: {{task.deadLine}}</div>
+        </div>
+        <div style="text-align: center; color: white">
+          <button mat-raised-button color="accent" (click)="goToEditTask(task.taskId)">Edytuj</button> |
+          <button mat-raised-button color="accent" (click)="deleteTask(task.taskId)">Usun</button>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

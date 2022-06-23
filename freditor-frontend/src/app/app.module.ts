@@ -12,8 +12,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { EntertainmentComponent } from './entertainment/entertainment.component';
-import { NotesComponent } from './notes/notes.component';
-import { AddNoteComponent } from './notes/add-note/add-note.component';
 import { EditorComponent } from './editor/editor.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ArchiveComponent } from './archive/archive.component';
@@ -22,13 +20,12 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
-import { EditNoteComponent } from './notes/edit-note/edit-note.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { CanvasWhiteboardModule } from 'ng2-canvas-whiteboard';
 import { SignupFormComponent } from './auth/signup-form/signup-form.component';
 import { AuthService } from './auth/auth-service/auth.service';
-import { TasksModule } from './tasks/tasks.module';
+import { RouterModule } from '@angular/router';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -46,12 +43,9 @@ FullCalendarModule.registerPlugins([
     HomeComponent,
     DashboardComponent,
     EntertainmentComponent,
-    NotesComponent,
-    AddNoteComponent,
     EditorComponent,
     CalendarComponent,
     ArchiveComponent,
-    EditNoteComponent,
     SignupFormComponent,
   ],
   imports: [
@@ -63,7 +57,7 @@ FullCalendarModule.registerPlugins([
     BrowserAnimationsModule,
     MaterialModule,
     CanvasWhiteboardModule,
-    TasksModule
+    RouterModule
   ],
   providers: [
     {

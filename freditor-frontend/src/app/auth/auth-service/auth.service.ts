@@ -45,10 +45,10 @@ export class AuthService {
         };
       }
       else {
-        console.log('Login error');
+        alert('Wystąpił błąd przy logowaniu!');
       }
-      // localStorage.setItem('token', JSON.stringify(this.userData));
-      // this.router.navigate(['dashboard']);
+      localStorage.setItem('token', JSON.stringify(this.userData));
+      this.router.navigate(['dashboard']);
     }, this.handleError);
   }
 

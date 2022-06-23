@@ -1,27 +1,24 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TasksRoutingModule } from './tasks-routing.module';
-import { TasksComponent } from './tasks.component';
+import { TaskRoutes } from './tasks-routing.module';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
-import { TasksListComponent } from './tasks-list/tasks-list.component';
 import { MaterialModule } from '../material.module';
+import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    TasksComponent,
     AddTaskComponent,
     EditTaskComponent,
-    TasksListComponent
   ],
   imports: [
     CommonModule,
-    TasksRoutingModule,
+    RouterModule.forChild(TaskRoutes),
     FormsModule,
     MaterialModule
   ],
-  exports: [TasksComponent]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class TasksModule { }
