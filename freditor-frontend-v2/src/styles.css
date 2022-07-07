@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+/* HTML TAGS */
+
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.4;
+    text-rendering: optimizeLegibility;
+    margin: 0;
+    display: block;
+    height: 100%;
+}
+
+/* DIV CLASSES */
+
+/* OTHER SETTINGS */

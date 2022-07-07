@@ -1,0 +1,10 @@
+/* HTML TAGS */
+
+/* DIV CLASSES */
+.signup {
+    border-radius: 5px;
+    border: 1px solid green;
+    width: 100vw;
+    height: 100px;
+    text-align: center;
+}

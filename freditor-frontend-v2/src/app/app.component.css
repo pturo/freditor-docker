@@ -1,0 +1,12 @@
+/* HTML TAGS */
+
+/* DIV CLASSES */
+.container {
+    height: 100%;
+    display: flex;
+    padding: 10px 10px 10px 10px;
+}
+
+.nav-tab-links {
+    width: 100%;
+}

@@ -1,0 +1,8 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span>Freditor</span>
+        <span class="toolbar-spacer"></span>
+        <button mat-raised-button type="button" color="accent">Zaloguj się</button>
+        <app-theme [options]="options$ | async" (themeChange)="themeChangeHandler($event)"></app-theme>
+    </mat-toolbar-row>
+</mat-toolbar>
