@@ -5,13 +5,20 @@
 ::after,
 ::before {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html {
     -webkit-text-size-adjust: 100%;
     width: 100vw;
     height: 100vh;
+    max-width: 100%;
     overflow-x: hidden;
+    scroll-behavior: smooth;
+    line-height: 1.15;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -21,6 +28,7 @@ body {
     line-height: 1.4;
     text-rendering: optimizeLegibility;
     margin: 0;
+    padding: 0;
     display: block;
     height: 100%;
 }

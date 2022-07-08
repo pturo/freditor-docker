@@ -1,3 +1,40 @@
 <div class="signup">
-    <h1>Singup page under development...</h1>
+    <div class="signup-card">
+        <h1>Zarejestruj się</h1>
+        <hr>
+        <br>
+        <form autocomplete="off">
+            <div>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Nazwa użytkownika</mat-label>
+                    <input matInput type="text" formController="username">
+                    <mat-error></mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Adres e-mail</mat-label>
+                    <input matInput type="email" formController="username">
+                    <mat-error></mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Hasło</mat-label>
+                    <input matInput type="text" formController="password">
+                    <mat-error></mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Powtórz hasło</mat-label>
+                    <input matInput type="text" formController="repeatPassword">
+                    <mat-error></mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <button mat-raised-button color="primary" type="submit">Zarejestruj się</button>
+            </div>
+        </form>
+    </div>
 </div>

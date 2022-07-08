@@ -4,5 +4,7 @@
     #rla="routerLinkActive" [active]="rla.isActive">{{ link.label }}</a>
 </nav>
 <div class="container mat-drawer-container">
-  <router-outlet></router-outlet>
+  <div [@routerTransition]="getState(o)">
+    <router-outlet #o="outlet"></router-outlet>
+  </div>
 </div>
