@@ -3,23 +3,28 @@
         <h1>Zaloguj się</h1>
         <hr>
         <br>
-        <form autocomplete="off">
+        <form [formGroup]="loginForm" (ngSubmit)="submitForm(loginForm.value)" autocomplete="off">
             <div>
                 <mat-form-field appearance="legacy">
                     <mat-label>Nazwa użytkownika</mat-label>
-                    <input matInput type="text" formController="username">
-                    <mat-error></mat-error>
+                    <input matInput type="text" formControlName="username" required>
+                    <mat-error *ngIf="!loginForm.controls['username'].valid && loginForm.controls['username'].touched">
+                        Nazwa użytkownika jest wymagana!
+                    </mat-error>
                 </mat-form-field>
             </div>
             <div>
                 <mat-form-field appearance="legacy">
                     <mat-label>Hasło</mat-label>
-                    <input matInput type="text" formController="password">
-                    <mat-error></mat-error>
+                    <input matInput type="password" formControlName="password" required minlength="8">
+                    <mat-error *ngIf="!loginForm.controls['password'].valid && loginForm.controls['password'].touched">
+                        Nie można wstawiać pustego hasła, lub też jest ono nieprawidłowe!
+                    </mat-error>
                 </mat-form-field>
             </div>
             <div>
-                <button mat-raised-button color="primary" type="submit">Zaloguj się</button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Zaloguj
+                    się</button>
             </div>
         </form>
     </div>

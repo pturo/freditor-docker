@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ChildrenOutletContexts, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { routerTransition } from './animations/router.animations';
 
 @Component({
@@ -12,7 +12,7 @@ export class AppComponent {
 
   navLinks: any[];
   activeLinkIndex = -1;
-  constructor(private router: Router, private contexts: ChildrenOutletContexts) {
+  constructor(private router: Router) {
     this.navLinks = [
       {
         label: 'Zaloguj się',

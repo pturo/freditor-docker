@@ -79,7 +79,7 @@ namespace FreditorBackend.Controllers
 
             var token = new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
 
-            return StatusCode(201, new { token = token });
+            return StatusCode(201, new { userName = login.UserName, token = token });
         }
     }
 }
