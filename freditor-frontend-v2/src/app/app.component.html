@@ -1,8 +1,4 @@
 <app-header></app-header>
-<nav mat-tab-nav-bar backgroundColor="accent">
-  <a class="nav-tab-links" mat-tab-link *ngFor="let link of navLinks" [routerLink]="[link.link]" routerLinkActive
-    #rla="routerLinkActive" [active]="rla.isActive">{{ link.label }}</a>
-</nav>
 <div class="container mat-drawer-container">
   <router-outlet></router-outlet>
 </div>

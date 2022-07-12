@@ -4,14 +4,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './auth/login/login.component';
 import { MaterialModule } from './material.module';
 import { StyleManagerService } from './services/style-manager.service';
 import { ThemeService } from './services/theme.service';
 import { ThemeComponent } from './theme/theme.component';
 import { HeaderComponent } from './header/header.component';
-import { SignupComponent } from './auth/signup/signup.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
 import { UserInterceptor } from './interceptors/user.interceptor';
@@ -20,11 +17,8 @@ import { Storage } from './utils/storage';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     ThemeComponent,
     HeaderComponent,
-    SignupComponent,
-    DashboardComponent
   ],
   imports: [
     AppRoutingModule,
