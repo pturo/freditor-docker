@@ -62,7 +62,7 @@ namespace FreditorBackend
             // Add mvc
             services.AddMvc(x => x.EnableEndpointRouting = false);
 
-            services.AddAuthentication(options =>
+            /*services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -83,7 +83,7 @@ namespace FreditorBackend
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("IHeardItThrough0")),
                         ClockSkew = System.TimeSpan.Zero
                     };
-                });
+                });*/
 
             services.AddSwaggerGen(options =>
             {
@@ -94,7 +94,7 @@ namespace FreditorBackend
                     Description = "FreditorBackend API allows to run basic HTTP queries like GET, POST, PUT & DELETE."
                 });
 
-                var securitySchema = new OpenApiSecurityScheme
+                /*var securitySchema = new OpenApiSecurityScheme
                 {             
                     Name = "Authorization",
                     Type = SecuritySchemeType.ApiKey,
@@ -120,7 +120,7 @@ namespace FreditorBackend
                 };
 
                 options.AddSecurityDefinition("Bearer", securitySchema);
-                options.AddSecurityRequirement(securityReq);
+                options.AddSecurityRequirement(securityReq);*/
            
             });
 
