@@ -32,18 +32,23 @@ export class AuthService {
   signup() { }
 
   login(user: Login) {
-    this.authStateChange.next(true);
     return this.http.post(this.apiUrl + 'login', JSON.stringify(user)).subscribe((res: any) => {
-      if (user.username === res.username && user.password === res.password) {
-        this.userAuth = {
-          username: res.username,
-          token: res.token
-        };
-      } else if (user.username !== res.username && user.password !== user.password) {
-        alert('Podano nieprawidłowy login lub hasło!');
+      if (this.apiUrl == null || res == null) {
+        alert('Brak połączenia z bazą danych!');
+      } else {
+        if (user.username === res.username && user.password === res.password) {
+          this.userAuth = {
+            username: res.username,
+            token: res.token
+          };
+        } else if (user.username !== res.username && user.password !== user.password) {
+          alert('Podano nieprawidłowy login lub hasło!');
+          this.authStateChange.next(false);
+        }
+        this.authStateChange.next(true);
+        this.storage.setStorage('user', this.userAuth);
+        this.router.navigate(['dashboard']);
       }
-      this.storage.setStorage('user', this.userAuth);
-      this.router.navigate(['dashboard']);
     }, this.handleError);
   }
 
@@ -58,7 +63,8 @@ export class AuthService {
 
   logout() {
     this.authStateChange.next(false);
-    this.storage.removeAndClearStorage('user');
+    this.storage.removeStorage('user');
+    localStorage.clear();
     this.router.navigate(['login']);
   }
 

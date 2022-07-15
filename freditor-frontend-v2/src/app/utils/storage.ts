@@ -8,8 +8,7 @@ export class Storage {
         localStorage.setItem(name, JSON.stringify(value));
     };
 
-    public removeAndClearStorage(name: string) {
+    public removeStorage(name: string) {
         localStorage.removeItem(name);
-        localStorage.clear();
     }
 }

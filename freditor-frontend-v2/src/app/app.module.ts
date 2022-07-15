@@ -13,12 +13,20 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
 import { UserInterceptor } from './interceptors/user.interceptor';
 import { Storage } from './utils/storage';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ThemeComponent,
     HeaderComponent,
+    HomeComponent,
+    LoginComponent,
+    SignupComponent,
+    DashboardComponent
   ],
   imports: [
     AppRoutingModule,
