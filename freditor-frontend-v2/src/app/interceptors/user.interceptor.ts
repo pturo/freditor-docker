@@ -3,16 +3,16 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpResponse, Htt
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { Storage } from '../utils/storage';
+import { StorageService } from '../services/storage.service';
 
 @Injectable()
 export class UserInterceptor implements HttpInterceptor {
 
-    constructor(private router: Router, private storage: Storage) { }
+    constructor(private router: Router, private storageService: StorageService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         //const token = localStorage.getItem('token');
-        const user = this.storage.getStorage('user');
+        const user = this.storageService.getStorage('user');
 
         if (user) {
             request = request.clone({

@@ -24,6 +24,8 @@
             </div>
             <div>
                 <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Zaloguj
+                    się</button>&nbsp;
+                <button mat-raised-button color="primary" type="submit" (click)="onSignup()">Zrejestruj
                     się</button>
             </div>
         </form>

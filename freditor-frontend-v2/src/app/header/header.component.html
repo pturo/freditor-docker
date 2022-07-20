@@ -2,7 +2,7 @@
     <mat-toolbar-row>
         <span>Freditor</span>
         <div class="auth-button">
-            <button *ngIf="authService.loggedUser" mat-raised-button color="accent" (click)="logout()">Wyloguj</button>
+            <button *ngIf="isLoggedIn$ | async" mat-raised-button color="accent" (click)="logout()">Wyloguj</button>
         </div>
         <span class="toolbar-spacer"></span>
         <app-theme [options]="options$ | async" (themeChange)="themeChangeHandler($event)"></app-theme>

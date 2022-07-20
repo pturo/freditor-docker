@@ -1,7 +1,8 @@
 /* HTML TAGS */
-
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
 
 /* DIV CLASSES */
-.nav-tab-links {
-    width: 100%;
-}

@@ -1,1 +1,37 @@
-<p>dashboard works!</p>
+<div class="dashboard">
+    <div class="nav-bar">
+        <div class="nav-flex-col">
+            <div class="nav-item">
+                <div class="icon-md">
+                    <mat-icon>menu</mat-icon>
+                </div>
+                <div class="nav-title">Nav menu 1</div>
+            </div>
+            <div class="nav-item">
+                <div class="icon-md">
+                    <mat-icon>menu</mat-icon>
+                </div>
+                <div class="nav-title">Nav menu 2</div>
+            </div>
+            <div class="nav-item">
+                <div class="icon-md">
+                    <mat-icon>menu</mat-icon>
+                </div>
+                <div class="nav-title">Nav menu 3</div>
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="absolute-container">
+            <h1>Witaj w aplikacji Freditor! Tutaj możesz tworzyć notatki, zadania i nie tylko!</h1>
+            <hr>
+            <br>
+            <mat-grid-list cols="4" rowHeight="200px" gutterSize="5px">
+                <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows"
+                    [style.background]="tile.color">
+                    <mat-grid-tile-header>{{ tile.title }}</mat-grid-tile-header>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+    </div>
+</div>

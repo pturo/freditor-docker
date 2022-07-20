@@ -1,9 +1,17 @@
 /* HTML TAGS */
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+
 mat-toolbar {
     position: sticky;
     position: -webkit-sticky;
     top: 0;
     z-index: 1000;
+    flex-shrink: 0 !important;
+    flex-grow: 0 !important;
 }
 
 /* DIV CLASSES */

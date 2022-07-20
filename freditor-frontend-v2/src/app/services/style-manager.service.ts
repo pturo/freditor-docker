@@ -13,6 +13,13 @@ export class StyleManagerService {
   }
 
   /**
+   * Get the stylesheet with the specified key.
+   */
+  getStyle(key: string) {
+    return getExistingLinkElementByKey(key);
+  }
+
+  /**
    * Remove the stylesheet with the specified key.
    */
   removeStyle(key: string) {

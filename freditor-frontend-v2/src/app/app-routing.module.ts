@@ -14,7 +14,7 @@ import { AuthGuard } from './guards/auth.guard';
       { path: '', pathMatch: 'full', redirectTo: 'login' },
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
-      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }
+      { path: 'dashboard', component: DashboardComponent, }
     ])
   ],
   exports: [RouterModule]

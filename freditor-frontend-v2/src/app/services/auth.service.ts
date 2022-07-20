@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Login } from '../models/login.model';
 import { UserAuth } from '../models/user-auth.model';
-import { Storage } from '../utils/storage';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,18 +13,18 @@ export class AuthService {
 
   private apiUrl = 'https://localhost:44335/api/auth/';
   userAuth!: UserAuth;
-  authStateChange = new Subject<boolean>();
+  authStateChange = new BehaviorSubject<boolean>(false);
 
-  constructor(private router: Router, private http: HttpClient, private storage: Storage) {
+  constructor(private router: Router, private http: HttpClient, private storageService: StorageService) {
     // Save user data in storage
     this.authStateChange.subscribe((user: any) => {
       if (user) {
         this.userAuth = user;
-        storage.setStorage('user', this.userAuth);
-        JSON.parse(storage.getStorage('user')!);
+        storageService.setStorage('user', this.userAuth);
+        JSON.parse(storageService.getStorage('user')!);
       } else {
-        storage.setStorage('user', 'null');
-        JSON.parse(storage.getStorage('user')!);
+        storageService.setStorage('user', 'null');
+        JSON.parse(storageService.getStorage('user')!);
       }
     });
   }
@@ -46,25 +46,20 @@ export class AuthService {
           this.authStateChange.next(false);
         }
         this.authStateChange.next(true);
-        this.storage.setStorage('user', this.userAuth);
+        this.storageService.setStorage('user', this.userAuth);
         this.router.navigate(['dashboard']);
       }
     }, this.handleError);
   }
 
-  get loggedUser() {
-    const user = JSON.parse(this.storage.getStorage('user')!);
-    if (user !== null) {
-      return user;
-    }
-
-    return null;
+  get isLoggedIn() {
+    return this.authStateChange.asObservable();
   }
 
   logout() {
     this.authStateChange.next(false);
-    this.storage.removeStorage('user');
-    localStorage.clear();
+    this.storageService.removeStorage('user');
+    this.storageService.clearStorage();
     this.router.navigate(['login']);
   }
 
