@@ -3,4 +3,5 @@ export interface Tile {
     cols: number;
     rows: number;
     title: string;
+    icon: string;
 }
