@@ -5,20 +5,6 @@
     box-sizing: border-box;
 }
 
-mat-grid-list {
-    width: 100%;
-    display: flex;
-    margin: 0 auto;
-}
-
-mat-grid-tile {
-    cursor: pointer;
-}
-
-mat-grid-tile-header {
-    justify-content: center;
-}
-
 h1,
 h2,
 h3,
@@ -43,12 +29,6 @@ h6 {
     position: absolute;
     overflow: auto;
     padding: 10px 10px 10px 10px;
-}
-
-.mat-grid-icons {
-    width: 100px;
-    height: 100px;
-    font-size: 100px;
 }
 
 .main-content {

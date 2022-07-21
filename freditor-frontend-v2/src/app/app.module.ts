@@ -17,6 +17,8 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { StorageService } from './services/storage.service';
+import { NavbarComponent } from './navbar/navbar.component';
+import { TasksComponent } from './tasks/tasks.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { StorageService } from './services/storage.service';
     HomeComponent,
     LoginComponent,
     SignupComponent,
-    DashboardComponent
+    DashboardComponent,
+    NavbarComponent,
+    TasksComponent
   ],
   imports: [
     AppRoutingModule,

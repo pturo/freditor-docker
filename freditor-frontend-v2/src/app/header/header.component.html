@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
-        <span>Freditor</span>
+        <span><a routerLink="/dashboard">Freditor</a></span>
         <div class="auth-button">
             <button *ngIf="isLoggedIn$ | async" mat-raised-button color="accent" (click)="logout()">Wyloguj</button>
         </div>

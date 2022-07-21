@@ -5,6 +5,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './guards/auth.guard';
+import { TasksComponent } from './tasks/tasks.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { AuthGuard } from './guards/auth.guard';
       { path: '', pathMatch: 'full', redirectTo: 'login' },
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
-      { path: 'dashboard', component: DashboardComponent, }
+      { path: 'dashboard', component: DashboardComponent, },
+      { path: 'tasks', component: TasksComponent }
     ])
   ],
   exports: [RouterModule]
