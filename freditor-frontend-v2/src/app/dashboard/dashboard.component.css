@@ -13,6 +13,7 @@ mat-grid-list {
 
 mat-grid-tile {
     cursor: pointer;
+    border-radius: 10px;
 }
 
 mat-grid-tile-header {
@@ -27,6 +28,23 @@ h5,
 h6 {
     text-align: center;
     word-wrap: break-word;
+}
+
+mat-card {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid yellow;
+    background-color: rgb(100, 100, 10);
+    color: yellow;
+}
+
+mat-card-title {
+    text-align: center;
+}
+
+mat-card-content {
+    text-align: center;
 }
 
 /* DIV CLASSES */

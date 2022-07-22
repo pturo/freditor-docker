@@ -1,7 +1,8 @@
 <div class="nav-bar">
     <div class="nav-flex-col">
         <div class="nav-item">
-            <div class="nav-background" [routerLink]="['/dashboard']" [routerLinkActive]="['active']">
+            <div class="nav-background" [routerLink]="['/dashboard']" [routerLinkActive]="['active']"
+                (click)="dashboard()">
                 <div class="icon-md">
                     <mat-icon>dashboard</mat-icon>
                 </div>
@@ -9,7 +10,7 @@
             </div>
         </div>
         <div class="nav-item">
-            <div class="nav-background">
+            <div class="nav-background" [routerLink]="['/tasks']" [routerLinkActive]="['active']" (click)="tasks()">
                 <div class="icon-md">
                     <mat-icon>task</mat-icon>
                 </div>
@@ -17,7 +18,7 @@
             </div>
         </div>
         <div class="nav-item">
-            <div class="nav-background">
+            <div class="nav-background" [routerLink]="['/notes']" [routerLinkActive]="['active']" (click)="notes()">
                 <div class="icon-md">
                     <mat-icon>notes</mat-icon>
                 </div>
@@ -25,7 +26,7 @@
             </div>
         </div>
         <div class="nav-item">
-            <div class="nav-background">
+            <div class="nav-background" [routerLink]="['/editor']" [routerLinkActive]="['active']" (click)="editor()">
                 <div class="icon-md">
                     <mat-icon>edit</mat-icon>
                 </div>
@@ -33,7 +34,8 @@
             </div>
         </div>
         <div class="nav-item">
-            <div class="nav-background">
+            <div class="nav-background" [routerLink]="['/calendar']" [routerLinkActive]="['active']"
+                (click)="calendar()">
                 <div class="icon-md">
                     <mat-icon>calendar_month</mat-icon>
                 </div>
@@ -41,7 +43,7 @@
             </div>
         </div>
         <div class="nav-item">
-            <div class="nav-background">
+            <div class="nav-background" [routerLink]="['/archive']" [routerLinkActive]="['active']" (click)="archive()">
                 <div class="icon-md">
                     <mat-icon>archive</mat-icon>
                 </div>
@@ -49,7 +51,8 @@
             </div>
         </div>
         <div class="nav-item">
-            <div class="nav-background">
+            <div class="nav-background" [routerLink]="['/entertainment']" [routerLinkActive]="['active']"
+                (click)="entertainment()">
                 <div class="icon-md">
                     <mat-icon>casino</mat-icon>
                 </div>
