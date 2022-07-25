@@ -19,6 +19,11 @@ import { HomeComponent } from './home/home.component';
 import { StorageService } from './services/storage.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { NotesComponent } from './notes/notes.component';
+import { EditorComponent } from './editor/editor.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { ArchiveComponent } from './archive/archive.component';
+import { EntertainmentComponent } from './entertainment/entertainment.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +35,12 @@ import { TasksComponent } from './tasks/tasks.component';
     SignupComponent,
     DashboardComponent,
     NavbarComponent,
-    TasksComponent
+    TasksComponent,
+    NotesComponent,
+    EditorComponent,
+    CalendarComponent,
+    ArchiveComponent,
+    EntertainmentComponent
   ],
   imports: [
     AppRoutingModule,

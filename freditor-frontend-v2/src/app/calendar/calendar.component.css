@@ -16,7 +16,7 @@ h6 {
 }
 
 /* DIV CLASSES */
-.tasks {
+.calendar {
     display: flex;
     min-height: 100%;
     width: 100%;

@@ -1,4 +1,5 @@
 export interface Tile {
+    routerLink: string;
     color: string;
     cols: number;
     rows: number;

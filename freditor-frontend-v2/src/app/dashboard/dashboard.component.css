@@ -16,6 +16,10 @@ mat-grid-tile {
     border-radius: 10px;
 }
 
+mat-grid-tile:hover {
+    border: 2px solid red;
+}
+
 mat-grid-tile-header {
     justify-content: center;
 }

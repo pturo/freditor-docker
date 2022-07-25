@@ -21,7 +21,7 @@
                 <br>
                 <mat-grid-list cols="4" rowHeight="200px" gutterSize="5px">
                     <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows"
-                        [style.background]="tile.color">
+                        [style.background]="tile.color" routerLink="{{ tile.routerLink }}">
                         <mat-grid-tile-header>{{ tile.title }}</mat-grid-tile-header>
                         <mat-icon class="mat-grid-icons">{{ tile.icon }}</mat-icon>
                     </mat-grid-tile>
