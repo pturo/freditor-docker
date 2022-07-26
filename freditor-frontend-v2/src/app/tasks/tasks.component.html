@@ -7,6 +7,33 @@
             <br>
             <div class="page-content">
                 <h2>Zadania</h2>
+                <br>
+                <div>
+                    <mat-card *ngFor="let task of tasks">
+                        <mat-card-header>
+                            <mat-card-title>Tytuł zadania: {{ task.title }}</mat-card-title>
+                        </mat-card-header>
+                        <label>Szczegóły zadania:</label>
+                        <mat-card-content>
+                            <div *ngFor="let elem of task.taskElements">
+                                <mat-checkbox>{{ elem }}</mat-checkbox>
+                            </div>
+                        </mat-card-content>
+                        <mat-card-content>
+                            <label>Termin wykonania zadania: {{ task.date | date }}</label>
+                            <br><br>
+                            <label>Postęp wykonania zadania:</label>
+                            <mat-progress-bar mode="determinate" value="{{ task.progress }}"></mat-progress-bar>
+                        </mat-card-content>
+                        <mat-card-footer>
+                            <div class="buttons">
+                                <button mat-raised-button color="primary">Edytuj</button>&nbsp;
+                                <button mat-raised-button color="primary">Usuń</button>
+                            </div>
+                        </mat-card-footer>
+                    </mat-card>
+                </div>
+                <br>
             </div>
         </div>
     </div>

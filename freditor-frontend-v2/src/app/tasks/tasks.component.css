@@ -15,6 +15,15 @@ h6 {
     word-wrap: break-word;
 }
 
+mat-card {
+    margin-bottom: 10px;
+}
+
+mat-card-content,
+mat-card-footer {
+    margin: 10px 10px 10px 10px;
+}
+
 /* DIV CLASSES */
 .tasks {
     display: flex;
@@ -43,6 +52,10 @@ h6 {
 .page-content {
     width: 80%;
     margin: 0 auto;
+}
+
+.buttons {
+    text-align: center;
 }
 
 /* OTHER SETTINGS */
