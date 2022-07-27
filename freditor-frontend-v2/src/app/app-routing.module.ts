@@ -26,7 +26,8 @@ import { TasksComponent } from './tasks/tasks.component';
       { path: 'editor', component: EditorComponent },
       { path: 'calendar', component: CalendarComponent },
       { path: 'archive', component: ArchiveComponent },
-      { path: 'entertainment', component: EntertainmentComponent }
+      { path: 'entertainment', component: EntertainmentComponent },
+      { path: '**', redirectTo: 'login' }
     ])
   ],
   exports: [RouterModule]
