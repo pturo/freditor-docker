@@ -8,11 +8,19 @@
             <div class="page-content">
                 <h2>Notatki</h2>
                 <br>
-                <div style="margin-bottom: 5px;">
-                    <button mat-mini-fab color="primary">
-                        <mat-icon>add</mat-icon>
-                    </button>
-                    &nbsp;<span>Dodaj notatkę</span>
+                <div class="add-refresh">
+                    <div class="add">
+                        <button mat-mini-fab color="primary">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                        &nbsp;<span>Dodaj notatkę</span>
+                    </div>
+                    <div class="refresh">
+                        <button mat-mini-fab color="primary">
+                            <mat-icon>refresh</mat-icon>
+                        </button>
+                        &nbsp;<span>Odśwież</span>
+                    </div>
                 </div>
                 <hr>
                 <br>
@@ -21,7 +29,7 @@
                         <div class="card-container">
                             <div class="left-card">
                                 <mat-card-header>
-                                    <mat-card-title>Tytuł Notatki: {{ note.title }}</mat-card-title>
+                                    <mat-card-title>Tytuł notatki: {{ note.title }}</mat-card-title>
                                 </mat-card-header>
                                 <mat-card-content>
                                     <p style="text-align: justify;">Zawartość notatki: {{ note.content }}</p>

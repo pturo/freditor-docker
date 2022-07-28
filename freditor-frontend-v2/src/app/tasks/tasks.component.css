@@ -91,6 +91,20 @@ mat-card-footer {
     font-size: 10rem;
 }
 
+.add-refresh {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.add {
+    width: 50%;
+}
+
+.refresh {
+    width: 50%;
+    text-align: end;
+}
+
 /* OTHER SETTINGS */
 @media (min-width: 576px) {
     .absolute-container {

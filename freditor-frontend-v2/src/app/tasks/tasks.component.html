@@ -8,22 +8,30 @@
             <div class="page-content">
                 <h2>Zadania</h2>
                 <br>
-                <div style="margin-bottom: 5px;">
-                    <button mat-mini-fab color="primary">
-                        <mat-icon>add</mat-icon>
-                    </button>
-                    &nbsp;<span>Dodaj zadanie</span>
+                <div class="add-refresh">
+                    <div class="add">
+                        <button mat-mini-fab color="primary">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                        &nbsp;<span>Dodaj zadanie</span>
+                    </div>
+                    <div class="refresh">
+                        <button mat-mini-fab color="primary">
+                            <mat-icon>refresh</mat-icon>
+                        </button>
+                        &nbsp;<span>Odśwież</span>
+                    </div>
                 </div>
                 <hr>
                 <br>
-                <div>
+                <div *ngIf="tasks.length > 0">
                     <mat-card *ngFor="let task of tasks">
                         <div class="card-container">
                             <div class="left-card">
                                 <mat-card-header>
                                     <mat-card-title>Tytuł zadania: {{ task.title }}</mat-card-title>
                                 </mat-card-header>
-                                <label>Szczegóły zadania:</label>
+                                <label style="margin-left: 10px;">Szczegóły zadania:</label>
                                 <mat-card-content>
                                     <div *ngFor="let elem of task.taskElements">
                                         <input class="task-checkbox" type="checkbox"

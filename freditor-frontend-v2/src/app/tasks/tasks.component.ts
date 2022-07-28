@@ -29,6 +29,7 @@ export class TasksComponent implements OnInit {
     for (let i = 0; i < taskCheckboxes.length; i++) {
       if ((taskCheckboxes[i] as HTMLInputElement).checked) {
         width += updateProgress;
+        this.tasks[i].progress += updateProgress;
       }
     }
 
