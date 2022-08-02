@@ -10,7 +10,7 @@
                 <br>
                 <div class="add-refresh">
                     <div class="add">
-                        <button mat-mini-fab color="primary">
+                        <button mat-mini-fab color="primary" (click)="addTaskDialog()">
                             <mat-icon>add</mat-icon>
                         </button>
                         &nbsp;<span>Dodaj zadanie</span>
@@ -35,7 +35,7 @@
                                 <mat-card-content>
                                     <div *ngFor="let elem of task.taskElements">
                                         <input class="task-checkbox" type="checkbox"
-                                            (onclick)="updateTaskProgress()">&nbsp;{{
+                                            (click)="updateTaskProgress()">&nbsp;{{
                                         elem }}
                                     </div>
                                 </mat-card-content>
@@ -47,7 +47,7 @@
                         <mat-card-content>
                             <label>Termin wykonania zadania: {{ task.date | date }}</label>
                             <br><br>
-                            <label>Postęp wykonania zadania: {{ task.progress }}%</label>
+                            <label>Postęp wykonania zadania: {{ width | number: '1.0-0' }}%</label>
                             <div class="progress-bar">
                                 <div class="progress-inner"></div>
                             </div>

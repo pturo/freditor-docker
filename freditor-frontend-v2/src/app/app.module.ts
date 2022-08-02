@@ -24,6 +24,7 @@ import { EditorComponent } from './editor/editor.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { EntertainmentComponent } from './entertainment/entertainment.component';
+import { AddTaskComponent } from './tasks/add-task/add-task.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { EntertainmentComponent } from './entertainment/entertainment.component'
     EditorComponent,
     CalendarComponent,
     ArchiveComponent,
-    EntertainmentComponent
+    EntertainmentComponent,
+    AddTaskComponent
   ],
   imports: [
     AppRoutingModule,
