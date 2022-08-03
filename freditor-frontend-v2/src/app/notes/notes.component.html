@@ -24,7 +24,7 @@
                 </div>
                 <hr>
                 <br>
-                <div>
+                <div *ngIf="notes.length > 0">
                     <mat-card *ngFor="let note of notes">
                         <div class="card-container">
                             <div class="left-card">
@@ -41,11 +41,15 @@
                         </div>
                         <mat-card-footer>
                             <div class="buttons">
-                                <button mat-raised-button color="primary">Edytuj</button>&nbsp;
-                                <button mat-raised-button color="primary">Usuń</button>
+                                <button mat-raised-button color="primary"
+                                    (click)="editNoteDialog()">Edytuj</button>&nbsp;
+                                <button mat-raised-button color="primary" (click)="deleteNote(note.id)">Usuń</button>
                             </div>
                         </mat-card-footer>
                     </mat-card>
+                </div>
+                <div *ngIf="notes.length === 0">
+                    <h2>W tej chwili nie ma żadnych notatek.</h2>
                 </div>
                 <br>
             </div>

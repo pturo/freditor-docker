@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Task } from '../models/task';
 import { AddTaskComponent } from './add-task/add-task.component';
+import { EditTaskComponent } from './edit-task/edit-task.component';
 
 @Component({
   selector: 'app-tasks',
@@ -45,5 +46,18 @@ export class TasksComponent implements OnInit {
 
     const dialogRef = this.matDialog.open(AddTaskComponent, dialogConfig);
     dialogRef.afterClosed().subscribe();
+  }
+
+  editTaskDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    const dialogRef = this.matDialog.open(EditTaskComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe();
+  }
+
+  deleteTask(taskId: number) {
+
   }
 }

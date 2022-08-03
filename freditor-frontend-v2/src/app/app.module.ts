@@ -26,6 +26,8 @@ import { ArchiveComponent } from './archive/archive.component';
 import { EntertainmentComponent } from './entertainment/entertainment.component';
 import { AddTaskComponent } from './tasks/add-task/add-task.component';
 import { AddNoteComponent } from './notes/add-note/add-note.component';
+import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
+import { EditNoteComponent } from './notes/edit-note/edit-note.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { AddNoteComponent } from './notes/add-note/add-note.component';
     ArchiveComponent,
     EntertainmentComponent,
     AddTaskComponent,
-    AddNoteComponent
+    AddNoteComponent,
+    EditTaskComponent,
+    EditNoteComponent
   ],
   imports: [
     AppRoutingModule,

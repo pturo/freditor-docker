@@ -54,11 +54,15 @@
                         </mat-card-content>
                         <mat-card-footer>
                             <div class="buttons">
-                                <button mat-raised-button color="primary">Edytuj</button>&nbsp;
-                                <button mat-raised-button color="primary">Usuń</button>
+                                <button mat-raised-button color="primary"
+                                    (click)="editTaskDialog()">Edytuj</button>&nbsp;
+                                <button mat-raised-button color="primary" (click)="deleteTask(task.id)">Usuń</button>
                             </div>
                         </mat-card-footer>
                     </mat-card>
+                </div>
+                <div *ngIf="tasks.length === 0">
+                    <h2>W tej chwili nie ma żadnych zadań.</h2>
                 </div>
                 <br>
             </div>

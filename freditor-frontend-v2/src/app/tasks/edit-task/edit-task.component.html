@@ -1,12 +1,12 @@
-<h2 mat-dialog-title>Dodaj zadanie</h2>
+<h2 mat-dialog-title>Edytuj zadanie</h2>
 
-<mat-dialog-content [formGroup]="addTaskForm">
+<mat-dialog-content [formGroup]="editTaskForm">
     <div class="dialog-content-container">
         <div>
             <mat-form-field>
                 <label for="title">Tytuł zadania</label>
                 <input matInput type="text" formControlName="title" required>
-                <mat-error *ngIf="!addTaskForm.controls['title'].valid && addTaskForm.controls['title'].touched">
+                <mat-error *ngIf="!editTaskForm.controls['title'].valid && editTaskForm.controls['title'].touched">
                     Tytuł zadania jest wymagany!
                 </mat-error>
             </mat-form-field>
@@ -17,7 +17,7 @@
                 <input #elemInput matInput type="text" formControlName="taskElements" (keyup.enter)="addToList($event)"
                     required>
                 <mat-error
-                    *ngIf="!addTaskForm.controls['taskElements'].valid && addTaskForm.controls['taskElements'].touched">
+                    *ngIf="!editTaskForm.controls['taskElements'].valid && editTaskForm.controls['taskElements'].touched">
                     Elementy zadania są wymagane!
                 </mat-error>
             </mat-form-field>
@@ -35,7 +35,7 @@
                 <input matInput [matDatepicker]="picker" formControlName="date" required>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
-                <mat-error *ngIf="!addTaskForm.controls['date'].valid && addTaskForm.controls['date'].touched">
+                <mat-error *ngIf="!editTaskForm.controls['date'].valid && editTaskForm.controls['date'].touched">
                     Data wykonania zadania jest wymagana!
                 </mat-error>
             </mat-form-field>
@@ -45,5 +45,5 @@
 
 <mat-dialog-actions align="center">
     <button class="mat-raised-button" (click)="cancel()">Anuluj</button>&nbsp;
-    <button class="mat-raised-button mat-primary" (click)="save()" [disabled]="!addTaskForm.valid">Zapisz</button>
+    <button class="mat-raised-button mat-primary" (click)="save()">Zapisz</button>
 </mat-dialog-actions>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Note } from '../models/note';
 import { AddNoteComponent } from './add-note/add-note.component';
+import { EditNoteComponent } from './edit-note/edit-note.component';
 
 @Component({
   selector: 'app-notes',
@@ -31,4 +32,20 @@ export class NotesComponent implements OnInit {
     dialogRef.afterClosed().subscribe();
   }
 
+  editNoteDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    const dialogRef = this.matDialog.open(EditNoteComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe();
+  }
+
+  deleteNote(noteId: number) {
+    this.notes.forEach((x: Note) => {
+      if (x.id === noteId) {
+        this.notes.splice(noteId - 1, 1);
+      }
+    });
+  }
 }

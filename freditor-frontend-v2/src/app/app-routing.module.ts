@@ -8,9 +8,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditorComponent } from './editor/editor.component';
 import { EntertainmentComponent } from './entertainment/entertainment.component';
-import { AuthGuard } from './guards/auth.guard';
 import { NotesComponent } from './notes/notes.component';
-import { AddTaskComponent } from './tasks/add-task/add-task.component';
 import { TasksComponent } from './tasks/tasks.component';
 
 
@@ -23,7 +21,6 @@ import { TasksComponent } from './tasks/tasks.component';
       { path: 'signup', component: SignupComponent },
       { path: 'dashboard', component: DashboardComponent, },
       { path: 'tasks', component: TasksComponent },
-      { path: 'tasks/add-task', component: AddTaskComponent },
       { path: 'notes', component: NotesComponent },
       { path: 'editor', component: EditorComponent },
       { path: 'calendar', component: CalendarComponent },

@@ -1,0 +1,32 @@
+/* HTML TAGS */
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+
+mat-dialog-content {
+    width: 500px;
+    height: 100%;
+}
+
+mat-dialog-actions {
+    margin-bottom: 5px;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+/* DIV CLASSES */
+.dialog-content-container {
+    width: 100%;
+}
+
+.item {
+    background-color: gray;
+    margin-bottom: 1px;
+    color: white;
+}
+
+/* OTHER SETTINGS */
