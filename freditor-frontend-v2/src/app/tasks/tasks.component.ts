@@ -58,6 +58,6 @@ export class TasksComponent implements OnInit {
   }
 
   deleteTask(taskId: number) {
-
+    this.tasks = this.tasks.filter(task => task.id != taskId);
   }
 }
