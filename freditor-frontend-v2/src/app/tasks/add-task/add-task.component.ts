@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
@@ -9,10 +9,12 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class AddTaskComponent implements OnInit {
 
+  @ViewChild('elemInput') elemInput: any;
   addTaskForm!: FormGroup;
   title: string = '';
   taskElements: string[] = [];
   date: string = '';
+  listOfItems: string[] = [];
 
   constructor(private formBuilder: FormBuilder, private dialogRef: MatDialogRef<AddTaskComponent>) {
   }
@@ -25,6 +27,19 @@ export class AddTaskComponent implements OnInit {
         date: [this.date, Validators.required]
       }
     );
+  }
+
+  addToList(event: any) {
+    let val = event.target.value;
+    if (val == '' && this.listOfItems.length == 0) {
+      // do nothing
+    }
+
+    if (val != '') {
+      this.listOfItems?.push(val);
+    }
+
+    this.elemInput.nativeElement.value = '';
   }
 
   save() {

@@ -46,5 +46,4 @@ export class TasksComponent implements OnInit {
     const dialogRef = this.matDialog.open(AddTaskComponent, dialogConfig);
     dialogRef.afterClosed().subscribe();
   }
-
 }

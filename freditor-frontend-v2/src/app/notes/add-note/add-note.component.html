@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Dodaj notatkę</h2>
+
+<mat-dialog-content [formGroup]="addNoteForm">
+    <div class="dialog-content-container">
+        <div>
+            <mat-form-field>
+                <label for="title">Tytuł notatki</label>
+                <input matInput type="text" formControlName="title" required>
+                <mat-error *ngIf="!addNoteForm.controls['title'].valid && addNoteForm.controls['title'].touched">
+                    Tytuł notatki jest wymagany!
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <label for="content">Zawartość notatki</label>
+                <textarea rows="6" matInput type="text" formControlName="content" required></textarea>
+                <mat-error *ngIf="!addNoteForm.controls['content'].valid && addNoteForm.controls['content'].touched">
+                    Notatka nie może być pusta!
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+    <button class="mat-raised-button" (click)="cancel()">Anuluj</button>&nbsp;
+    <button class="mat-raised-button mat-primary" (click)="save()">Zapisz</button>
+</mat-dialog-actions>
