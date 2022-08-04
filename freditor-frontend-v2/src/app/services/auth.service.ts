@@ -41,6 +41,7 @@ export class AuthService {
         // do nothing
       } else {
         // TODO: save data
+        this.router.navigate(['login']);
       }
     }, (error: any) => {
       if (this.connectionFailed == false) {
