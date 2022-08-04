@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StyleManagerService } from './style-manager.service';
-import { Option } from '../models/option.model';
+import { Option } from '../models/option';
 
 @Injectable({
   providedIn: 'root'

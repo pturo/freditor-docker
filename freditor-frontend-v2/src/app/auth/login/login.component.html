@@ -16,12 +16,15 @@
             <div>
                 <mat-form-field appearance="legacy">
                     <mat-label>Hasło</mat-label>
-                    <input matInput type="password" formControlName="password" required minlength="8">
+                    <input #pass matInput type="password" formControlName="password" required minlength="8">
+                    <mat-hint align="end">{{ pass.value.length }} / 8</mat-hint>
                     <mat-error *ngIf="!loginForm.controls['password'].valid && loginForm.controls['password'].touched">
                         Nie można wstawiać pustego hasła, lub też jest ono nieprawidłowe!
                     </mat-error>
+                    <mat-error>Wprowadzone hasło jest za krótkie (min. 8 znaków bez symboli)</mat-error>
                 </mat-form-field>
             </div>
+            <br>
             <div>
                 <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Zaloguj
                     się</button>&nbsp;
@@ -29,5 +32,16 @@
                     się</button>
             </div>
         </form>
+        <br>
+        <div *ngIf="authService.loginFailed">
+            <div class="login-failed-box">
+                <span style="color: red;">Podany login oraz hasło są błędne!</span>
+            </div>
+        </div>
+        <div *ngIf="authService.connectionFailed">
+            <div class="connection-failed-box">
+                <span style="color: red;">Błąd połączenia z bazą danych!</span>
+            </div>
+        </div>
     </div>
 </div>

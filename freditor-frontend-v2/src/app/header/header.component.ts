@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ThemeService } from '../services/theme.service';
-import { Option } from '../models/option.model';
+import { Option } from '../models/option';
 import { AuthService } from '../services/auth.service';
 import { StorageService } from '../services/storage.service';
 

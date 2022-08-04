@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Option } from '../models/option.model';
+import { Option } from '../models/option';
 
 @Component({
   selector: 'app-theme',
