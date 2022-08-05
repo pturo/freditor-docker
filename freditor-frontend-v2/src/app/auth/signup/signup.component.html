@@ -14,6 +14,7 @@
                     </mat-error>
                 </mat-form-field>
             </div>
+            <br>
             <div>
                 <mat-form-field appearance="legacy">
                     <mat-label>Adres e-mail</mat-label>
@@ -23,6 +24,7 @@
                     </mat-error>
                 </mat-form-field>
             </div>
+            <br>
             <div>
                 <mat-form-field appearance="legacy">
                     <mat-label>Hasło</mat-label>
@@ -30,11 +32,11 @@
                     <mat-hint align="end">{{pass.value.length}} / 8</mat-hint>
                     <mat-error
                         *ngIf="!signupForm.controls['password'].valid && signupForm.controls['password'].touched">
-                        Nie można wstawiać pustego hasła, lub też jest ono nieprawidłowe!
+                        Hasło zbyt krótkie (min. 8 znaków, bez symboli)
                     </mat-error>
-                    <mat-error>Hasło zbyt krótkie (min. 8 znaków, bez symboli)</mat-error>
                 </mat-form-field>
             </div>
+            <br>
             <div>
                 <mat-form-field appearance="legacy">
                     <mat-label>Powtórz hasło</mat-label>
@@ -42,16 +44,16 @@
                     <mat-hint align="end">{{rpass.value.length}} / 8</mat-hint>
                     <mat-error
                         *ngIf="!signupForm.controls['repeat-password'].valid && signupForm.controls['repeat-password'].touched">
-                        Nie można wstawiać pustego hasła, lub też jest ono nieprawidłowe!
+                        Hasło zbyt krótkie (min. 8 znaków, bez symboli)
                     </mat-error>
-                    <mat-error>Hasło zbyt krótkie (min. 8 znaków, bez symboli)</mat-error>
                 </mat-form-field>
             </div>
+            <br>
             <br>
             <div>
                 <button mat-raised-button color="primary" type="submit" [disabled]="!signupForm.valid">Zarejestruj
                     się</button>&nbsp;
-                <button mat-raised-button color="primary" type="submit" (click)="onCancel()">Anuluj</button>
+                <button mat-raised-button color="primary" (click)="onCancel()">Anuluj</button>
             </div>
         </form>
         <br>

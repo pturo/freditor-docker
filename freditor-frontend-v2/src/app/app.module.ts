@@ -9,7 +9,7 @@ import { StyleManagerService } from './services/style-manager.service';
 import { ThemeService } from './services/theme.service';
 import { ThemeComponent } from './theme/theme.component';
 import { HeaderComponent } from './header/header.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
 import { UserInterceptor } from './interceptors/user.interceptor';
 import { LoginComponent } from './auth/login/login.component';
@@ -51,6 +51,7 @@ import { EditNoteComponent } from './notes/edit-note/edit-note.component';
     EditNoteComponent
   ],
   imports: [
+    FormsModule,
     AppRoutingModule,
     MaterialModule,
     HttpClientModule,
