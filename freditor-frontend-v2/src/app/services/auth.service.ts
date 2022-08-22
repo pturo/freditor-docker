@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
 import { Login } from '../models/login';
 import { Signup } from '../models/signup';
 import { UserAuth } from '../models/user-auth';
@@ -55,29 +55,30 @@ export class AuthService {
   login(user: Login) {
     this.connectionFailed = false;
     this.loginFailed = false;
-    return this.http.post(this.apiUrl + 'login', JSON.stringify(user)).subscribe((res: any) => {
-      if (this.apiUrl == null || res == null) {
-        // do nothing
-      } else {
-        if (user.username == res.username && user.password == res.password) {
-          this.userAuth = {
-            username: res.username,
-            token: res.token
-          };
-        } else if (user.username != res.username && user.password != user.password) {
-          this.authStateChange.next(false);
+    return this.http.post(this.apiUrl + 'login', JSON.stringify(user))
+      .subscribe((res: any) => {
+        if (this.apiUrl == null || res == null) {
+          // do nothing
+        } else {
+          if (user.username == res.username && user.password == res.password) {
+            this.userAuth = {
+              username: res.username,
+              token: res.token
+            };
+          } else if (user.username != res.username && user.password != user.password) {
+            this.authStateChange.next(false);
+          }
+          this.authStateChange.next(true);
+          this.storageService.setStorage('user', this.userAuth);
+          this.router.navigate(['dashboard']);
         }
-        this.authStateChange.next(true);
-        this.storageService.setStorage('user', this.userAuth);
-        this.router.navigate(['dashboard']);
-      }
-    }, (error: any) => {
-      if (this.connectionFailed == false) {
-        this.connectionFailed = true;
-      } else if (this.loginFailed == false) {
-        this.loginFailed = true;
-      }
-    });
+      }, (error: any) => {
+        if (this.connectionFailed == false) {
+          this.connectionFailed = true;
+        } else if (this.loginFailed == false) {
+          this.loginFailed = true;
+        }
+      });
   }
 
   get isLoggedIn() {
@@ -91,11 +92,9 @@ export class AuthService {
     this.router.navigate(['login']);
   }
 
-  private handleError<T>(operation = 'operation', result?: T) {
+  private handleError<T>(result?: T) {
     return (error: any): Observable<T> => {
-      console.log(error); // log to console instead
 
-      console.log(`${operation}` + ' failed: ' + `${error.message}`);
 
       // Let the app keep running by returning an empty result.
       return of(result as T);

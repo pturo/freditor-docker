@@ -28,6 +28,7 @@ import { AddTaskComponent } from './tasks/add-task/add-task.component';
 import { AddNoteComponent } from './notes/add-note/add-note.component';
 import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
 import { EditNoteComponent } from './notes/edit-note/edit-note.component';
+import { LoadingSpinnerComponent } from './utils/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { EditNoteComponent } from './notes/edit-note/edit-note.component';
     AddTaskComponent,
     AddNoteComponent,
     EditTaskComponent,
-    EditNoteComponent
+    EditNoteComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     FormsModule,

@@ -19,6 +19,7 @@ export class TasksComponent implements OnInit {
   ];
 
   width = 0;
+  displayProgressSpinner = false;
 
   constructor(public matDialog: MatDialog) { }
 
@@ -29,6 +30,16 @@ export class TasksComponent implements OnInit {
     const taskCheckboxes = document.querySelectorAll('.task-checkbox');
     const progress = document.querySelector('.progress-inner');
     const updateProgress = (100 / taskCheckboxes.length);
+
+    // for (let i = 0; i < this.tasks.length; i++) {
+    //   let checkboxes = this.tasks[i].taskElements.length;
+    //   let progress = this.tasks[i].progress;
+    //   let update = (100 / checkboxes);
+    //   if () {
+    //     progress += update;
+    //     this.width = progress;
+    //   }
+    // }
 
     for (let j = 0; j < taskCheckboxes.length; j++) {
       if ((taskCheckboxes[j] as HTMLInputElement).checked) {
@@ -59,5 +70,13 @@ export class TasksComponent implements OnInit {
 
   deleteTask(taskId: number) {
     this.tasks = this.tasks.filter(task => task.id != taskId);
+  }
+
+  refresh() {
+    this.displayProgressSpinner = true;
+    setTimeout(() => {
+      console.log("Odświeżam stronę...");
+      this.displayProgressSpinner = false;
+    }, 1000);
   }
 }

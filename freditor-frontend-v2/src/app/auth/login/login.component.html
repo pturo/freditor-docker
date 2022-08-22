@@ -44,5 +44,8 @@
                 <span style="color: red;">Błąd połączenia z bazą danych!</span>
             </div>
         </div>
+        <app-loading-spinner [color]="'primary'" [mode]="'indeterminate'" [backdropEnabled]="true"
+            [positionGloballyCenter]="true" [displayProgressSpinner]="displayProgressSpinner">
+        </app-loading-spinner>
     </div>
 </div>

@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
+  displayProgressSpinner = false;
 
   constructor(private router: Router, private formBuilder: FormBuilder, public authService: AuthService) { }
 
@@ -26,7 +27,11 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm(form: any) {
-    this.authService.login(form);
+    this.displayProgressSpinner = true;
+    setTimeout(() => {
+      this.authService.login(form);
+      this.displayProgressSpinner = false;
+    }, 1000);
   }
 
   onSignup() {
