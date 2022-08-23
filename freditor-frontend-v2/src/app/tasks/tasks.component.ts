@@ -74,8 +74,8 @@ export class TasksComponent implements OnInit {
 
   refresh() {
     this.displayProgressSpinner = true;
+    this.tasks = [];
     setTimeout(() => {
-      console.log("Odświeżam stronę...");
       this.displayProgressSpinner = false;
     }, 1000);
   }

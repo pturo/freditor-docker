@@ -28,10 +28,10 @@ export class LoginComponent implements OnInit {
 
   submitForm(form: any) {
     this.displayProgressSpinner = true;
+    this.authService.login(form);
     setTimeout(() => {
-      this.authService.login(form);
       this.displayProgressSpinner = false;
-    }, 1000);
+    }, 2000);
   }
 
   onSignup() {

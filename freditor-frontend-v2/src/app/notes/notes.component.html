@@ -16,7 +16,7 @@
                         &nbsp;<span>Dodaj notatkę</span>
                     </div>
                     <div class="refresh">
-                        <button mat-mini-fab color="primary">
+                        <button mat-mini-fab color="primary" (click)="refresh()">
                             <mat-icon>refresh</mat-icon>
                         </button>
                         &nbsp;<span>Odśwież</span>
@@ -51,6 +51,9 @@
                 <div *ngIf="notes.length === 0">
                     <h2>W tej chwili nie ma żadnych notatek.</h2>
                 </div>
+                <app-loading-spinner [color]="'primary'" [mode]="'indeterminate'" [backdropEnabled]="true"
+                    [positionGloballyCenter]="true" [displayProgressSpinner]="displayProgressSpinner">
+                </app-loading-spinner>
                 <br>
             </div>
         </div>
