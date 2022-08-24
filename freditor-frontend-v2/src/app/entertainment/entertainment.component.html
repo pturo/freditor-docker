@@ -14,9 +14,17 @@
                     </mat-card-header>
                     <mat-card-content>
                         <p style="text-align: justify;">Zobaczmy, co takiego Cię dzisiaj spotka. :)</p>
+                        <br>
+                        <span style="font-size: 36px;"
+                            [ngClass]="{'red': result?.number === 1, 'orange': result?.number === 2, 'yellow': result?.number === 3, 
+            'lime': result?.number === 4, 'green': result?.number === 5, 'blue': result?.number === 6}">{{result?.number}}</span>
+                        <span style="font-size: 36px;" *ngIf="!result">0</span>
+                        <br>
+                        <p>Znaczenie:</p>
+                        <span style="font-size: 36px;">{{ result?.meaning }}</span>
                     </mat-card-content>
                     <div class="buttons">
-                        <button mat-raised-button color="primary">Losuj!</button>
+                        <button mat-raised-button color="primary" (click)="rollADice()">Losuj!</button>
                     </div>
                     <br>
                     <hr>
@@ -26,9 +34,13 @@
                     </mat-card-header>
                     <mat-card-content>
                         <p style="text-align: justify;">Absurd goni absurd. :)</p>
+                        <br>
+                        <p>Co śmiesznego na dziś?</p>
+                        <br>
+                        <span style="font-size: 36px;">{{ generatedText }}</span>
                     </mat-card-content>
                     <div class="buttons">
-                        <button mat-raised-button color="primary">Generuj tekst</button>
+                        <button mat-raised-button color="primary" (click)="generateRandomText()">Generuj tekst</button>
                     </div>
                 </mat-card>
             </div>

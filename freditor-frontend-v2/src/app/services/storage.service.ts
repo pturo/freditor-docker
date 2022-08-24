@@ -8,18 +8,18 @@ export class StorageService {
   constructor() { }
 
   public getStorage(name: string): string | null {
-    return localStorage.getItem(name);
+    return sessionStorage.getItem(name);
   }
 
   public setStorage(name: string, value: any): void {
-    localStorage.setItem(name, JSON.stringify(value));
+    sessionStorage.setItem(name, JSON.stringify(value));
   };
 
   public removeStorage(name: string) {
-    localStorage.removeItem(name);
+    sessionStorage.removeItem(name);
   }
 
   public clearStorage() {
-    localStorage.clear();
+    sessionStorage.clear();
   }
 }

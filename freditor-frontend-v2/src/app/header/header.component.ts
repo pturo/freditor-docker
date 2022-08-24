@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { ThemeService } from '../services/theme.service';
 import { Option } from '../models/option';
 import { AuthService } from '../services/auth.service';
-import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-header',
@@ -16,14 +15,13 @@ export class HeaderComponent implements OnInit {
   options$: Observable<Array<Option>> = this.themeService.getThemeOptions();
   isLoggedIn$!: Observable<boolean>;
 
-  constructor(private readonly themeService: ThemeService, public authService: AuthService, private storageService: StorageService) { }
+  constructor(private readonly themeService: ThemeService, public authService: AuthService) { }
 
   ngOnInit() {
     this.isLoggedIn$ = this.authService.isLoggedIn;
   }
 
   themeChangeHandler(themeToSet: any) {
-    //this.storageService.setStorage("theme", this.themeService.setTheme(themeToSet));
     this.themeService.setTheme(themeToSet);
     console.log("theme to set ", themeToSet);
   }
