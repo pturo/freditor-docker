@@ -12,6 +12,7 @@ This project aims to practice Angular and improve my programming skills. This is
 
 - Angular CLI v13
 - Angular Material
+- Node 16.15.1
 
 ## Goals
 
