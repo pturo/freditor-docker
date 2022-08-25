@@ -5,70 +5,96 @@
             <h1>Zadania</h1>
             <hr>
             <br>
-            <div class="page-content">
-                <h2>Zadania</h2>
-                <br>
-                <div class="add-refresh">
-                    <div class="add">
-                        <button mat-mini-fab color="primary" (click)="addTaskDialog()">
-                            <mat-icon>add</mat-icon>
-                        </button>
-                        &nbsp;<span>Dodaj zadanie</span>
-                    </div>
-                    <div class="refresh">
-                        <button mat-mini-fab color="primary" (click)="refresh()">
-                            <mat-icon>refresh</mat-icon>
-                        </button>
-                        &nbsp;<span>Odśwież</span>
-                    </div>
-                </div>
-                <hr>
-                <br>
-                <div *ngIf="tasks.length > 0">
-                    <mat-card *ngFor="let task of tasks">
-                        <div class="card-container">
-                            <div class="left-card">
-                                <mat-card-header>
-                                    <mat-card-title>Tytuł zadania: {{ task.title }}</mat-card-title>
-                                </mat-card-header>
-                                <label style="margin-left: 10px;">Szczegóły zadania:</label>
-                                <mat-card-content>
-                                    <div *ngFor="let elem of task.taskElements">
-                                        <input [id]="task.id" class="task-checkbox" type="checkbox"
-                                            (click)="updateTaskProgress()">&nbsp;{{
-                                        elem }}
-                                    </div>
-                                </mat-card-content>
+            <h2>Zadania</h2>
+            <br>
+            <div class="container-tasks">
+                <div class="filter">
+                    <div class="widgets">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Szukaj</mat-label>
+                            <input matInput type="text">
+                            <mat-icon matPrefix>search</mat-icon>
+                        </mat-form-field>
+                        <br>
+                        <p>Sortuj listę zadań</p>
+                        <div>
+                            <div>
+                                <mat-checkbox>Wykonane</mat-checkbox>
                             </div>
-                            <div class="right-card">
-                                <mat-icon class="task-icon">task_alt</mat-icon>
+                            <div>
+                                <mat-checkbox>Niewykonane</mat-checkbox>
+                            </div>
+                            <div>
+                                <mat-checkbox>W trakcie</mat-checkbox>
                             </div>
                         </div>
-                        <mat-card-content>
-                            <label>Termin wykonania zadania: {{ task.date | date }}</label>
-                            <br><br>
-                            <label>Postęp wykonania zadania: {{ width | number: '1.0-0' }}%</label>
-                            <div class="progress-bar">
-                                <div [id]="task.id" class="progress-inner"></div>
-                            </div>
-                            <!-- <mat-progress-bar mode="determinate" [value]="width"></mat-progress-bar> -->
-                        </mat-card-content>
-                        <mat-card-footer>
-                            <div class="buttons">
-                                <button mat-raised-button color="primary"
-                                    (click)="editTaskDialog()">Edytuj</button>&nbsp;
-                                <button mat-raised-button color="primary" (click)="deleteTask(task.id)">Usuń</button>
-                            </div>
-                        </mat-card-footer>
-                    </mat-card>
+                    </div>
                 </div>
-                <div *ngIf="tasks.length === 0">
-                    <h2>W tej chwili nie ma żadnych zadań.</h2>
+                <div class="page-content">
+                    <div class="add-refresh">
+                        <div class="add">
+                            <button mat-mini-fab color="primary" (click)="addTaskDialog()">
+                                <mat-icon>add</mat-icon>
+                            </button>
+                            &nbsp;<span>Dodaj zadanie</span>
+                        </div>
+                        <div class="refresh">
+                            <button mat-mini-fab color="primary" (click)="refresh()">
+                                <mat-icon>refresh</mat-icon>
+                            </button>
+                            &nbsp;<span>Odśwież</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <br>
+                    <div *ngIf="tasks.length > 0">
+                        <mat-card *ngFor="let task of tasks">
+                            <div class="card-container">
+                                <div class="left-card">
+                                    <mat-card-header>
+                                        <mat-card-title>Tytuł zadania: {{ task.title }}</mat-card-title>
+                                    </mat-card-header>
+                                    <label style="margin-left: 10px;">Szczegóły zadania:</label>
+                                    <mat-card-content>
+                                        <div *ngFor="let elem of task.taskElements">
+                                            <input [id]="task.id" class="task-checkbox" type="checkbox"
+                                                (click)="updateTaskProgress()">&nbsp;{{
+                                            elem }}
+                                        </div>
+                                    </mat-card-content>
+                                </div>
+                                <div class="right-card">
+                                    <mat-icon class="task-icon">task_alt</mat-icon>
+                                    <p>Status zadania: {{ task.status }}</p>
+                                </div>
+                            </div>
+                            <mat-card-content>
+                                <label>Termin wykonania zadania: {{ task.date | date }}</label>
+                                <br><br>
+                                <label>Postęp wykonania zadania: {{ width | number: '1.0-0' }}%</label>
+                                <div class="progress-bar">
+                                    <div [id]="task.id" class="progress-inner"></div>
+                                </div>
+                                <!-- <mat-progress-bar mode="determinate" [value]="width"></mat-progress-bar> -->
+                            </mat-card-content>
+                            <mat-card-footer>
+                                <div class="buttons">
+                                    <button mat-raised-button color="primary"
+                                        (click)="editTaskDialog()">Edytuj</button>&nbsp;
+                                    <button mat-raised-button color="primary"
+                                        (click)="deleteTask(task.id)">Usuń</button>
+                                </div>
+                            </mat-card-footer>
+                        </mat-card>
+                    </div>
+                    <div *ngIf="tasks.length === 0">
+                        <h2>W tej chwili nie ma żadnych zadań.</h2>
+                    </div>
+                    <app-loading-spinner [color]="'primary'" [mode]="'indeterminate'" [backdropEnabled]="true"
+                        [positionGloballyCenter]="true" [displayProgressSpinner]="displayProgressSpinner">
+                    </app-loading-spinner>
+                    <br>
                 </div>
-                <app-loading-spinner [color]="'primary'" [mode]="'indeterminate'" [backdropEnabled]="true"
-                    [positionGloballyCenter]="true" [displayProgressSpinner]="displayProgressSpinner">
-                </app-loading-spinner>
-                <br>
             </div>
         </div>
     </div>

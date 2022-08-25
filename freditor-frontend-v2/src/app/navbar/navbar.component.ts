@@ -9,11 +9,36 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   index = 0;
-  selectedItem = false;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  public selectIndex(idx: number) {
+    switch (idx) {
+      case 0:
+        this.dashboard();
+        break;
+      case 1:
+        this.tasks();
+        break;
+      case 2:
+        this.notes();
+        break;
+      case 3:
+        this.editor();
+        break;
+      case 4:
+        this.calendar();
+        break;
+      case 5:
+        this.archive();
+        break;
+      case 6:
+        this.entertainment();
+        break;
+    }
   }
 
   dashboard() {

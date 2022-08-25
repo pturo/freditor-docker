@@ -24,6 +24,10 @@ mat-card-footer {
     margin: 10px 10px 10px 10px;
 }
 
+mat-form-field {
+    width: 100%;
+}
+
 /* DIV CLASSES */
 .tasks {
     display: flex;
@@ -40,6 +44,22 @@ mat-card-footer {
     padding: 10px 10px 10px 10px;
 }
 
+.container-tasks {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.filter {
+    width: 25%;
+    padding-right: 15px;
+}
+
+.widgets {
+    padding-right: 15px;
+    width: 100%;
+    min-width: 100%;
+}
+
 .main-content {
     min-height: 0;
     min-width: 0;
@@ -50,8 +70,8 @@ mat-card-footer {
 }
 
 .page-content {
-    width: 80%;
-    margin: 0 auto;
+    width: 75%;
+    padding-left: 15px;
 }
 
 .buttons {

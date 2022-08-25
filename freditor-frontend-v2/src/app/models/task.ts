@@ -4,4 +4,5 @@ export interface Task {
     taskElements: string[];
     date: string;
     progress: number;
+    status: string;
 }

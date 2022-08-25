@@ -1,62 +1,77 @@
 <div class="nav-bar">
-    <div class="nav-flex-col">
-        <div class="nav-item">
-            <div class="nav-background" [routerLink]="['/dashboard']" [routerLinkActive]="['active']"
-                (click)="dashboard()">
-                <div class="icon-md">
-                    <mat-icon>dashboard</mat-icon>
+    <div class="nav-items-list">
+        <div class="nav-flex-col">
+            <div class="nav-item active">
+                <div [tabindex]="index == 0" class="nav-background" [routerLink]="['/dashboard']"
+                    [routerLinkActive]="['active']" (click)="selectIndex(0)">
+                    <div class="icon-md">
+                        <mat-icon>dashboard</mat-icon>
+                    </div>
+                    <div class="nav-title">Panel główny</div>
                 </div>
-                <div class="nav-title">Panel główny</div>
+            </div>
+            <div class="nav-item active">
+                <div [tabindex]="index == 1" class="nav-background" [routerLink]="['/tasks']"
+                    [routerLinkActive]="['active']" (click)="selectIndex(1)">
+                    <div class="icon-md">
+                        <mat-icon>task</mat-icon>
+                    </div>
+                    <div class="nav-title">Zadania</div>
+                </div>
+            </div>
+            <div class="nav-item active">
+                <div [tabindex]="index == 2" class="nav-background" [routerLink]="['/notes']"
+                    [routerLinkActive]="['active']" (click)="selectIndex(2)">
+                    <div class="icon-md">
+                        <mat-icon>notes</mat-icon>
+                    </div>
+                    <div class="nav-title">Notatki</div>
+                </div>
+            </div>
+            <div class="nav-item active">
+                <div [tabindex]="index == 3" class="nav-background" [routerLink]="['/editor']"
+                    [routerLinkActive]="['active']" (click)="selectIndex(3)">
+                    <div class="icon-md">
+                        <mat-icon>edit</mat-icon>
+                    </div>
+                    <div class="nav-title">Edytor</div>
+                </div>
+            </div>
+            <div class="nav-item active">
+                <div [tabindex]="index == 4" class="nav-background" [routerLink]="['/calendar']"
+                    [routerLinkActive]="['active']" (click)="selectIndex(4)">
+                    <div class="icon-md">
+                        <mat-icon>calendar_month</mat-icon>
+                    </div>
+                    <div class="nav-title">Kalendarz</div>
+                </div>
+            </div>
+            <div class="nav-item">
+                <div [tabindex]="index == 5" class="nav-background" [routerLink]="['/archive']"
+                    [routerLinkActive]="['active']" (click)="selectIndex(5)">
+                    <div class="icon-md">
+                        <mat-icon>archive</mat-icon>
+                    </div>
+                    <div class="nav-title">Archiwum</div>
+                </div>
+            </div>
+            <div class="nav-item">
+                <div [tabindex]="index == 6" class="nav-background" [routerLink]="['/entertainment']"
+                    [routerLinkActive]="['active']" (click)="selectIndex(6)">
+                    <div class="icon-md">
+                        <mat-icon>casino</mat-icon>
+                    </div>
+                    <div class="nav-title">Rozrywka</div>
+                </div>
             </div>
         </div>
-        <div class="nav-item">
-            <div class="nav-background" [routerLink]="['/tasks']" [routerLinkActive]="['active']" (click)="tasks()">
-                <div class="icon-md">
-                    <mat-icon>task</mat-icon>
-                </div>
-                <div class="nav-title">Zadania</div>
-            </div>
-        </div>
-        <div class="nav-item">
-            <div class="nav-background" [routerLink]="['/notes']" [routerLinkActive]="['active']" (click)="notes()">
-                <div class="icon-md">
-                    <mat-icon>notes</mat-icon>
-                </div>
-                <div class="nav-title">Notatki</div>
-            </div>
-        </div>
-        <div class="nav-item">
-            <div class="nav-background" [routerLink]="['/editor']" [routerLinkActive]="['active']" (click)="editor()">
-                <div class="icon-md">
-                    <mat-icon>edit</mat-icon>
-                </div>
-                <div class="nav-title">Edytor</div>
-            </div>
-        </div>
-        <div class="nav-item">
-            <div class="nav-background" [routerLink]="['/calendar']" [routerLinkActive]="['active']"
-                (click)="calendar()">
-                <div class="icon-md">
-                    <mat-icon>calendar_month</mat-icon>
-                </div>
-                <div class="nav-title">Kalendarz</div>
-            </div>
-        </div>
-        <div class="nav-item">
-            <div class="nav-background" [routerLink]="['/archive']" [routerLinkActive]="['active']" (click)="archive()">
-                <div class="icon-md">
-                    <mat-icon>archive</mat-icon>
-                </div>
-                <div class="nav-title">Archiwum</div>
-            </div>
-        </div>
-        <div class="nav-item">
-            <div class="nav-background" [routerLink]="['/entertainment']" [routerLinkActive]="['active']"
-                (click)="entertainment()">
-                <div class="icon-md">
-                    <mat-icon>casino</mat-icon>
-                </div>
-                <div class="nav-title">Rozrywka</div>
+    </div>
+    <div class="nav-divider">
+    </div>
+    <div class="nav-footer">
+        <div class="info">
+            <div class="page-info">
+                <mat-icon matTooltip="&copy; 2022 Paweł &quot;Wilczeq&quot; Turoń">info</mat-icon>
             </div>
         </div>
     </div>
